@@ -14,9 +14,9 @@ class Bdd
 {
 	// valeur par defaut en cas d'instanciation sans valeur
 	private $host    = 'localhost';
-	private $db_name = 'gestinterv_tts';
+	private $db_name = 'stage';
 	private $user    = 'root';
-	private $mdp     = '';
+	private $mdp     = 'root';
 
 	/** @var PDO variable avec l'instance PDO */
 	private $oBdd  = null;
