@@ -1,6 +1,6 @@
 ﻿<?php	
 	// récuperer les résultats des requêtes
-	require_once ("/FO/Modeles/Tickets/lireTicket.inc.php") ;
+	require_once ("FO/Modeles/Tickets/lireTicket.inc.php") ;
 ?>	
 <div id="formulaire">
 	<fieldset>	

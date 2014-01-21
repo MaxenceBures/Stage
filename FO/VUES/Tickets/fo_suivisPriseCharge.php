@@ -1,6 +1,6 @@
 <?php
 	$sLogin = $_SESSION["login"];
-	require_once ("/FO/Modeles/Tickets/lireTicket.inc.php") ;
+	require_once ("FO/Modeles/Tickets/lireTicket.inc.php") ;
 	// intégrer la liste déroulante
 	require_once("FO/Vues/Tickets/fo_priseCharge.php") ;
 ?>
