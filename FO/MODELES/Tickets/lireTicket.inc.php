@@ -77,13 +77,14 @@
 	function getMesTickets($pLogin, $pEtat)
 	{		
 		//$oSql= connecter() ;		
-		$sReq = " SELECT Tic_Num, Tic_Materiel
+		$sReq = " SELECT Tic_Num, Tic_Materiel, 
 				  FROM  TICKET , UTILISATEUR
 				  WHERE Tic_Etat        = :etat
 				  AND   Tic_Intervenant = Uti_Code
-				  AND   Uti_Login       = :login
+				  AND   Uti_Code       = :login
 				  ORDER BY Tic_Num " ;	
 		$mesTickets = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ;
+		var_dump($mesTickets);
 		return ($mesTickets) ;
 		
 		/*

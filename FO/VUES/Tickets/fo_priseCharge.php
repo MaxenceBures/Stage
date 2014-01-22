@@ -25,7 +25,7 @@
 							foreach ($lesTickets as $unTicket)							
 							{	
 ?>							
-								<option value="<?php echo $unTicket['Tic_Num'] ; ?>" > <?php echo $unTicket["Tic_Num"] . "  -  " . $unTicket["Tic_Materiel"] ; ?> </option>			
+								<option value="<?php echo $unTicket->Tic_Num ; ?>" > <?php echo $unTicket->Tic_Num . "  -  " . $unTicket->Tic_Materiel ; ?> </option>			
 <?php							
 							}
 ?>
