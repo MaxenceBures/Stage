@@ -237,7 +237,7 @@
 				  AND Int_Ticket      = Tic_Num 
 				  AND Tic_Etat        = Eta_Code	
 				  ORDER BY Tic_Num ";		
-				 
+
 		$lesTickets = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ;
 		return ($lesTickets) ;
 		
@@ -261,15 +261,29 @@
 	function getAllDemandes($pLogin, $pEtat)
 	{		
 		//$oSql= connecter() ;		
-		$sReq = " SELECT Tic_Num, Tic_DatCre, Tic_Salle , Cat_Libelle, Tic_Materiel,  Tic_Constat, Eta_Libelle 
+		/*$sReq = " SELECT Tic_Num, Tic_DatCre, Tic_Salle , Cat_Libelle, Tic_Materiel,  Tic_Constat, Eta_Libelle 
 				  FROM  CATEGORIE, UTILISATEUR,  TICKET, ETAT
 				  WHERE Uti_Login     = :login
 				  AND Tic_Etat        = :etat
 				  AND Tic_Categorie   = Cat_Code
 				  AND Tic_Demandeur   = Uti_code					
 				  AND Tic_Etat        = Eta_Code	
-				  ORDER BY Tic_Num ";	
-		$lesDemandes = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ;
+				  ORDER BY Tic_Num ";	*/
+
+
+
+		$sReq = " SELECT Tic_Num, Tic_DatCre, Tic_Salle , Cat_Libelle, Tic_Materiel,  Tic_Constat, Eta_Libelle 
+				  FROM  CATEGORIE, UTILISATEUR,  TICKET, ETAT
+				  WHERE Uti_Login     = :login
+				  AND Tic_Etat        = :etat	
+				  AND Uti_Code = Tic_Demandeur
+				  AND Tic_Categorie   = Cat_Code
+				  AND Tic_Demandeur   = Uti_code					
+				  AND Tic_Etat        = Eta_Code
+				  ORDER BY Tic_Num ";		  
+
+		$lesDemandes = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ; //, 'etat' => $pEtat)
+//var_dump($lesDemandes);
 		return ($lesDemandes) ;
 		
 		/*

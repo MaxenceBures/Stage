@@ -31,13 +31,17 @@
 								{
 ?>
 						<tr>
-							<td><?php echo $unTicket["Tic_Num"] ;  ?></td>
-							<td><?php echo modifierDate($unTicket["Tic_DatCre"]); ?></td>
-							<td><?php echo $unTicket["Tic_Salle"] ; ?></td>
-							<td><?php echo $unTicket["Tic_Materiel"] ; ?></td>
-							<td><?php echo $unTicket["Cat_Libelle"] ;?></td>	
-							<td><?php echo stripslashes($unTicket["Tic_Constat"]) ; ?></td>	
+							<td><?php echo $unTicket->Tic_Num ;  ?></td>
+							<td><?php echo modifierDate($unTicket ->Tic_DatCre); ?></td>
+							<td><?php echo $unTicket->Tic_Salle ; ?></td>
+							<td><?php echo $unTicket->Tic_Materiel ; ?></td>
+							<td><?php echo $unTicket->Cat_Libelle ;?></td>	
+							<td><?php echo stripslashes($unTicket->Tic_Constat) ; ?></td>	
 						</tr>
+
+
+
+
 <?php
 								}
 ?>
@@ -69,8 +73,8 @@
 					{
 ?>	
 						<tr>
-							<td><?php echo $unTicket["Tic_Num"] ;  ?></td>
-							<td><?php echo modifierDate($unTicket["Tic_DatCre"]); ?></td>
+							<td><?php echo $unTicket->Tic_Num ;  ?></td>
+							<td><?php echo modifierDate($unTicket->Tic_DatCre); ?></td>
 							<td><?php echo $unTicket["Tic_Salle"] ; ?></td>
 							<td><?php echo $unTicket["Tic_Materiel"] ; ?></td>
 							<td><?php echo $unTicket["Cat_Libelle"] ;?></td>	
