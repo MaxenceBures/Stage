@@ -1,6 +1,6 @@
 <?php
 	$sLogin = $_SESSION["login"];	
-	require_once ("/FO/Modeles/Interventions/lireIntervention.inc.php") ;
+	require_once ("FO/Modeles/Interventions/lireIntervention.inc.php") ;
 ?>
 	<br/>
 	<fieldset>

@@ -36,7 +36,8 @@
 	
 	FUNCTION getAllInterv($pLogin, $pEtat)
 	{		
-		$oBdd= connecter() ;		
+		$oBdd= connecter() ;	
+		
 		$sReq = " SELECT Tic_Num, Tic_DatCre, Tic_Salle, Cat_Libelle , Tic_Materiel, Int_Num, Int_Debut,  Eta_Libelle
 				  FROM INTERVENTION , CATEGORIE, UTILISATEUR,  TICKET, ETAT
 				  WHERE Uti_Login     = :login
@@ -48,10 +49,21 @@
 				  ORDER BY Tic_Num ";	
 
 		/*$uneInterv = $this->oBdd->query($sReq, array('login'=>$pLogin, 'etat'=>$pEtat));
-		return($uneInterv);*/
-		
+		return($uneInterv);   
+				*/
+	mysql_connect('localhost','root','root','stage');
+	 $test = mysql_query("SELECT Tic_Num, Tic_DatCre, Tic_Salle, Cat_Libelle , Tic_Materiel, Int_Num, Int_Debut,  Eta_Libelle
+				  FROM INTERVENTION , CATEGORIE, UTILISATEUR,  TICKET, ETAT
+				  WHERE Uti_Login     = '".$pLogin."'
+				  AND Tic_Categorie   = Cat_Code
+				  AND Tic_Intervenant = Uti_code					
+				  AND Int_Ticket      = Tic_Num
+				  AND Tic_Etat        = Eta_Code	
+				  ORDER BY Tic_Num");
+var_dump($test);
 		$rstInterv = $oBdd->query($sReq, array('login'=>$pLogin, 'etat'=>$pEtat)) ;	
-
+		// var_dump($sReq);
+var_dump($rstInterv);
 		// $iNb = 0 ;
 		// $lesIntervs = array() ;		
 		// while ($uneLigne = $oBdd->tabAssoc($rstInterv ) )
@@ -59,7 +71,7 @@
 			// $iNb = $iNb + 1 ;
 			// $lesIntervs[$iNb] =  $uneLigne ;
 		// }
-		return ($lesIntervs) ;
+		return ($rstInterv) ;
 	}
 	
 	

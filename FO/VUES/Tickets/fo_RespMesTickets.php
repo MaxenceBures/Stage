@@ -1,6 +1,6 @@
 <?php
 	$sLogin = $_SESSION["login"];	
-	require_once ("/FO/Modeles/Tickets/lireTicket.inc.php") ;
+	require_once ("FO/Modeles/Tickets/lireTicket.inc.php") ;
 ?>
 	<fieldset>
 		<div class="row">

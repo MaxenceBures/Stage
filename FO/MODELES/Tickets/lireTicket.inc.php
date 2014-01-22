@@ -102,7 +102,7 @@
 	}
 	
 	// Les tickets du responsable
-	FUNCTION getMesTicketsResp($pLogin)
+	function getMesTicketsResp($pLogin)
 	{		
 		//$oSql= connecter() ;		
 		$sReq = "SELECT Tic_Num, Tic_Salle, Cat_Libelle, Tic_Materiel, Tic_DatCre, Tic_Constat, Eta_Libelle
@@ -237,6 +237,7 @@
 				  AND Int_Ticket      = Tic_Num 
 				  AND Tic_Etat        = Eta_Code	
 				  ORDER BY Tic_Num ";		
+				 
 		$lesTickets = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ;
 		return ($lesTickets) ;
 		

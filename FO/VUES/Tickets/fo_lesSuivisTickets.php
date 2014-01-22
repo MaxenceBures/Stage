@@ -1,7 +1,7 @@
 ﻿<?php
 	$sLogin = $_SESSION["login"];	
-	require_once ("/FO/Modeles/Tickets/lireTicket.inc.php") ;
-	require_once ("/FO/Modeles/Users/lireUser.inc.php") ;
+	require_once ("FO/Modeles/Tickets/lireTicket.inc.php") ;
+	require_once ("FO/Modeles/Users/lireUser.inc.php") ;
 	require_once ("fo_affecterTicket.php") ;
 	$lesEtats = getAllEtats() ;
 ?>
