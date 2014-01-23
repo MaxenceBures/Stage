@@ -21,7 +21,7 @@
 	//$rstUti  = $oSql->query($sReq) ;						
 	
 	
-	$user = $oBdd->query($sReq , array('Login'=>$sLogin, 'MDP'=>$sMdp), Bdd::SINGLE_RES);
+	$user = $oBdd->query($sReq , array('Login'=>$sLogin, 'MDP'=>sha1($sMdp)), Bdd::SINGLE_RES);
 	
 	
 	//if($ligne   = $oSql->tabAssoc($rstUti))
