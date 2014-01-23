@@ -21,7 +21,7 @@
 					<td>
 						<select id="lst_ticket" name="lst_ticket" >
 <?php		
-							$lesTickets  = getMesTickets($sLogin ,2) ;
+							//$lesTickets  = getMesTickets($sLogin ,2) ;
 							foreach ($lesTickets as $unTicket)							
 							{	
 ?>							

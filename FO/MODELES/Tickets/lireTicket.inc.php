@@ -83,7 +83,10 @@
 				  AND   Tic_Intervenant = Uti_Code
 				  AND   Uti_Code       = :login
 				  ORDER BY Tic_Num " ;	
+				 
 		$mesTickets = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ;
+		//$mesTickets = $_SESSION['bdd']->query($sReq) ;
+		
 		var_dump($mesTickets);
 		return ($mesTickets) ;
 		
