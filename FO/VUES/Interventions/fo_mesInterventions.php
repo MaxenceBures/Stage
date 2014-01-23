@@ -1,6 +1,7 @@
 <?php
 	$sLogin = $_SESSION["login"];	
 	require_once ("FO/Modeles/Interventions/lireIntervention.inc.php") ;
+
 ?>
 	<br/>
 	<fieldset>
@@ -11,6 +12,14 @@
 	            </div>
 	        </div>
     	</div>
+</br>
+    	<?php
+$lesIntervs  = getAllInterv($sLogin ,3) ;
+					if(empty($lesIntervs)){
+						echo "<H2>Vous n'avez aucune interventions en cours</H2>";
+					}
+	else{				
+    	?>
 		<div class="row row-big-col">
         	<div class="col span_12">
            		<table class="default-table">
@@ -24,7 +33,8 @@
 						<th width="20%">Choix</th>
 					</tr>
 <?php			
-					$lesIntervs  = getAllInterv($sLogin ,3) ;
+					
+					
 					foreach ($lesIntervs as $uneInterv)			
 					{
 ?>	
@@ -39,7 +49,7 @@
 							
 						</tr>
 <?php
-					}
+					}}
 ?>
 				</table>
 			</div>

@@ -37,8 +37,8 @@
 	FUNCTION getAllInterv($pLogin, $pEtat)
 	{		
 		$oBdd= connecter() ;	
-
-		$sReq = " SELECT Tic_Num, Tic_DatCre, Cat_Libelle , Tic_Materiel, Int_Num, Int_Debut,  Eta_Libelle
+//var_dump($pLogin);
+		/*$sReq = " SELECT Tic_Num, Tic_DatCre, Cat_Libelle , Tic_Materiel, Int_Num, Int_Debut,  Eta_Libelle
 				  FROM INTERVENTION , CATEGORIE, UTILISATEUR,  TICKET, ETAT
 				  WHERE Uti_Login     = :login
 				  AND Tic_Etat        = :etat
@@ -46,13 +46,24 @@
 				  AND Tic_Intervenant = Uti_code					
 				  AND Int_Ticket      = Tic_Num
 				  AND Tic_Etat        = Eta_Code	
-				  ORDER BY Tic_Num ";	
+				  ORDER BY Tic_Num ";*/	
+$sReq = " SELECT Tic_Num, Tic_DatCre, Cat_Libelle , Tic_Materiel, Int_Num, Int_Debut,  Eta_Libelle
+				  FROM INTERVENTION , CATEGORIE,  TICKET, ETAT, UTILISATEUR
+				  WHERE Tic_Categorie   = Cat_Code
+				  AND Int_Ticket      = Tic_Num
+				  AND Tic_Etat        = Eta_Code
+				  AND Uti_code = Tic_Intervenant
+				  AND Uti_Login = :login
+				  AND Tic_Etat        = :etat 	
+				  ORDER BY Tic_Num ";
 
 		/*$uneInterv = $this->oBdd->query($sReq, array('login'=>$pLogin, 'etat'=>$pEtat));
 		return($uneInterv);   
 				*/
 	//mysql_connect('localhost','root','root','stage');
-		$rstInterv = $oBdd->query($sReq, array('login'=>$pLogin, 'etat'=>$pEtat)) ;	
+		//$rstInterv = $oBdd->query($sReq, array('login'=>$pLogin, 'etat'=>$pEtat)) ;	
+			$rstInterv = $oBdd->query($sReq, array('login' => $pLogin, 'etat'=>$pEtat)) ;	
+		
 		// var_dump($sReq);
 		// $iNb = 0 ;
 		// $lesIntervs = array() ;		
