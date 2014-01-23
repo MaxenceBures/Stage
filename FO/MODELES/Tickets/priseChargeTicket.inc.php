@@ -12,22 +12,27 @@
 			 
 	$oBdd->exec($sReq, array('numTicket'=>$iNumTicket));
 	
+
+	var_dump($sReq);
 	// création de l'intervention
 	//génération d'un numéro d'intervention 
 	$sReq = "SELECT MAX(Int_Num) 
 		     FROM INTERVENTION" ;
-	$iNumInterv  = $oBdd->query($sReq) ;
-	$iNumInterv  = $iNumInterv  +  1 ;
+	$iNumInterv  = $oBdd->exec($sReq) ;
+	//$iNumInterv  = $iNumInterv  +  1 ;
 	
+	var_dump($sReq);
 	//insertion des données dans la base
 	$sReq = "INSERT INTO INTERVENTION (Int_Num, Int_Ticket, Int_Debut)
 		    VALUES (:numInt, :numTick, :date )";
 	// echo $sReq ."<br/>" ;
-	$oSql->exec($sReq, array('numInt'=>$iNumInterv, 'numTick'=>$iNumTicket, 'date'=>$dDateInt));	
+	//$oSql->exec($sReq, array('numInt'=>$iNumInterv, 'numTick'=>$iNumTicket, 'date'=>$dDateInt));	
+	$oBdd->exec($sReq, array('numInt'=>$iNumInterv, 'numTick'=>$iNumTicket, 'date'=>$dDateInt));	
 	
+	var_dump($sReq);
 	
 ?>
-	<script language="Javascript">
+<!--	<script language="Javascript">
 		alert("Intervention prise en charge ");
 		window.location.replace("?page=priseCharge")
-	</script>
+	</script> -->

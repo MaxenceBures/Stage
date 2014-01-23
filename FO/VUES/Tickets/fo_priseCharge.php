@@ -3,6 +3,7 @@
 	
 	$sLogin = $_SESSION["login"];
 	$lesTickets  = getMesTickets($sLogin ,2) ;
+	
 ?>
 <div id="formulaire">
 	<form id="frm_priseCharge" action="?page=chargeTick" method="post">
@@ -25,7 +26,7 @@
 							foreach ($lesTickets as $unTicket)							
 							{	
 ?>							
-								<option value="<?php echo $unTicket->Tic_Num ; ?>" > <?php echo $unTicket->Tic_Num . "  -  " . $unTicket->Tic_Materiel ; ?> </option>			
+								<option value="<?php echo ($unTicket->Tic_Num) ; ?>" > <?php echo $unTicket->Tic_Num . "  -  " . $unTicket->Tic_Materiel ; ?> </option>			
 <?php							
 							}
 ?>

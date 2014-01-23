@@ -76,33 +76,22 @@
 	// Les tickets du demandeur
 	function getMesTickets($pLogin, $pEtat)
 	{		
+		var_dump($pEtat);
 		//$oSql= connecter() ;		
-		$sReq = " SELECT Tic_Num, Tic_Materiel, 
+		$sReq = " SELECT Tic_Num, Tic_Materiel 
 				  FROM  TICKET , UTILISATEUR
 				  WHERE Tic_Etat        = :etat
+				  AND   Uti_Login       = :login
 				  AND   Tic_Intervenant = Uti_Code
-				  AND   Uti_Code       = :login
 				  ORDER BY Tic_Num " ;	
 				 
 		$mesTickets = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ;
 		//$mesTickets = $_SESSION['bdd']->query($sReq) ;
-		
-		var_dump($mesTickets);
+		//, 'etat' => $pEtat
+		//var_dump($sReq);
 		return ($mesTickets) ;
 		
-		/*
-		echo $sReq ;			
-		$rstTic = $oSql->query($sReq) ;	
-
-		$iNb = 0 ;
-		$lesTickets = array() ;		
-		while ($uneLigne = $oSql->tabAssoc($rstTic) )
-		{
-			$iNb = $iNb + 1 ;
-			$lesTickets[$iNb] =  $uneLigne ;
-		}
-		return ($lesTickets) ;
-		*/
+		
 	}
 	
 	// Les tickets du responsable
@@ -204,7 +193,6 @@
 				  FROM CATEGORIE, UTILISATEUR,  TICKET, ETAT
 				  WHERE Uti_Login     = :login
 				  AND Tic_Etat        = :etat
-				  AND tic_Etat        = 2
 				  AND Tic_Categorie   = Cat_Code
 				  AND Tic_Intervenant = Uti_code					
 				  AND Tic_Etat        = Eta_Code	
