@@ -1,13 +1,15 @@
 <?php
-	header("Content-Type: text/html; charset=UTF-8");	
-			
+session_start() ;
+//var_dump($_SESSION['login']);var_dump($_SESSION['fonction']);
+if (isset($_SESSION['login'])){
+	header("Content-Type: text/html; charset=UTF-8");			
 	$dDatJour = date("Y-m-d");	
 	$page     = @$_GET["page"] ;
 	require_once("inc/Biblio.lib.php") ;
 	
 // on load les class de gestion des BDD
 	require_once ('classe/Bdd.class.php');
-	session_start() ;
+	
 
 // on set l'obj de connexion SQL 
 	require_once 'inc/connecter.inc.php';
@@ -172,3 +174,9 @@
 		<div class="to-top"></div>
 	</body>
 </html>
+<?php 
+}
+else{
+	echo "Session incorrect";
+}
+?>

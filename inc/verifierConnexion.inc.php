@@ -6,7 +6,6 @@
 	// et éviter les injections SQL 
 	
 	$oBdd = $_SESSION['bdd'];
-	
 	//verification du login et du mot de passe
 	// $sReq = " SELECT Uti_Login, Uti_Fonction
 			  // FROM UTILISATEUR
@@ -34,8 +33,8 @@
 			//on ouvre la session
 			$_SESSION["login"]    = $user->Uti_Login;
 			$_SESSION["fonction"] = $user->Uti_Fonction ;
-
-		
+var_dump($_SESSION["fonction"]); var_dump($_SESSION["login"]); 
+		//die();
 ?>
 			<script language="Javascript">
 				window.location.replace("index_2.php");
