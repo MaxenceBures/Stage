@@ -9,6 +9,8 @@
 	require_once ('classe/Bdd.class.php');
 	session_start() ;
 
+ if(!empty($_SESSION['login']))
+    {
 // on set l'obj de connexion SQL 
 	require_once 'inc/connecter.inc.php';
 
@@ -172,3 +174,9 @@
 		<div class="to-top"></div>
 	</body>
 </html>
+<?php
+}
+else{
+	header('location: index.php');
+}
+?>

@@ -18,10 +18,18 @@
 			<br/>
 			<table align="center">
 				<tr>
+				<?php
+					if(empty($lesTickets)){
+								echo "Vous ne disposez d'aucun ticket";
+							}
+							else{ 
+					?>
 					<th> Ticket: </th>
 					<td>
+					
 						<select id="lst_ticket" name="lst_ticket" >
 <?php		
+							
 							//$lesTickets  = getMesTickets($sLogin ,2) ;
 							foreach ($lesTickets as $unTicket)							
 							{	
@@ -37,6 +45,9 @@
 					<td>
 						<input type="submit" name="cmd_valider" value="Valider">
 					</td>
+					<?php
+}
+					?>
 				</tr>
 			</table>
 		</fieldset>

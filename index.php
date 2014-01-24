@@ -1,7 +1,11 @@
 <?php
 header("Content-Type: text/html; charset=ISO-8859-15");
 require_once ('classe/Bdd.class.php');	
-session_start() ;		
+session_start() ;
+if(!empty($_SESSION['login'])){
+header('location: index_2.php');
+}
+else {		
 $dDatJour = date("Y-m-d");	
 $page     = @$_GET["page"] ;
 require_once("inc/connecter.inc.php") ;	
@@ -68,3 +72,6 @@ $titre = "Gestion des interventions" ;
 		</article>
 	</body>
 </html>
+<?php
+}
+?>
