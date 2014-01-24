@@ -35,10 +35,10 @@ $nb = ($donnees['NbNews']+1);
 	//$oSql->exec($sReq, array('numInt'=>$iNumInterv, 'numTick'=>$iNumTicket, 'date'=>$dDateInt));	
 	$oBdd->exec($sReq, array('numInt'=>$nb, 'numTick'=>$iNumTicket, 'date'=>$dDateInt));	
 	
-	var_dump($sReq);
+	//var_dump($sReq);
 	
 ?>
-<!--	<script language="Javascript">
+	<script language="Javascript">
 		alert("Intervention prise en charge ");
 		window.location.replace("?page=priseCharge")
-	</script> -->
+	</script> 

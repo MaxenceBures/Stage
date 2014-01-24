@@ -73,7 +73,15 @@
 					<td> <textarea class="default-input" id="txt_constat" name="txt_constat" rows="4" cols="30"></textarea></td>
 				</tr>
 				<tr>
-					<td><input type="submit" id="cmd_valider" name="cmd_valider" value="Valider"></td>
+					<td><input type="submit" id="cmd_valider" name="cmd_valider" onClick="
+									if(confirm('Etes vous sur de vouloir creer un ticket ?'))
+									{
+										submit()
+									}
+									else{
+									return false;
+									}
+									" value="Valider"></td>
 					<td><input type="reset" id="cmd_annuler" name="cmd_annuler" value="Annuler"></td>
 				</tr>
 			</table>		

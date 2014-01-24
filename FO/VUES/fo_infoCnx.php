@@ -6,4 +6,4 @@
 	echo  $sFonction ;
 ?>
 </p>	
-<a href="?page=deconnexion"><img src="images/deconnnecter.png" alt="Se déconnecter"></a>
+<a href="?page=deconnexion" onClick="if(confirm('Etes vous sur de vouloir vous deconnecter ?')){submit()}else{return false;}"><img src="images/deconnnecter.png" alt="Se déconnecter"></a>
