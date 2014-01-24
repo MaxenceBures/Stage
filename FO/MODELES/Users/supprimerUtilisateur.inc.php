@@ -1,6 +1,6 @@
 <?php
-	mysql_connect('localhost', 'root', '');
-    mysql_select_db('gestinterv_tts');
+	//mysql_connect('localhost', 'root', 'root');
+  //  mysql_select_db('stage');
 
 	//$sLogin = $_SESSION["login"];	
 	if(!empty($_POST["suppr"])) 
@@ -25,6 +25,7 @@
 	//	var_dump($sReq);
 		//$oSql=mysql_query($sReq);
 	//	var_dump($oSql);
+		
 ?>
 		<script language="Javascript">
 			alert("Utilisateur supprimé");

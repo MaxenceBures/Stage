@@ -1,7 +1,7 @@
 <?php
 if($_SESSION['fonction'] == "Responsable"){
 
-die();
+//die();
 	$oBdd = $_SESSION['bdd'];
 	//réception des valeurs saisies
 	/*$sNom		= $_POST["txt_nom"];
