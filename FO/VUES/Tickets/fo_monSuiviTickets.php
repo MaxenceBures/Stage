@@ -10,7 +10,16 @@
 	            </div>
 	        </div>
     	</div>
-		<div class="col span_11">
+    	<div class="col span_11">
+    	<?php
+	$lesTickets  = getAllDemandes($sLogin ,1) ;
+	if(empty($lesTickets)){
+								echo "</br>Aucun tickets crées";
+							}
+							else{ 
+	    
+	?>
+		
             <div class="accordion clr">
                 <div class="title">Tickets créés</div>
                 <div class="inner">
@@ -26,7 +35,7 @@
 						<th>Constat</th>
 					</tr>
 <?php			
-								$lesTickets  = getAllDemandes($sLogin ,1) ;
+							//	$lesTickets  = getAllDemandes($sLogin ,1) ;
 								foreach ($lesTickets as $unTicket)			
 								{
 ?>
@@ -43,7 +52,7 @@
 
 
 <?php
-								}
+								}}
 ?>
 							</table>
 						</div>
@@ -51,8 +60,16 @@
 				</div>
 			</div>
 		</div>	
-
 		<div class="col span_11">
+<?php
+	$lesTickets  = getAllDemandes($sLogin ,2) ;
+	if(empty($lesTickets)){
+								echo "</br>Vous ne disposez pas de tickets affectés";
+							}
+							else{ 
+	    
+	?>
+		
             <div class="accordion clr">
                 <div class="title">Tickets affectés</div>
                 <div class="inner">
@@ -68,7 +85,7 @@
 						<th>Constat</th>
 					</tr>
 <?php		
-					$lesTickets  = getAllDemandes($sLogin ,2) ;
+					//$lesTickets  = getAllDemandes($sLogin ,2) ;
 					foreach ($lesTickets as $unTicket)			
 					{
 ?>	
@@ -81,16 +98,24 @@
 							<td><?php echo stripslashes($unTicket->Tic_Constat) ; ?></td>	
 						</tr>
 <?php
-					}
+					}}
 ?>
 				</table>
 			</div>
 		</div>
 				</div>
 			</div>
-		</div>		
-	
-		<div class="col span_11">
+		</div>
+		<div class="col span_11">		
+	<?php
+	$lesTickets  = getAllDemandes($sLogin ,3) ;
+	if(empty($lesTickets)){
+								echo "</br>Vous ne disposez pas de tickets pris en charge";
+							}
+							else{ 
+	    
+	?>
+		
             <div class="accordion clr">
                 <div class="title">Tickets pris en charge</div>
                 <div class="inner">
@@ -98,15 +123,8 @@
     		<div class="col span_12">
        			<table class="default-table">
 					<tr>
-						<th>Num</th>
-						<th>Date</th>
-						<th>Salle</th>
-						<th>Matériel</th>
-						<th>Problème</th>
-						<th>Constat</th>
-					</tr>
-<?php		
-					$lesTickets  = getAllDemandes($sLogin ,3) ;
+			<?php
+				//	$lesTickets  = getAllDemandes($sLogin ,3) ;
 					foreach ($lesTickets as $unTicket)			
 					{
 ?>	
@@ -119,7 +137,7 @@
 							<td><?php echo stripslashes($unTicket->Tic_Constat) ; ?></td>	
 						</tr>
 <?php
-					}
+					}}
 ?>
 				</table>
 			</div>
