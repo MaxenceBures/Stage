@@ -1,4 +1,7 @@
 <?php
+if($_SESSION['fonction'] == "Responsable"){
+
+die();
 	$oBdd = $_SESSION['bdd'];
 	//réception des valeurs saisies
 	/*$sNom		= $_POST["txt_nom"];
@@ -44,5 +47,9 @@
 		window.location.replace("?page=suiviUser");
 	</script>	
 <?php
-	}
+	}}
+else{
+	echo "Veuillez contacter un administrateur";
+}
+
 ?>

@@ -15,7 +15,7 @@
 					</tr>
 					<tr>
 						<th>Prénom : </th>
-						<td><input class="default-input" type="text" id="txt_prenom" name="txt_prenom" /></td>
+						<td><input class="default-input" type="text"  id="txt_prenom" name="txt_prenom" /></td>
 					</tr>
 					<tr>
 						<th>Login : </th>
@@ -28,15 +28,23 @@
 					<tr>
 						<th>Fonction : </th>
 						<td>
-							<input type="radio" id="rad_fonction" name="rad_fonction" value="Intervenant" /> Intervenant
-							<input type="radio" id="rad_fonction" name="rad_fonction" value="Demandeur" />Demandeur
+							<input type="radio" id="rad_fonction"  name="rad_fonction" value="Intervenant" /> Intervenant
+							<input type="radio" id="rad_fonction" checked name="rad_fonction" value="Demandeur" />Demandeur
 							<input type="radio" id="rad_fonction" name="rad_fonction" value="Responsable" />Responsable
 						</td>
 					</tr>
 					<tr>		
 						<td colspan="2">
 							<center><input type="submit" id="cmd_creer" name="cmd_creer" value="Créer"></center>
-							<input type="reset" id="cmd_annuler" name="cmd_annuler" value="Annuler"/>
+							<input type="reset" id="cmd_annuler" name="cmd_annuler" onClick="
+									if(confirm('Etes vous sur de vouloir ajouter cette utilisateur ?'))
+									{
+										submit()
+									}
+									else{
+									return false;
+									}
+									" value="Annuler"/>
 						</td>
 					</tr>
 				</table>
