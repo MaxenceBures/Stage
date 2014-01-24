@@ -1,7 +1,7 @@
 <?php
-if (empty($_SESSION['login'])) {	
 header("Content-Type: text/html; charset=ISO-8859-15");
-require_once ('classe/Bdd.class.php');			
+require_once ('classe/Bdd.class.php');	
+session_start() ;		
 $dDatJour = date("Y-m-d");	
 $page     = @$_GET["page"] ;
 require_once("inc/connecter.inc.php") ;	
@@ -68,8 +68,3 @@ $titre = "Gestion des interventions" ;
 		</article>
 	</body>
 </html>
-<?php
-}
-else{
-	echo "connexion";
-}?>
