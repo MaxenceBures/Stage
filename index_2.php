@@ -1,4 +1,8 @@
 <?php
+/*if(isset($_SESSION['login'])) {
+	header('Location: index.php');
+}
+else{	*/
 	header("Content-Type: text/html; charset=UTF-8");	
 			
 	$dDatJour = date("Y-m-d");	
@@ -172,3 +176,6 @@
 		<div class="to-top"></div>
 	</body>
 </html>
+<?php
+//}
+?>
