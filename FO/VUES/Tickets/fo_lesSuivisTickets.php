@@ -32,6 +32,7 @@
 						</tr>
 <?php
 						$lesTickets = getAlldeclares() ;
+
 						foreach ($lesTickets as $unTicket) 		
 						{
 ?>	
@@ -80,7 +81,10 @@
 												<th>Intervenant</th>			
 											</tr>
 <?php
+
+					
 											$lesTickets = getLesTickets($unEtat->Eta_Code) ;
+								 
 											foreach ($lesTickets as $unTicket) 
 											{
 ?>	

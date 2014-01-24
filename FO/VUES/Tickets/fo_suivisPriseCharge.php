@@ -13,6 +13,13 @@
 		            </div>
 		        </div>
 	    	</div>
+	    	<?php
+	    	$lesTickets  = getAllTicketsAff($sLogin ,2) ;
+	    	if(empty($lesTickets)){
+								echo "Vous ne disposez pas de tickets affectés";
+							}
+							else{ 
+	    	?>
 	    <div class="col span_11">
             <div class="accordion clr">
                 <div class="title">Tickets affectés</div>
@@ -30,7 +37,8 @@
 						<th>Etat</th>				
 					</tr>
 <?php
-					$lesTickets  = getAllTicketsAff($sLogin ,2) ;
+						
+					
 					foreach ($lesTickets as $unTicket)			
 					{
 ?>	
@@ -44,7 +52,7 @@
 							<td><?php echo $unTicket->Eta_Libelle ; ?></td>				
 						</tr>
 <?php
-					}
+					}}
 ?>
 				</table>
 			</div>
@@ -52,7 +60,13 @@
 				</div>
 			</div>
 		</div>
-
+<?php
+	    	$lesTickets  = getAllMesTickets($sLogin ,3) ;
+	    	if(empty($lesTickets)){
+								echo "</br>Vous ne disposez pas de tickets pris en charge";
+							}
+							else{ 
+	    	?>
 	<div class="col span_11">
             <div class="accordion clr">
                 <div class="title">Tickets pris en charge</div>
@@ -72,7 +86,6 @@
 						<th>Etat</th>				
 					</tr>
 <?php
-					$lesTickets  = getAllMesTickets($sLogin ,3) ;
 					foreach ($lesTickets as $unTicket)		
 					{
 ?>	
@@ -89,7 +102,7 @@
 				
 						</tr>
 <?php
-					}
+					}}
 ?>
 				</table>
 			</div>
