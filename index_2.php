@@ -1,7 +1,10 @@
 <?php
 session_start() ;
+/*$id = $_SESSION['id'];
+var_dump($id);
+die();
 //var_dump($_SESSION['login']);var_dump($_SESSION['fonction']);
-if (isset($_SESSION['login'])){
+if (isset($_SESSION['login'])){*/
 	header("Content-Type: text/html; charset=UTF-8");			
 	$dDatJour = date("Y-m-d");	
 	$page     = @$_GET["page"] ;
@@ -174,9 +177,3 @@ if (isset($_SESSION['login'])){
 		<div class="to-top"></div>
 	</body>
 </html>
-<?php 
-}
-else{
-	echo "Session incorrect";
-}
-?>

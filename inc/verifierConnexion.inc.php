@@ -33,7 +33,8 @@
 			//on ouvre la session
 			$_SESSION["login"]    = $user->Uti_Login;
 			$_SESSION["fonction"] = $user->Uti_Fonction ;
-var_dump($_SESSION["fonction"]); var_dump($_SESSION["login"]); 
+			$_SESSION['id'] = "1";
+var_dump($_SESSION["fonction"]); var_dump($_SESSION["login"]); var_dump($_SESSION["id"]);
 		//die();
 ?>
 			<script language="Javascript">
