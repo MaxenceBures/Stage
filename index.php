@@ -1,16 +1,7 @@
 <?php
-session_start();	
-/*if (isset($_SESSION['login'])){
-		header('Location: index_2.php');
-
-}
-   // header('Location: index_2.php');
-
-elseif (((!isset($_SESSION['login'])))){ //$_SESSION['login'] == '') || 
-//var_dump($_SESSION['login']);*/
 header("Content-Type: text/html; charset=ISO-8859-15");
 require_once ('classe/Bdd.class.php');	
-	
+session_start() ;		
 $dDatJour = date("Y-m-d");	
 $page     = @$_GET["page"] ;
 require_once("inc/connecter.inc.php") ;	
@@ -77,6 +68,3 @@ $titre = "Gestion des interventions" ;
 		</article>
 	</body>
 </html>
-<?php
-//}
-?>
