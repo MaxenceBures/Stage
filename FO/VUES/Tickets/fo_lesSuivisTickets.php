@@ -64,7 +64,7 @@
 ?>
 				<div class="col span_11">
 					<div class="accordion clr">
-						<div class="title"><?php echo $unEtat->Eta_Libelle ?></div>
+						<div class="title"><?php echo $unEtat->Eta_Libelle; echo " - ".$unEtat->Eta_Code; ?></div>
 						<div class="inner">
 							<form name="suivisTickets" >
 								<div class="row row-big-col">
