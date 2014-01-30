@@ -19,6 +19,7 @@
 <?php
 	if ($sFonction == "Demandeur")
 	{
+		include_once("Tickets/fo_monSuiviTickets.php") ;	
 ?>
 		<ul>
 			<li> de créer un ticket dès qu'un problème a été détecté</li>
