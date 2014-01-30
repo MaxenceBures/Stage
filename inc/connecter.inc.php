@@ -16,7 +16,7 @@ try {
 	 * @param string $mdp mot de passe de l'utilisateur
 	 */
 	if (empty($_SESSION['bdd']))
-		$_SESSION['bdd'] = new Bdd(null, null, 'root', '');
+		$_SESSION['bdd'] = new Bdd('localhost', 'stage', 'root', 'root');
 
 } catch (Exception $e) {
 	die('Une erreur avec la base de donnee s\'est produite');
