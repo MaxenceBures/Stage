@@ -16,7 +16,8 @@
 	$sReq = " SELECT Uti_Login, Uti_Fonction
 			  FROM UTILISATEUR
 			  WHERE Uti_Login = :Login
-			  AND Uti_Mdp     = :MDP";
+			  AND Uti_Mdp     = :MDP
+			  AND Uti_Desactive ='0'";
 	//traitement de la requête
 	//$rstUti  = $oSql->query($sReq) ;						
 	
