@@ -79,11 +79,16 @@
            	$res =  mysql_query($pReq) or die("erreur avec la requête de modification de données " .$pReq);
         	return ($res) ;
         }
+      public function erreur($pReq)
+    {
+            $res =  mysql_error($pReq);
+          return ($res) ;
+        }    
          
         // Destructeur de la classe Connexion
-     	public function __destruct()
+     	public function destruct()
 		{
-			//mysql_close($this->id);
+			mysql_close($this->id);
 		}    
     }
 ?>

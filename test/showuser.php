@@ -1,5 +1,6 @@
 <?php
 require_once("function.php") ; 
+//require_once ('../classe/Bdd.class.php');
 //getUser();
 ?>
 <html>
@@ -39,11 +40,11 @@ xmlhttp.send();
 <select name="users" onchange="showUser(this.value)">
 <option value="99"><?php echo "Tous"?> </option>
   <?php
-        $lesUsers = getUser() ;
-        foreach ($lesUsers as $unUser)
+        $mesusers = getUser() ;
+        foreach ($mesusers as $unUser)
         {
   ?>
-          <option value="<?php echo $unUser['Uti_Code']; ?>"><?php echo $unUser["Uti_Login"] ?> </option>
+          <option value="<?php echo $unUser->Uti_Code; ?>"><?php echo $unUser->Uti_Login ?> </option>
   <?php
         }
   ?>
@@ -52,11 +53,11 @@ xmlhttp.send();
 <hr>
 <input type="checkbox" onclick="showUser(this.value)" value="99"><?php echo "Tous"?> </option></br>
   <?php
-        $lesUsers = getUser() ;
-        foreach ($lesUsers as $unUser)
+        $mesusers = getUser() ;
+        foreach ($mesusers as $unUser)
         {
   ?>
-          <input type="checkbox" onclick="showUser(this.value)" value="<?php echo $unUser['Uti_Code']; ?>"><?php echo $unUser["Uti_Login"] ?></option></br>
+          <input type="checkbox" onclick="showUser(this.value)" value="<?php echo $unUser->Uti_Code; ?>"><?php echo $unUser->Uti_Login ?></option></br>
   <?php
         }
   ?>

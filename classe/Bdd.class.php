@@ -18,9 +18,9 @@ class Bdd
 {
 		// valeur par defaut en cas d'instanciation sans valeur
 	private $host       = 'localhost';
-	private $db_name    = 'test';
+	private $db_name    = 'stage';
 	private $user       = 'root';
-	private $mdp        = '';
+	private $mdp        = 'root';
 	private $production = false;
 
 		/** @var PDO variable avec l'instance PDO */
