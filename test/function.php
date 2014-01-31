@@ -15,4 +15,22 @@ function getUser()
             $lesProduits[$iNb] =  $uneLigne ;
         }
         return ($lesProduits) ;
+        mysqli_close($oSql);
     }
+function infosUser($q){
+    $con = mysqli_connect('localhost','root','root','stage');
+        if (!$con)
+  {
+  die('Could not connect: ' . mysqli_error($con));
+  }
+if ($q == 99){
+  mysqli_select_db($con,"ajax_demo");
+$sql="SELECT * FROM utilisateur where uti_desactive ='0'";
+}
+else{
+mysqli_select_db($con,"ajax_demo");
+$sql="SELECT * FROM utilisateur WHERE Uti_Code = '".$q."'";
+}
+$result = mysqli_query($con,$sql);
+return($result);
+}    
