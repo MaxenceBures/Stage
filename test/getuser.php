@@ -1,5 +1,6 @@
 <?php
 $q = intval($_GET['q']);
+
 require("function.php");
 $result = infosUser($q);
 echo "<table border='1'>
@@ -10,17 +11,18 @@ echo "<table border='1'>
 <th>Prenom</th>
 <th>Fonction</th>
 </tr>";
-
-while($row = mysqli_fetch_array($result))
+$i = 0;
+while($row[$i] = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['Uti_Code'] . "</td>";
-  echo "<td>" . $row['Uti_Login'] . "</td>";
-  echo "<td>" . $row['Uti_Nom'] . "</td>";
-  echo "<td>" . $row['Uti_Prenom'] . "</td>";
-  echo "<td>" . $row['Uti_Fonction'] . "</td>";
+  echo "<td>" . $row[$i]['Uti_Code'] . "</td>";
+  echo "<td>" . $row[$i]['Uti_Login'] . "</td>";
+  echo "<td>" . $row[$i]['Uti_Nom'] . "</td>";
+  echo "<td>" . $row[$i]['Uti_Prenom'] . "</td>";
+  echo "<td>" . $row[$i]['Uti_Fonction'] . "</td>";
 //  echo "<td>" . $row['Job'] . "</td>";
   echo "</tr>";
+  $i = $i +1;
   }
 echo "</table>";
 
