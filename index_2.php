@@ -22,7 +22,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta charset="utf-8">
-    <meta name="robots" content="all">
+    <meta name="robots" content="none,noarchive">
 
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
