@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Mar 04 Février 2014 à 11:54
+-- Généré le: Mer 05 Février 2014 à 16:11
 -- Version du serveur: 5.5.33
 -- Version de PHP: 5.4.19
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `Stage_2`
+-- Base de données: `stage`
 --
 
 -- --------------------------------------------------------
@@ -38,7 +38,16 @@ CREATE TABLE `ENTREPRISE` (
   `ENT_TELEPHONE` char(10) DEFAULT NULL,
   `ENT_SITEWEB` char(40) DEFAULT NULL,
   PRIMARY KEY (`ENT_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `ENTREPRISE`
+--
+
+INSERT INTO `ENTREPRISE` (`ENT_CODE`, `ENT_RAISONSOCIALE`, `ENT_POINTS`, `ENT_HEURES`, `ENT_RUE`, `ENT_CP`, `ENT_VILLE`, `ENT_MAIL`, `ENT_TELEPHONE`, `ENT_SITEWEB`) VALUES
+(1, 'RaisonSocial1', 0, 0, 'RueTest1', '10000', 'VilleTest1', 'MailTest1', '0100000000', 'sitewebtest1'),
+(2, 'RaisonSocial2', 0, 0, 'RueTest2', '10000', 'VilleTest2', 'MailTest2', '0100000000', 'sitewebtest2'),
+(3, 'test', 0, 0, 'test', '10000', 'test', 'test', '0100000000', 'test');
 
 -- --------------------------------------------------------
 
@@ -50,7 +59,18 @@ CREATE TABLE `ETAT` (
   `ETA_CODE` int(11) NOT NULL AUTO_INCREMENT,
   `ETA_LIBELLE` char(40) DEFAULT NULL,
   PRIMARY KEY (`ETA_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `ETAT`
+--
+
+INSERT INTO `ETAT` (`ETA_CODE`, `ETA_LIBELLE`) VALUES
+(1, 'En Cours'),
+(2, 'En Attente'),
+(3, 'Resolu'),
+(4, 'Sans Solution'),
+(5, 'Cloturé');
 
 -- --------------------------------------------------------
 
@@ -66,6 +86,16 @@ CREATE TABLE `ID` (
   KEY `FK_ID2` (`UTI_CODE`),
   KEY `FK_ID3` (`ROL_CODE`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `ID`
+--
+
+INSERT INTO `ID` (`ENT_CODE`, `UTI_CODE`, `ROL_CODE`) VALUES
+(1, 1, 1),
+(1, 2, 2),
+(3, 3, 3),
+(3, 4, 4);
 
 -- --------------------------------------------------------
 
@@ -84,12 +114,20 @@ CREATE TABLE `INCIDENT` (
   `INC_DATEDEMANDE` date DEFAULT NULL,
   `INC_DECOMPTE` decimal(4,0) DEFAULT NULL,
   `INC_VALIDATION` tinyint(1) DEFAULT NULL,
+  `INC_DEMANDE` varchar(2) NOT NULL,
   PRIMARY KEY (`INC_CODE`),
   KEY `FK_DEMANDE` (`UTI_CODE`),
   KEY `FK_DISPOSE2` (`ETA_CODE`),
   KEY `FK_SOUMET` (`ENT_CODE`),
   KEY `FK_URGENCE` (`LIB_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Contenu de la table `INCIDENT`
+--
+
+INSERT INTO `INCIDENT` (`INC_CODE`, `LIB_CODE`, `UTI_CODE`, `ENT_CODE`, `ETA_CODE`, `INC_LIBELLE`, `INC_DESCRIPTION`, `INC_DATEDEMANDE`, `INC_DECOMPTE`, `INC_VALIDATION`, `INC_DEMANDE`) VALUES
+(1, 1, 1, 1, 1, 'Test', 'Test incident', '2014-02-05', 0, 0, '1');
 
 -- --------------------------------------------------------
 
@@ -104,14 +142,23 @@ CREATE TABLE `INTERVENTION` (
   `UTI_CODE` int(11) NOT NULL,
   `INT_LIBELLE` char(40) DEFAULT NULL,
   `INT_DESCRIPTION` char(200) DEFAULT NULL,
-  `INT_HEUREDEB` date DEFAULT NULL,
-  `INT_HEUREFIN` date DEFAULT NULL,
+  `INT_HEUREDEB` time DEFAULT NULL,
+  `INT_HEUREFIN` time DEFAULT NULL,
   `INT_DATEINTER` date DEFAULT NULL,
+  `INT_TECHNICIEN` varchar(2) NOT NULL,
   PRIMARY KEY (`INT_CODE`),
   KEY `FK_DISPOSE` (`INC_CODE`),
   KEY `FK_INTERVIENT` (`UTI_CODE`),
   KEY `FK_TYPE` (`LIB_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Contenu de la table `INTERVENTION`
+--
+
+INSERT INTO `INTERVENTION` (`INT_CODE`, `INC_CODE`, `LIB_CODE`, `UTI_CODE`, `INT_LIBELLE`, `INT_DESCRIPTION`, `INT_HEUREDEB`, `INT_HEUREFIN`, `INT_DATEINTER`, `INT_TECHNICIEN`) VALUES
+(1, 1, 4, 3, 'reinstall', 'reinstall', '09:15:00', '18:00:00', '2014-02-05', '3'),
+(2, 1, 4, 3, 'reinstall2', 'reinstall', '09:15:00', '18:00:00', '2014-02-06', '3');
 
 -- --------------------------------------------------------
 
@@ -124,7 +171,18 @@ CREATE TABLE `LIBELLE` (
   `LIB_LIBELLE` char(40) DEFAULT NULL,
   `LIB_TYPE` char(20) DEFAULT NULL,
   PRIMARY KEY (`LIB_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+
+--
+-- Contenu de la table `LIBELLE`
+--
+
+INSERT INTO `LIBELLE` (`LIB_CODE`, `LIB_LIBELLE`, `LIB_TYPE`) VALUES
+(1, 'Forte', 'incidenturgence'),
+(2, 'Normale', 'incidenturgence'),
+(3, 'Faible', 'incidenturgence'),
+(4, 'Instalposte', 'interventiontype'),
+(5, 'Instalimprim', 'interventiontype');
 
 -- --------------------------------------------------------
 
@@ -136,7 +194,17 @@ CREATE TABLE `ROLE` (
   `ROL_CODE` int(11) NOT NULL AUTO_INCREMENT,
   `ROL_LIBELLE` char(20) DEFAULT NULL,
   PRIMARY KEY (`ROL_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `ROLE`
+--
+
+INSERT INTO `ROLE` (`ROL_CODE`, `ROL_LIBELLE`) VALUES
+(1, 'utilisateur'),
+(2, 'responsablecli'),
+(3, 'intervenant'),
+(4, 'responsableint');
 
 -- --------------------------------------------------------
 
@@ -153,8 +221,19 @@ CREATE TABLE `UTILISATEUR` (
   `UTI_MAIL` char(50) DEFAULT NULL,
   `UTI_TELEPHONEFIXE` char(10) DEFAULT NULL,
   `UTI_TELEPHONEMOBILE` char(10) DEFAULT NULL,
+  `UTI_DESACTIVE` varchar(1) NOT NULL,
   PRIMARY KEY (`UTI_CODE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+
+--
+-- Contenu de la table `UTILISATEUR`
+--
+
+INSERT INTO `UTILISATEUR` (`UTI_CODE`, `UTI_LOGIN`, `UTI_PWD`, `UTI_NOM`, `UTI_PRENOM`, `UTI_MAIL`, `UTI_TELEPHONEFIXE`, `UTI_TELEPHONEMOBILE`, `UTI_DESACTIVE`) VALUES
+(1, '1', '356a192b7913b04c54574d18c28d46e6395428ab', '1nom', '1prenom', '1mail', '1fixe', '1mobile', '0'),
+(2, '2', '356a192b7913b04c54574d18c28d46e6395428ab', '2nom', '2prenom', '2mail', '2fixe', '2mobile', '0'),
+(3, '3', '356a192b7913b04c54574d18c28d46e6395428ab', '3nom', '3prenom', '3mail', '3fixe', '3mobile', '0'),
+(4, '4', '356a192b7913b04c54574d18c28d46e6395428ab', '4nom', '4prenom', '4mail', '4fixe', '4mobile', '0');
 
 --
 -- Contraintes pour les tables exportées
@@ -164,9 +243,9 @@ CREATE TABLE `UTILISATEUR` (
 -- Contraintes pour la table `ID`
 --
 ALTER TABLE `ID`
-  ADD CONSTRAINT `FK_ID3` FOREIGN KEY (`ROL_CODE`) REFERENCES `ROLE` (`ROL_CODE`),
   ADD CONSTRAINT `FK_ID` FOREIGN KEY (`ENT_CODE`) REFERENCES `ENTREPRISE` (`ENT_CODE`),
-  ADD CONSTRAINT `FK_ID2` FOREIGN KEY (`UTI_CODE`) REFERENCES `UTILISATEUR` (`UTI_CODE`);
+  ADD CONSTRAINT `FK_ID2` FOREIGN KEY (`UTI_CODE`) REFERENCES `UTILISATEUR` (`UTI_CODE`),
+  ADD CONSTRAINT `FK_ID3` FOREIGN KEY (`ROL_CODE`) REFERENCES `ROLE` (`ROL_CODE`);
 
 --
 -- Contraintes pour la table `INCIDENT`
