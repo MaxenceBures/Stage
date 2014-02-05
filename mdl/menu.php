@@ -13,14 +13,14 @@
                     <ul class="absolution">
 <?php
 	$sFonction = $_SESSION["fonction"] ;
-	if ($sFonction == "Demandeur")
+	if ($sFonction == "utilisateur")
 	{
 ?>
 		<li><a href="?page=ajouter">Créer un ticket</a></li>
 		<li><a href="?page=monSuivi">Suivre mes tickets et interventions</a></li>
 <?php
 	}
-	elseif ($sFonction == "Intervenant")
+	elseif ($sFonction == "intervenant")
 	{
 ?>
 		<li><a href="?page=priseCharge">Prise en charge de tickets</a></li>
@@ -28,7 +28,7 @@
 		
 <?php
 	}
-	elseif ($sFonction == "Responsable")
+	elseif ($sFonction == "responsableint")
 	{
 ?>   
 		<li><a href="#">Utilisateurs</a>

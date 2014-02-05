@@ -17,7 +17,7 @@
     </div>
 
 <?php
-	if ($sFonction == "Demandeur")
+	if ($sFonction == "1")
 	{
 		include_once("Tickets/fo_monSuiviTickets.php") ;	
 ?>
@@ -28,7 +28,7 @@
 		</ul>
 <?php
 	}
-	if ($sFonction == "Intervenant")
+	if ($sFonction == "2")
 	{
 ?>
 		<ul>
@@ -45,7 +45,7 @@
 		</ul>
 <?php
 	}
-	elseif ($sFonction == "Responsable")
+	elseif ($sFonction == "3")
 	{
 ?>
 		<ul>

@@ -264,15 +264,15 @@
 
 
 
-		$sReq = " SELECT Tic_Num, Tic_DatCre, Tic_Salle , Cat_Libelle, Tic_Materiel,  Tic_Constat, Eta_Libelle 
-				  FROM  CATEGORIE, UTILISATEUR,  TICKET, ETAT
-				  WHERE Uti_Login     = :login
-				  AND Tic_Etat        = :etat	
-				  AND Uti_Code = Tic_Demandeur
-				  AND Tic_Categorie   = Cat_Code
-				  AND Tic_Demandeur   = Uti_code					
-				  AND Tic_Etat        = Eta_Code
-				  ORDER BY Tic_Num ";		  
+		$sReq = " SELECT INT_CODE, INC_LIBELLE, LIB_LIBELLE, INT_LIBELLE, INT_DESCRIPTION, INT_HEUREDEB, INT_HEUREFIN, INT_DATEINTER, ETA_LIBELLE, INC_DEMANDE, INT_TECHNICIEN
+FROM INTERVENTION, INCIDENT, LIBELLE, UTILISATEUR, ETAT, ID
+WHERE UTI_LOGIN =  :login
+AND INCIDENT.ETA_CODE =  :etat
+AND INTERVENTION.INC_CODE = INCIDENT.INC_CODE
+AND INTERVENTION.LIB_CODE = LIBELLE.LIB_CODE
+AND INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+				  ORDER BY INT_CODE ";		  
 
 		$lesDemandes = $_SESSION['bdd']->query($sReq, array('login' => $pLogin, 'etat' => $pEtat)) ; //, 'etat' => $pEtat)
 //var_dump($lesDemandes);
