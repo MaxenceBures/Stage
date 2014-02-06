@@ -1,5 +1,6 @@
 <?php
 	$sLogin = $_SESSION["login"];	
+	$sFunction= $_SESSION["fonction"];	
 	require_once ("FO/Modeles/Tickets/lireTicket.inc.php") ;
 ?>
 	<fieldset>
@@ -11,10 +12,11 @@
 	        </div>
     	</div>
     	<div class="col span_11">
-    	<?php
+    <?php
+
 	$lesTickets  = getAllDemandes($sLogin ,1) ;
 	if(empty($lesTickets)){
-								echo "</br>Aucun tickets crées";
+								echo "</br>Aucun incident en cours";
 							}
 							else{ 
 	    
@@ -26,6 +28,11 @@
 		<div class="row row-big-col">
     		<div class="col span_12">
        			<table class="default-table">
+       			<?php
+       			if ($sFunction='utilisateur') {
+       				
+       			}
+       			?>
 					<tr>
 						<th>Code</th>
 						<th>INC</th>
@@ -61,6 +68,9 @@
 			</div>
 		</div>	
 		<div class="col span_11">
+
+
+
 <?php
 	$lesTickets  = getAllDemandes($sLogin ,2) ;
 	if(empty($lesTickets)){

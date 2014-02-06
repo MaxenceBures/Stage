@@ -1,4 +1,6 @@
 <?php
+session_start();
+$_SESSION['login'];
 require_once("function.php") ; 
 //getUser();
 ?>
@@ -39,11 +41,11 @@ xmlhttp.send();
 <select name="users" onchange="showUser(this.value)">
 <option value="99"><?php echo "Tous"?> </option>
   <?php
-        $lesUsers = getUser() ;
+        $lesUsers = getIntervention() ;
         foreach ($lesUsers as $unUser)
         {
   ?>
-          <option value="<?php echo $unUser['UTI_CODE']; ?>"><?php echo $unUser['UTI_LOGIN'] ?> </option>
+          <option value="<?php echo $unUser['ETA_CODE']; ?>"><?php echo $unUser["ETA_LIBELLE"] ?> </option>
   <?php
         }
   ?>
@@ -56,7 +58,7 @@ xmlhttp.send();
         foreach ($lesUsers as $unUser)
         {
   ?>
-          <input type="checkbox" onclick="showUser(this.value)" value="<?php echo $unUser['UTI_CODE']; ?>"><?php echo $unUser["UTI_LOGIN"] ?></option></br>
+          <input type="checkbox" onclick="showUser(this.value)" value="<?php echo $unUser['ETA_CODE']; ?>"><?php echo $unUser["ETA_LIBELLE"] ?></option></br>
   <?php
         }
   ?>
