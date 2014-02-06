@@ -19,8 +19,7 @@ while($row[$i] = mysqli_fetch_array($result))
   echo "<td>" . $row[$i]['UTI_LOGIN'] . "</td>";
   echo "<td>" . $row[$i]['UTI_NOM'] . "</td>";
   echo "<td>" . $row[$i]['UTI_PRENOM'] . "</td>";
-  echo "<td>" . $row[$i]['ROL_LIBELLE'] . "</td>"; //Function
-//  echo "<td>" . $row['Job'] . "</td>";
+  echo "<td>" . $row[$i]['ROL_LIBELLE'] . "</td>";
   echo "</tr>";
   $i = $i +1;
   }
