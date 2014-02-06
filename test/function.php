@@ -65,7 +65,7 @@ function infosIntervention($q){
   }
 if ($q == 99){
   mysqli_select_db($con,"ajax_demo");
-$sql="SELECT * FROM utilisateur where uti_desactive ='0'";
+$sql="SELECT * FROM INTERVENTION '";
 }
 else{
 mysqli_select_db($con,"ajax_demo");
