@@ -36,9 +36,8 @@ xmlhttp.send();
 <br>
 <div id="txtHint"><b>Person info will be listed here.</b></div>
 
-<select name="intervention" onchange="showIntervention(this.value)">
+<select name="users" onchange="showIntervention(this.value)">
 <option value="99"><?php echo "Tous"?> </option>
-<option value="1"><?php echo "Test"?> </option>
   <?php
         $lesInters = getintervention() ;
         foreach ($lesInters as $unInter)
@@ -51,13 +50,13 @@ xmlhttp.send();
       </select>
 
 <hr>
-<input type="checkbox" onchange="showIntervention(this.value)" value="99"><?php echo "Tous"?> </option></br>
+<input type="checkbox" onchange="showIntervention(this.value)" value="99"><?php echo "Tous"?></br>
   <?php
         $lesInters = getintervention() ;
         foreach ($lesInters as $unInter)
         {
   ?>
-          <input type="checkbox" onchange="showIntervnetion(this.value)" value="<?php echo $unInter['ETA_CODE']; ?>"><?php echo $unInter["ETA_LIBELLE"] ?></option></br>
+          <input type="checkbox" onchange="showIntervnetion(this.value)" value="<?php echo $unInter['ETA_CODE']; ?>"><?php echo $unInter["ETA_LIBELLE"] ?></br>
   <?php
         }
   ?>

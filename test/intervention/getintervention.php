@@ -12,17 +12,17 @@ echo "<table border='1'>
 <th>DateDemande</th>
 <th>Etat</th>
 </tr>";
-$i = 0;
-while($row[$i] = mysqli_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
+      
   echo "<tr>";
-  echo "<td>" . $row[$i]['INC_CODE'] . "</td>";
-  echo "<td>" . $row[$i]['INC_LIBELLE'] . "</td>";
-  echo "<td>" . $row[$i]['INC_DESCRIPTION'] . "</td>";
-  echo "<td>" . $row[$i]['INC_DATEDEMANDE'] . "</td>";
-  echo "<td>" . $row[$i]['ETA_LIBELLE'] . "</td>";
+  echo "<td>" . $row['INC_CODE'] . "</td>";
+  echo "<td>" . $row['INC_LIBELLE'] . "</td>";
+  echo "<td>" . $row['INC_DESCRIPTION'] . "</td>";
+  echo "<td>" . $row['INC_DATEDEMANDE'] . "</td>";
+  echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
   echo "</tr>";
-  $i = $i +1;
+  
   }
 echo "</table>";
 

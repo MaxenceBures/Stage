@@ -44,3 +44,28 @@ function infosIntervention($q){
     $result = mysqli_query($con,$sql);
 return($result);
 }    
+function createdemandeint(){
+    mysql_connect("localhost","root","root") ;
+        mysql_select_db("stage");
+    if (isset($_POST['go_createint']))
+ {       
+
+    $date = date("Y-m-d");
+    $id = $_SESSION['login'];
+    $ent = mysql_real_escape_string($_POST['nomEnt']);
+    $resp = mysql_real_escape_string($_POST['nomResp']);
+    $libelle = mysql_real_escape_string($_POST['libelle']);
+    $descr = mysql_real_escape_string($_POST['descr']);
+   // $motif = mysql_real_escape_string($_POST['motif']);
+
+   
+    $count = mysql_fetch_row(mysql_query("SELECT max(INC_CODE) from INCIDENT"));
+    $test = $count[0] + 1;
+    $query = mysql_query("INSERT INTO INCIDENT(INC_CODE ,LIB_CODE ,UTI_CODE ,ENT_CODE ,ETA_CODE ,INC_LIBELLE ,INC_DESCRIPTION ,INC_DATEDEMANDE ,INC_DEMANDE   )
+                        VALUES('".$test."', '".$velo."','".$date."', '".$id."', '".$motif."', '".$traite."','".$attache."','".$station."', '1')") or die (mysql_error());
+    echo '<script language="Javascript">'.
+        'alert("Demande enregistré");'.
+        'window.location.replace("index.php")'.
+        '</script>';
+}
+}
