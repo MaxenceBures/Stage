@@ -5,7 +5,7 @@ require_once("function.php") ;
 <html>
 <head>
 <script>
-function showUser(str)
+function showIntervention(str)
 {
 if (str=="")
   {
@@ -36,7 +36,7 @@ xmlhttp.send();
 <br>
 <div id="txtHint"><b>Person info will be listed here.</b></div>
 
-<select name="users" onchange="showUser(this.value)">
+<select name="users" onchange="showIntervention(this.value)">
 <option value="99"><?php echo "Tous"?> </option>
   <?php
         $lesInters = getintervention() ;
@@ -50,7 +50,7 @@ xmlhttp.send();
       </select>
 
 <hr>
-<input type="checkbox" onclick="showUser(this.value)" value="99"><?php echo "Tous"?> </option></br>
+<input type="checkbox" onclick="showIntervention(this.value)" value="99"><?php echo "Tous"?> </option></br>
   <?php
         $lesInters = getintervention() ;
         foreach ($lesInters as $unInter)
