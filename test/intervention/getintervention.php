@@ -19,7 +19,7 @@ while($row = mysqli_fetch_array($result))
   echo "<td>" . $row['INC_CODE'] . "</td>";
   echo "<td>" . $row['INC_LIBELLE'] . "</td>";
   echo "<td>" . $row['INC_DESCRIPTION'] . "</td>";
-  echo "<td>" . $row['INC_DATEDEMANDE'] . "</td>";
+  echo "<td>" . substr($row['INC_DATEDEMANDE'],0,10) . "</td>";
   echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
   echo "</tr>";
   

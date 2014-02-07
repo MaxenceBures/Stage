@@ -23,7 +23,7 @@
 						<label for="nomEnt">Nom de l'entreprise : </label>
 					</td>
 					<td>
-						<input type="text" required="" id="nomEnt" value="<?php echo($enreg["ENT_RAISONSOCIALE"]); ?>" name="nomEnt" />
+						<input type="text" required="" id="nomEnt" value="<?php echo($enreg["ENT_RAISONSOCIALE"]); ?>" name="nomEnt" readonly/>
 					</td>
 				</tr>
 				</br>
@@ -32,7 +32,7 @@
 						<label for="nomResp">Nom du responsable : </label>
 					</td>
 					<td>
-						<input type="text" required="" value="<?php echo($enreg2["UTI_LOGIN"]); ?>"  id="nomResp" name="nomResp" />
+						<input type="text" required="" value="<?php echo($enreg2["UTI_LOGIN"]); ?>"  id="nomResp" name="nomResp" readonly/>
 					</td>
 			</tr>
 			</br>
