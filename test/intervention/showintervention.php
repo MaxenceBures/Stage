@@ -33,6 +33,7 @@ xmlhttp.send();
 </script>
 </head>
 <body>
+<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$_SESSION['fonction']) ?> </h3>
 <br>
 <div id="txtHint"><b>Person info will be listed here.</b></div>
 
@@ -61,6 +62,6 @@ xmlhttp.send();
         }
   ?>
    
-
+<a href="ajoutintervention.php">Ajout Intervention</a>
 </body>
 </html>

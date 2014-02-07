@@ -1,14 +1,19 @@
 <?php
 //if(isset($_SESSION['login'])) {
 		require_once('function.php');
-	  //  createdemandeint();
+	   createinter();
+	  //$requete = 
+	$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_CODE = '".$_SESSION['login']."'"));
+	$enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM ID, UTILISATEUR WHERE ROL_CODE =2 AND ENT_CODE = (  SELECT ENT_CODE FROM ID, UTILISATEUR WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_CODE =  '".$_SESSION['login']."' )  AND ID.UTI_CODE = UTILISATEUR.UTI_CODE"));
 	//Bures Maxence
-	?>
+
+	
+?>
 	<html>
 		<head>
-		
 		</head>
 		<body>
+		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$_SESSION['fonction']) ?> </h3>
 		<div data-role="page">
 <!--	<body>-->
 		<form id="ajout_form" data-ajax="false" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
@@ -18,7 +23,7 @@
 						<label for="nomEnt">Nom de l'entreprise : </label>
 					</td>
 					<td>
-						<input type="text" required="" id="nomEnt" name="nomEnt"/>
+						<input type="text" required="" id="nomEnt" value="<?php echo($enreg["ENT_RAISONSOCIALE"]); ?>" name="nomEnt" />
 					</td>
 				</tr>
 				</br>
@@ -27,31 +32,48 @@
 						<label for="nomResp">Nom du responsable : </label>
 					</td>
 					<td>
-						<input type="text" required="" id="nomResp" name="nomResp"/>
+						<input type="text" required="" value="<?php echo($enreg2["UTI_LOGIN"]); ?>"  id="nomResp" name="nomResp" />
 					</td>
 			</tr>
 			</br>
+		 	<tr>
+				<td>
+				<label for="type">Type Incident : </label>
+				</td>
+				<td>
+				<select id="type" required="" name="type">
 			<?php
-			 /*	<tr>
-					<td>
-					<label for="Station">Station : </label>
-					</td>
-					<td>
-					<select id="station" required="" name="station">
-				<?php
-				$oStation = ListeDeroulanteStation() ;
-				foreach ($oStation as $Station)
-				{
-	?>
-					<option value="<?php echo $Station['STA_CODE']; ?>"><?php echo $Station["STA_NOM"] ?> </option>
-	<?php
-				}
-	?>
-					</select>
-					</td>
-				</tr>*/
-				?>
-				</br>
+			$Types = ListeDeroulanteType() ;
+			foreach ($Types as $Type)
+			{
+?>
+				<option value="<?php echo $Type['LIB_CODE']; ?>"><?php echo $Type["LIB_LIBELLE"] ?> </option>
+<?php
+			}
+?>
+				</select>
+				</td>
+			</tr>
+			</br>
+		 	<tr>
+				<td>
+				<label for="urgence">Type Urgence : </label>
+				</td>
+				<td>
+				<select id="urgence" required=""  name="urgence">
+			<?php
+			$Urgences = ListeDeroulanteUrgence() ;
+			foreach ($Urgences as $Urgence)
+			{
+?>
+				<option value="<?php echo $Urgence['LIB_CODE']; ?>"><?php echo $Urgence["LIB_LIBELLE"] ?> </option>
+<?php
+			}
+?>
+				</select>
+				</td>
+			</tr>
+			</br>
 				<tr>
 					<td>
 						<label for="libelle">Libelle de l'incident : </label>
