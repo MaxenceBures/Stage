@@ -19,14 +19,43 @@ connect();
         mysql_close($oSql);
         }
 
-    function infosIntervention($q){
+    function infosInterventioncli($q){
            $con = connecter();
-            
+            $id = $_SESSION['login'];
             $q = intval($q);
                 if (!$con)
                   {
                     die('Could not connect: ' . mysqli_error($con));
                   }
+                   if ($q == 99){
+                      
+                    $sql="SELECT INC_CODE, INC_LIBELLE,INC_DESCRIPTION, ETA_LIBELLE, INC_DATEDEMANDE
+                         FROM INCIDENT, UTILISATEUR, ETAT
+                         WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+                         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                         AND UTI_LOGIN = '".$id."'
+                         ORDER BY INC_CODE";
+                    }
+                    else{
+                //  var_dump($q);
+                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, INC_DESCRIPTION
+                         FROM INCIDENT, UTILISATEUR, ETAT
+                         WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+                         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                         AND INCIDENT.ETA_CODE = '".$q."' 
+                         AND UTI_LOGIN = '".$id."'";    
+                    }
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }
+    function infosIntervention($q){
+           $con = connecter();
+            $q = intval($q);
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                else {  
                    if ($q == 99){
                       
                     $sql="SELECT INC_CODE, INC_LIBELLE,INC_DESCRIPTION, ETA_LIBELLE, INC_DATEDEMANDE
@@ -41,8 +70,9 @@ connect();
                          FROM INCIDENT, UTILISATEUR, ETAT
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
-                         AND INCIDENT.ETA_CODE = ".$q."";    
-                    }
+                         AND INCIDENT.ETA_CODE = '".$q."'";
+                         }
+                    }     
         $result = mysqli_query($con,$sql);
         return($result);
     }    
@@ -76,6 +106,7 @@ function ListeDeroulanteType()
         }
         return ($oStation) ;
     }
+
 
     function createinter(){
      

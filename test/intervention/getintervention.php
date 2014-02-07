@@ -2,7 +2,13 @@
 $q = $_GET['q'];
 //var_dump($q);
 require("function.php");
-$result = infosIntervention($q);
+$function = $_SESSION['function'];
+if ($function == "utilisateur"){
+$result = infosInterventioncli($q);
+}
+else {
+$result = infosIntervention($q);  
+}
 var_dump($result);
 echo "<table border='1'>
 <tr>
