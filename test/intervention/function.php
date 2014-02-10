@@ -49,9 +49,17 @@ connect();
         $result = mysqli_query($con,$sql);
         return($result);
     }
-    function infosIntervention($q){
+    function infosIntervention($q,$q2){
            $con = connecter();
             $q = intval($q);
+            $q2 = intval($q2);
+            var_dump($q2);
+            if ($q2 ==98){
+                $sql2 = "";
+            }
+            else{
+                $sql2 = "AND INC_DEMANDE = '".$q2."'";
+            }
                 if (!$con)
                   {
                     die('Could not connect: ' . mysqli_error($con));
@@ -62,7 +70,8 @@ connect();
                     $sql="SELECT INC_CODE, INC_LIBELLE,INC_DESCRIPTION, ETA_LIBELLE, INC_DATEDEMANDE
                          FROM INCIDENT, UTILISATEUR, ETAT
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
-                         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE $sql2
+                         
                          ORDER BY INC_CODE";
                     }
                     else{
@@ -71,8 +80,10 @@ connect();
                          FROM INCIDENT, UTILISATEUR, ETAT
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
-                         AND INCIDENT.ETA_CODE = '".$q."'";
+                         AND INCIDENT.ETA_CODE = '".$q."' $sql2
+                         ";
                          }
+                         var_dump($sql);
                     }     
         $result = mysqli_query($con,$sql);
         return($result);
@@ -107,7 +118,21 @@ function ListeDeroulanteType()
         }
         return ($oStation) ;
     }
-
+function ListeDeroulanteUtilisateur()
+    {
+        $sReq = " SELECT UTI_CODE, UTI_LOGIN
+                  FROM UTILISATEUR
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oUser = array() ;
+        while ($Users = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oUser[$iNb] =  $Users ;
+        }
+        return ($oUser) ;
+    }
 
     function createinter(){
      

@@ -1,15 +1,15 @@
 <?php
-//session_start();
+require("function.php");
 $q = $_GET['q'];
 $q2 = $_GET['q2'];
 var_dump($q2);
-require("function.php");
+
 $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
 $result = infosInterventioncli($q);
 }
 else {
-$result = infosIntervention($q);  
+$result = infosIntervention($q,$q2);  
 }
 var_dump($result);
 echo "<table border='1'>

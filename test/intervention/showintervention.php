@@ -85,11 +85,16 @@ xmlhttp.send();
   ?>
       </select>
   <select name="userss" onchange="updateUtil(this.value)">
-     <option value="99"><?php echo "Tous"?> </option>
-     <option value="1"><?php echo "1"?> </option>
-     <option value="2"><?php echo "2"?> </option>
-     <option value="3"><?php echo "3"?> </option>
-      </select>   
+     <option value="98"><?php echo "Tous"?> </option>
+     <?php
+        $Users = ListeDeroulanteUtilisateur() ;
+        foreach ($Users as $User)
+        {
+  ?>
+          <option value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?> </option>
+  <?php
+        }
+  ?> </select>   
 
 
 
