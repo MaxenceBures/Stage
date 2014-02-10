@@ -5,20 +5,33 @@ require_once("function.php") ;
 <html>
 <head>
 <script>
+    var value = "",
+     value2 ="",    
+     q = 0,
+     q2 = 0;
+    function updateEtat(data) { 
+        value = data;
+        alert(value);
+    } 
+    function updateUtil(data) { 
+        value2 = data;
+        alert(value2);
+        alert(value + value2);
+
+    }
 function showIntervention()
 {
-  var q = document.getElementById('users'),
-   q2 = document.getElementById('userss');
+   q = value,
+   q2 = value2;
   var str ="";  
+  alert(q + q2);
 if (q.value !=="")
   {
-  str +=  "q=" + encodeURIComponent(q.value);
-  
+  str +=  "q=" + (q);
   } 
 if (q2.value !=="")
   {
-  str += (str.length == 0? "" : "&") + "q2=" + encodeURIComponent(q2.value);
-  
+  str += (str.length == 0? "" : "&") + "q2=" + (q2);
   }  
 if (str=="")
   {
@@ -41,10 +54,11 @@ xmlhttp.onreadystatechange=function()
     }
   }
 //var variables = "q="str&"q2"=str2;  
-//xmlhttp.open("GET","getintervention.php?"+str,true);
-xmlhttp.open("GET","getintervention.php?"
+xmlhttp.open("GET","getintervention.php?"+str,true);
+alert(str);
+/*xmlhttp.open("GET","getintervention.php?"
     + "q=" + encodeURIComponent(q)
-   + "&q2=" + encodeURIComponent(q2), true);
+   + "&q2=" + encodeURIComponent(q2), true);*/
 xmlhttp.send();
 }
 
@@ -58,8 +72,8 @@ xmlhttp.send();
 <br>
 <div id="txtHint"><b>Person info will be listed here.</b></div>
 
-<select name="users" >
-<option value="99"><?php echo "Tous"?> </option>
+<select name="users" onchange="updateEtat(this.value), showIntervention()">
+<option value="99" ><?php echo "Tous"?> </option>
   <?php
         $lesInters = getintervention() ;
         foreach ($lesInters as $unInter)
@@ -70,7 +84,7 @@ xmlhttp.send();
         }
   ?>
       </select>
-  <select name="userss" >
+  <select name="userss" onchange="updateUtil(this.value)">
      <option value="99"><?php echo "Tous"?> </option>
      <option value="1"><?php echo "1"?> </option>
      <option value="2"><?php echo "2"?> </option>
@@ -90,7 +104,7 @@ xmlhttp.send();
   <?php
         }
   ?>
-   
+ <input type="submit"  onclick="showIntervention()"> </br> 
 <a href="ajoutintervention.php">Ajout Intervention</a>
 </form>
 </body>

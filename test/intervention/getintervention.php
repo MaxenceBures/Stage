@@ -1,4 +1,5 @@
 <?php
+//session_start();
 $q = $_GET['q'];
 $q2 = $_GET['q2'];
 var_dump($q2);
