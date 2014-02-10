@@ -12,6 +12,7 @@ else {
 $result = infosIntervention($q,$q2);  
 }
 var_dump($result);
+echo "<hr>";
 echo "<table border='1'>
 <tr>
 <th>Num</th>

@@ -48,8 +48,8 @@
 				<td>
 				<select id="type" required="" name="type">
 			<?php
-			$Types = ListeDeroulanteType() ;
-			foreach ($Types as $Type)
+			$oTypes = ListeDeroulanteType() ;
+			foreach ($oTypes as $Type)
 			{
 ?>
 				<option value="<?php echo $Type['LIB_CODE']; ?>"><?php echo $Type["LIB_LIBELLE"] ?> </option>
@@ -67,8 +67,8 @@
 				<td>
 				<select id="urgence" required=""  name="urgence">
 			<?php
-			$Urgences = ListeDeroulanteUrgence() ;
-			foreach ($Urgences as $Urgence)
+			$oUrgence = ListeDeroulanteUrgence() ;
+			foreach ($oUrgence as $Urgence)
 			{
 ?>
 				<option value="<?php echo $Urgence['LIB_CODE']; ?>"><?php echo $Urgence["LIB_LIBELLE"] ?> </option>
