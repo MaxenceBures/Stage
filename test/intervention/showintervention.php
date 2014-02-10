@@ -70,7 +70,7 @@ xmlhttp.send();
 <form>
 <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$_SESSION['fonction']) ?> </h3>
 <br>
-<div id="txtHint"><b>Person info will be listed here.</b></div>
+<div id="container"><b>Person info will be listed here.</b></div>
 
 <select name="users" onchange="updateEtat(this.value), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>
