@@ -1,8 +1,9 @@
 <?php
 $q = $_GET['q'];
-//var_dump($q);
+$q2 = $_GET['q2'];
+var_dump($q2);
 require("function.php");
-$function = $_SESSION['function'];
+$function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
 $result = infosInterventioncli($q);
 }
