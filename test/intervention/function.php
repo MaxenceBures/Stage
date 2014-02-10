@@ -104,7 +104,7 @@ connect();
             $iNb = $iNb + 1 ;
             $oUrgences[$iNb] =  $Urgence ;
         }
-        return ($oUr) ;
+        return ($oUrgences) ;
     }
 function ListeDeroulanteType()
     {
