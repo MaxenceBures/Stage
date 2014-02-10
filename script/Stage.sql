@@ -2,10 +2,10 @@
 -- version 4.0.6
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mer 05 Février 2014 à 16:11
--- Version du serveur: 5.5.33
--- Version de PHP: 5.4.19
+-- Host: localhost
+-- Generation Time: Feb 10, 2014 at 03:29 PM
+-- Server version: 5.5.33
+-- PHP Version: 5.4.19
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Base de données: `stage`
+-- Database: `stage`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ENTREPRISE`
+-- Table structure for table `ENTREPRISE`
 --
 
 CREATE TABLE `ENTREPRISE` (
@@ -41,7 +41,7 @@ CREATE TABLE `ENTREPRISE` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Contenu de la table `ENTREPRISE`
+-- Dumping data for table `ENTREPRISE`
 --
 
 INSERT INTO `ENTREPRISE` (`ENT_CODE`, `ENT_RAISONSOCIALE`, `ENT_POINTS`, `ENT_HEURES`, `ENT_RUE`, `ENT_CP`, `ENT_VILLE`, `ENT_MAIL`, `ENT_TELEPHONE`, `ENT_SITEWEB`) VALUES
@@ -52,7 +52,7 @@ INSERT INTO `ENTREPRISE` (`ENT_CODE`, `ENT_RAISONSOCIALE`, `ENT_POINTS`, `ENT_HE
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ETAT`
+-- Table structure for table `ETAT`
 --
 
 CREATE TABLE `ETAT` (
@@ -62,7 +62,7 @@ CREATE TABLE `ETAT` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Contenu de la table `ETAT`
+-- Dumping data for table `ETAT`
 --
 
 INSERT INTO `ETAT` (`ETA_CODE`, `ETA_LIBELLE`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `ETAT` (`ETA_CODE`, `ETA_LIBELLE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ID`
+-- Table structure for table `ID`
 --
 
 CREATE TABLE `ID` (
@@ -88,7 +88,7 @@ CREATE TABLE `ID` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Contenu de la table `ID`
+-- Dumping data for table `ID`
 --
 
 INSERT INTO `ID` (`ENT_CODE`, `UTI_CODE`, `ROL_CODE`) VALUES
@@ -100,7 +100,7 @@ INSERT INTO `ID` (`ENT_CODE`, `UTI_CODE`, `ROL_CODE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `INCIDENT`
+-- Table structure for table `INCIDENT`
 --
 
 CREATE TABLE `INCIDENT` (
@@ -112,27 +112,37 @@ CREATE TABLE `INCIDENT` (
   `INC_LIBELLE` char(40) DEFAULT NULL,
   `INC_DESCRIPTION` char(200) DEFAULT NULL,
   `INC_DATEDEMANDE` date DEFAULT NULL,
-  `INC_DECOMPTE` decimal(4,0) DEFAULT NULL,
-  `INC_VALIDATION` tinyint(1) DEFAULT NULL,
+  `INC_DECOMPTE` decimal(4,0) DEFAULT '0',
+  `INC_VALIDATION` tinyint(1) DEFAULT '0',
   `INC_DEMANDE` varchar(2) NOT NULL,
+  `INC_TYPE` int(11) NOT NULL,
   PRIMARY KEY (`INC_CODE`),
   KEY `FK_DEMANDE` (`UTI_CODE`),
   KEY `FK_DISPOSE2` (`ETA_CODE`),
   KEY `FK_SOUMET` (`ENT_CODE`),
   KEY `FK_URGENCE` (`LIB_CODE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
 
 --
--- Contenu de la table `INCIDENT`
+-- Dumping data for table `INCIDENT`
 --
 
-INSERT INTO `INCIDENT` (`INC_CODE`, `LIB_CODE`, `UTI_CODE`, `ENT_CODE`, `ETA_CODE`, `INC_LIBELLE`, `INC_DESCRIPTION`, `INC_DATEDEMANDE`, `INC_DECOMPTE`, `INC_VALIDATION`, `INC_DEMANDE`) VALUES
-(1, 1, 1, 1, 1, 'Test', 'Test incident', '2014-02-05', 0, 0, '1');
+INSERT INTO `INCIDENT` (`INC_CODE`, `LIB_CODE`, `UTI_CODE`, `ENT_CODE`, `ETA_CODE`, `INC_LIBELLE`, `INC_DESCRIPTION`, `INC_DATEDEMANDE`, `INC_DECOMPTE`, `INC_VALIDATION`, `INC_DEMANDE`, `INC_TYPE`) VALUES
+(1, 1, 1, 1, 1, 'Test', 'Test incident', '2014-02-05', 0, 0, '1', 0),
+(2, 1, 1, 1, 1, 'Test2', 'Test2 incident', '2014-02-10', 0, 0, '1', 0),
+(3, 1, 2, 1, 1, 'Test3', 'Test3 incident log2\r\n', '2014-02-10', 0, 0, '2', 0),
+(4, 1, 2, 1, 2, 'Test3', 'Test3 incident log2\r\n', '2014-02-10', 0, 0, '1', 0),
+(5, 2, 1, 1, 1, 'res', 'test', '2014-02-10', NULL, NULL, '2', 7),
+(6, 2, 1, 1, 1, '12', 'test', '2014-02-10', 0, 0, '1', 7),
+(7, 1, 1, 1, 1, '', '', '2014-02-10', 0, 0, '1', 6),
+(8, 1, 1, 1, 1, 'tt', 'tt', '2014-02-10', 0, 0, '1', 6),
+(9, 1, 1, 1, 1, 'tt', 'tt', '2014-02-10', 0, 0, '3', 6),
+(10, 1, 2, 1, 2, 'Test3', 'Test3 incident log2\r\n', '2014-02-10', 0, 0, '1', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `INTERVENTION`
+-- Table structure for table `INTERVENTION`
 --
 
 CREATE TABLE `INTERVENTION` (
@@ -153,7 +163,7 @@ CREATE TABLE `INTERVENTION` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Contenu de la table `INTERVENTION`
+-- Dumping data for table `INTERVENTION`
 --
 
 INSERT INTO `INTERVENTION` (`INT_CODE`, `INC_CODE`, `LIB_CODE`, `UTI_CODE`, `INT_LIBELLE`, `INT_DESCRIPTION`, `INT_HEUREDEB`, `INT_HEUREFIN`, `INT_DATEINTER`, `INT_TECHNICIEN`) VALUES
@@ -163,7 +173,7 @@ INSERT INTO `INTERVENTION` (`INT_CODE`, `INC_CODE`, `LIB_CODE`, `UTI_CODE`, `INT
 -- --------------------------------------------------------
 
 --
--- Structure de la table `LIBELLE`
+-- Table structure for table `LIBELLE`
 --
 
 CREATE TABLE `LIBELLE` (
@@ -171,10 +181,10 @@ CREATE TABLE `LIBELLE` (
   `LIB_LIBELLE` char(40) DEFAULT NULL,
   `LIB_TYPE` char(20) DEFAULT NULL,
   PRIMARY KEY (`LIB_CODE`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
--- Contenu de la table `LIBELLE`
+-- Dumping data for table `LIBELLE`
 --
 
 INSERT INTO `LIBELLE` (`LIB_CODE`, `LIB_LIBELLE`, `LIB_TYPE`) VALUES
@@ -182,12 +192,16 @@ INSERT INTO `LIBELLE` (`LIB_CODE`, `LIB_LIBELLE`, `LIB_TYPE`) VALUES
 (2, 'Normale', 'incidenturgence'),
 (3, 'Faible', 'incidenturgence'),
 (4, 'Instalposte', 'interventiontype'),
-(5, 'Instalimprim', 'interventiontype');
+(5, 'Instalimprim', 'interventiontype'),
+(6, 'Site', 'incidenttype'),
+(7, 'Atelier', 'incidenttype'),
+(8, 'Hotline', 'incidenttype'),
+(9, 'Achat', 'incidenttype');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `ROLE`
+-- Table structure for table `ROLE`
 --
 
 CREATE TABLE `ROLE` (
@@ -197,7 +211,7 @@ CREATE TABLE `ROLE` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `ROLE`
+-- Dumping data for table `ROLE`
 --
 
 INSERT INTO `ROLE` (`ROL_CODE`, `ROL_LIBELLE`) VALUES
@@ -209,7 +223,7 @@ INSERT INTO `ROLE` (`ROL_CODE`, `ROL_LIBELLE`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `UTILISATEUR`
+-- Table structure for table `UTILISATEUR`
 --
 
 CREATE TABLE `UTILISATEUR` (
@@ -226,21 +240,21 @@ CREATE TABLE `UTILISATEUR` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
--- Contenu de la table `UTILISATEUR`
+-- Dumping data for table `UTILISATEUR`
 --
 
 INSERT INTO `UTILISATEUR` (`UTI_CODE`, `UTI_LOGIN`, `UTI_PWD`, `UTI_NOM`, `UTI_PRENOM`, `UTI_MAIL`, `UTI_TELEPHONEFIXE`, `UTI_TELEPHONEMOBILE`, `UTI_DESACTIVE`) VALUES
-(1, '1', '356a192b7913b04c54574d18c28d46e6395428ab', '1nom', '1prenom', '1mail', '1fixe', '1mobile', '0'),
-(2, '2', '356a192b7913b04c54574d18c28d46e6395428ab', '2nom', '2prenom', '2mail', '2fixe', '2mobile', '0'),
-(3, '3', '356a192b7913b04c54574d18c28d46e6395428ab', '3nom', '3prenom', '3mail', '3fixe', '3mobile', '0'),
-(4, '4', '356a192b7913b04c54574d18c28d46e6395428ab', '4nom', '4prenom', '4mail', '4fixe', '4mobile', '0');
+(1, 'log1', '356a192b7913b04c54574d18c28d46e6395428ab', '1nom', '1prenom', '1mail', '1fixe', '1mobile', '0'),
+(2, 'log2', '356a192b7913b04c54574d18c28d46e6395428ab', '2nom', '2prenom', '2mail', '2fixe', '2mobile', '0'),
+(3, 'log3', '356a192b7913b04c54574d18c28d46e6395428ab', '3nom', '3prenom', '3mail', '3fixe', '3mobile', '0'),
+(4, 'log4', '356a192b7913b04c54574d18c28d46e6395428ab', '4nom', '4prenom', '4mail', '4fixe', '4mobile', '0');
 
 --
--- Contraintes pour les tables exportées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `ID`
+-- Constraints for table `ID`
 --
 ALTER TABLE `ID`
   ADD CONSTRAINT `FK_ID` FOREIGN KEY (`ENT_CODE`) REFERENCES `ENTREPRISE` (`ENT_CODE`),
@@ -248,7 +262,7 @@ ALTER TABLE `ID`
   ADD CONSTRAINT `FK_ID3` FOREIGN KEY (`ROL_CODE`) REFERENCES `ROLE` (`ROL_CODE`);
 
 --
--- Contraintes pour la table `INCIDENT`
+-- Constraints for table `INCIDENT`
 --
 ALTER TABLE `INCIDENT`
   ADD CONSTRAINT `FK_DEMANDE` FOREIGN KEY (`UTI_CODE`) REFERENCES `UTILISATEUR` (`UTI_CODE`),
@@ -257,7 +271,7 @@ ALTER TABLE `INCIDENT`
   ADD CONSTRAINT `FK_URGENCE` FOREIGN KEY (`LIB_CODE`) REFERENCES `LIBELLE` (`LIB_CODE`);
 
 --
--- Contraintes pour la table `INTERVENTION`
+-- Constraints for table `INTERVENTION`
 --
 ALTER TABLE `INTERVENTION`
   ADD CONSTRAINT `FK_DISPOSE` FOREIGN KEY (`INC_CODE`) REFERENCES `INCIDENT` (`INC_CODE`),
