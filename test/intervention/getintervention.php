@@ -9,6 +9,9 @@ $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
 $result = infosInterventioncli($q,$q3);
 }
+if ($function == "reponsablecli"){
+$result = infosInterventionerespcli($q,$q2,$q3);
+}
 else {
 $result = infosIntervention($q,$q2,$q3);  
 }
