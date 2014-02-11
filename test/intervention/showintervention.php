@@ -5,7 +5,11 @@ $fonction = $_SESSION['fonction'];
 ?>
 <html>
 <head>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">alert ($('#Date').attr('checked')); </script>
 <script>
+
+
     var value = "",
      value2 ="", 
      value3="",   
@@ -94,7 +98,7 @@ $fonction = $_SESSION['fonction'];
         }
   ?>
   </select>
-<input type="checkbox" value="1" onchange="triDate(this.value), showIntervention()">Date</input>
+<input type="checkbox" value="1" id="Date" name="Date" onchange="triDate(this.value), showIntervention()" >Date</input>
   <?php if ($fonction == 'utilisateur') {
   }
   elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
