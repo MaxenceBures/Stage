@@ -1,8 +1,8 @@
 <?php
 //if(isset($_SESSION['login'])) {
-		require_once('function.php');
-	   createinter();
-	   $fonction = $_SESSION['function'];
+require_once('function.php');
+createinter();
+$fonction = $_SESSION['fonction'];
 	if($fonction == 'responsablecli' OR $fonction == 'intervenant' OR $fonction == 'responsableint'){
 	$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_LOGIN = '".$_SESSION['login']."'"));
 	$enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));
@@ -20,6 +20,7 @@
 		</head>
 		<body>
 		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
+		<H2 align="center">AJOUT INCIDENT</H2>
 		<div data-role="page">
 <!--	<body>-->
 		<form id="ajout_form" data-ajax="false" action="<?php $_SERVER['PHP_SELF']; ?>" method="post">
@@ -109,9 +110,3 @@
 	</body>
 	</html>
 
-<?php
-/*}
-else{
-//header('Location:/Vlyon/Pages/connexion.php');
-}*/
-?>

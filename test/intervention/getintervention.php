@@ -2,14 +2,15 @@
 require("function.php");
 $q = $_GET['q'];
 $q2 = $_GET['q2'];
+$q3 = $_GET['q3'];
 var_dump($q2);
 
 $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
-$result = infosInterventioncli($q);
+$result = infosInterventioncli($q,$q3);
 }
 else {
-$result = infosIntervention($q,$q2);  
+$result = infosIntervention($q,$q2,$q3);  
 }
 var_dump($result);
 echo "<hr>";

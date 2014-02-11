@@ -19,10 +19,18 @@ connect();
         mysql_close($oSql);
         }
 
-    function infosInterventioncli($q){
+    function infosInterventioncli($q,$q3){
            $con = connecter();
             $id = $_SESSION['login'];
             $q = intval($q);
+            $q3 = intval($q3);
+            if ($q3 == 1){
+                $sql4 = "ORDER BY INC_DATEDEMANDE";
+                
+            }
+            else {
+                $sql4 = "ORDER BY INC_CODE";
+                }
                 if (!$con)
                   {
                     die('Could not connect: ' . mysqli_error($con));
@@ -33,8 +41,8 @@ connect();
                          FROM INCIDENT, UTILISATEUR, ETAT
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
-                         AND UTI_LOGIN = '".$id."'
-                         ORDER BY INC_CODE";
+                         AND UTI_LOGIN = '".$id."' $sql4
+                         ";
                     }
                     else{
                 //  var_dump($q);
@@ -43,33 +51,44 @@ connect();
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
                          AND UTI_LOGIN = '".$id."'
-                         AND INCIDENT.ETA_CODE = '".$q."' 
+                         AND INCIDENT.ETA_CODE = '".$q."'  $sql4
                          ";    
                     }
         $result = mysqli_query($con,$sql);
         return($result);
     }
-    function infosIntervention($q,$q2){
+    function infosIntervention($q,$q2,$q3){
         $con = connecter();
         $q = intval($q);
         $q2 = intval($q2);
-          //  var_dump($q2);
-            if ($q2 ==98){
-                $sql2 = "";
+        $q3 = intval($q3);
+            if ($q3 == 1){
+                $sql4 = "ORDER BY INC_DATEDEMANDE";
+                
             }
-            if($q2 ==""){
-                $sql2 = "";
+            else {
+                $sql4 = "";
+                
             }
-            elseif ($q2 !=98 OR $q2 !=""){
+            if ($q2 == 98){
+                $sql2 = "";
+                echo"<br>";
+            }
+            if($q2 == ""){
+                $sql2 = "";
+                echo"1";
+            }
+            elseif ($q2 != 98 AND $q2 != ""){
+
                 $sql2 = "AND INC_DEMANDE = '".$q2."'";
             }
-            if ($q ==99){
+            if ($q == 99){
                 $sql3 = "";
             }
-            if ($q ==""){
+            if ($q == ""){
                 $sql3 = "";
             }
-            elseif($q !=99 OR $q !=""){
+            elseif($q != 99 AND $q !=""){
                 $sql3 = "AND INCIDENT.ETA_CODE = '".$q."'";
             }
             
@@ -83,7 +102,7 @@ connect();
                          FROM INCIDENT, UTILISATEUR, ETAT
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
-                          $sql2 $sql3
+                          $sql2 $sql3 $sql4
                          ";
                          
                          var_dump($sql);
@@ -153,7 +172,6 @@ function ListeDeroulanteUtilisateur()
         $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
         $resp2 = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$resp."'"));
         $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
-       //var_dump($id);
         $count = mysql_fetch_row(mysql_query("SELECT max(INC_CODE) from INCIDENT"));
         $test = $count[0] + 1;
         $query = mysql_query("INSERT INTO INCIDENT(INC_CODE ,LIB_CODE ,UTI_CODE ,ENT_CODE ,ETA_CODE ,INC_LIBELLE ,INC_DESCRIPTION ,INC_DATEDEMANDE ,INC_DEMANDE, INC_TYPE)

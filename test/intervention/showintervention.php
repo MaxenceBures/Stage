@@ -7,25 +7,29 @@ $fonction = $_SESSION['fonction'];
 <head>
 <script>
     var value = "",
-     value2 ="",    
+     value2 ="", 
+     value3="",   
      q = 0,
-     q2 = 0;
+     q2 = 0,
+     q3 = 0;
     function updateEtat(data) { 
         value = data;
-       // alert(value);
+      
     } 
     function updateUtil(data) { 
         value2 = data;
-      //  alert(value2);
-      //  alert(value + value2);
-
+      
+    }
+    function triDate(data) { 
+        value3 = data;
+      
     }
     function showIntervention()
     {
        q = value,
-       q2 = value2;
+       q2 = value2,
+       q3 = value3;
       var str ="";  
-    //  alert(q + q2);
     if (q.value !=="")
       {
       str +=  "q=" + (q);
@@ -33,7 +37,11 @@ $fonction = $_SESSION['fonction'];
     if (q2.value !=="")
       {
       str += (str.length == 0? "" : "&") + "q2=" + (q2);
-      }  
+      }
+     if (q3.value !=="")
+      {
+      str += (str.length == 0? "" : "&") + "q3=" + (q3);
+      }    
     if (str=="")
       {
       document.getElementById("container").innerHTML="<p style='text-align:center;'>Please Type In A Name To Retrieve Results</p>";
@@ -72,8 +80,8 @@ $fonction = $_SESSION['fonction'];
 <form>
 <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
 <br>
+<H2 align="center">MES INCIDENTS</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
-
 <select name="etat" onchange="updateEtat(this.value), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>
   <?php
@@ -85,13 +93,11 @@ $fonction = $_SESSION['fonction'];
   <?php
         }
   ?>
-      </select>
-  <?php 
-  if ($fonction == 'utilisateur') {
-  
+  </select>
+<input type="checkbox" value="1" onchange="triDate(this.value), showIntervention()">Date</input>
+  <?php if ($fonction == 'utilisateur') {
   }
   elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
-
   ?>   
   <select name="users" onchange="updateUtil(this.value), showIntervention()">
      <option value="98" ><?php echo "Tous"?> </option>
@@ -122,8 +128,15 @@ $fonction = $_SESSION['fonction'];
         }
   ?>
   </td>
+  <?php
+  if ($fonction == 'utilisateur') {
+  
+  }
+  elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
+
+  ?> 
   <td>
-  <input type="checkbox" onchange=onchange="updateUtil(this.value), showIntervention()" value="98"><?php echo "Tous"?></br>
+  <input type="checkbox" onchange="updateUtil(this.value), showIntervention()" value="98"><?php echo "Tous"?></br>
   <?php
         $Users = ListeDeroulanteUtilisateur() ;
         foreach ($Users as $User)
@@ -131,7 +144,7 @@ $fonction = $_SESSION['fonction'];
   ?>
           <input type="checkbox" onchange="updateEtat(this.value), showIntervention()" value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?></br>
   <?php
-        }
+        }}
   ?>
   </td>
 </table>  
