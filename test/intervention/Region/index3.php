@@ -2,41 +2,38 @@
 echo("<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\n");
 /* Variables de connexion : ajustez ces paramètres selon votre propre environnement */
 include('function.php');
-// $serveur = "localhost";
-// $admin   = "root";
-// $mdp     = "root";
-// $base    = "stage";
+
 ?>
 <head>
 
 <title>Liste déroulantes dynamiques liées</title>
 <script type="text/javascript" src="dept_xhr.js" charset="iso_8859-1"></script>
 <?php
-/* Requête SQL de récupération des données de la première liste */
-$sql = "SELECT `ENT_CODE` AS idr, `ENT_RAISONSOCIALE` ".
-       "FROM `ENTREPRISE` ".
-       "ORDER BY `ENT_CODE`;";
+
+// $sql = "SELECT `ENT_CODE` AS idr, `ENT_RAISONSOCIALE` ".
+//        "FROM `ENTREPRISE` ".
+//        "ORDER BY `ENT_CODE`;";
 /* Connexion et exécution de la requête */
 $connexion = "oui" ;//mysql_connect($serveur, $admin, $mdp);
 if($connexion == "oui")
 {
     //$choixbase = mysql_select_db($base, $connexion);
-    $recherche = mysql_query($sql);//, $connexion);
-    /* Création du tableau PHP des valeurs récupérées */
-    $regions = array();
-    /* Index du département par tableau régional */
-    $id = 0;
-    while($ligne = mysql_fetch_assoc($recherche))
-    {
-        $regions[$ligne['idr']] = $ligne['ENT_RAISONSOCIALE'];
-    }
+    // $recherche = mysql_query($sql);//, $connexion);
+    // /* Création du tableau PHP des valeurs récupérées */
+    // $regions = array();
+    //  Index du département par tableau régional 
+    // $id = 0;
+    // while($ligne = mysql_fetch_assoc($recherche))
+    // {
+    //     $regions[$ligne['idr']] = $ligne['ENT_RAISONSOCIALE'];
+    // }
 ?>
 </head>
 <body style="font-family: verdana, helvetica, sans-serif; font-size: 85%">
 <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chgdept">
   
   <legend>Sélectionnez une région</legend>
-    <select name="region" id="region" onchange="getDepartements(this.value);">
+   <!--  <select name="region" id="region" onchange="getDepartements(this.value);">
       <option value="vide">- - - Choisissez une région - - -</option>
     <?php
 
@@ -48,7 +45,18 @@ if($connexion == "oui")
     }
     ?>
     </select>
-
+  -->   
+<select name="region" id="region" onchange="getDepartements(this.value);">
+     <option value="vide">- - - Choisissez une région - - -</option>
+     <?php
+        $Users = ListeDeroulanteEntreprise() ;
+        foreach ($Users as $User)
+        {
+  ?>
+          <option value="<?php echo $User['ENT_CODE']; ?>"><?php echo $User['ENT_RAISONSOCIALE'] ?> </option>
+  <?php
+        }
+  ?> </select>   
   <span id="blocDepartements"></span><br />
   <input type="submit" name="ok" id="ok" value="Envoyer" />
   
