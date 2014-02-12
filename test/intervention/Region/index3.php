@@ -31,12 +31,9 @@ if($connexion != false)
     }
 ?>
 </head>
-<body style="font-family: verdana, helvetica, sans-serif; font-size: 85%">
-<h3>Version Utilisant AJAX</h3>
-<p>Vous constaterez que le délai de latence entre la sélection et la mise à jour est quasiment intermédiaire entre les versions 100% PHP et JavaScript.</p>
-<h3>Trouver un département</h3>
+
 <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chgdept">
-  <fieldset style="border: 3px double #333399">
+
   <legend>Sélectionnez une région</legend>
     <select name="region" id="region" onchange="getDepartements(this.value);">
       <option value="vide">- - - Choisissez une région - - -</option>
@@ -54,7 +51,7 @@ if($connexion != false)
          la seconde liste déroulande -->
   <span id="blocDepartements"></span><br />
   <input type="submit" name="ok" id="ok" value="Envoyer" />
-  </fieldset>
+
 </form>
 <?php
 }
