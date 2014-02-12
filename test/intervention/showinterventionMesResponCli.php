@@ -5,25 +5,17 @@ $fonction = $_SESSION['fonction'];
 ?>
 <html>
 <head>
-<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
-<script type="text/javascript">alert ($('#Date').attr('checked')); </script>
 <script>
 
 
     var value = "",
-     value2 ="", 
      value3="",   
      q = 0,
-     q2 = 0,
      q3 = 0;
     function updateEtat(data) { 
         value = data;
       
     } 
-    function updateUtil(data) { 
-        value2 = data;
-      
-    }
     function triDate(data) { 
         value3 = data;
       
@@ -31,17 +23,12 @@ $fonction = $_SESSION['fonction'];
     function showIntervention()
     {
        q = value,
-       q2 = value2,
        q3 = value3;
       var str ="";  
     if (q.value !=="")
       {
       str +=  "q=" + (q);
       } 
-    if (q2.value !=="")
-      {
-      str += (str.length == 0? "" : "&") + "q2=" + (q2);
-      }
      if (q3.value !=="")
       {
       str += (str.length == 0? "" : "&") + "q3=" + (q3);
@@ -98,26 +85,7 @@ $fonction = $_SESSION['fonction'];
         }
   ?>
   </select>
-<input type="checkbox" value="1" id="Date" name="Date" onchange="triDate(this.value), showIntervention()" >Date</input>
-  <?php if ($fonction == 'utilisateur') {
-  }
-  elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
-  ?>   
-  <select name="users" onchange="updateUtil(this.value), showIntervention()">
-     <option value="98" ><?php echo "Tous"?> </option>
-     <?php
-        $Users = ListeDeroulanteUtilisateur() ;
-        foreach ($Users as $User)
-        {
-  ?>
-          <option value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?> </option>
-  <?php
-        }
-  ?> </select>   
-<?php
-}
-?>
-
+<input type="checkbox" value="1" id="Date" name="Date" onchange="triDate(this.value), showIntervention()" >Date</input>  
 <hr>
 <table>
 <td>
@@ -132,29 +100,9 @@ $fonction = $_SESSION['fonction'];
         }
   ?>
   </td>
-  <?php
-  if ($fonction == 'utilisateur') {
-  
-  }
-  elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
-
-  ?> 
-  <td>
-  <input type="checkbox" onchange="updateUtil(this.value), showIntervention()" value="98"><?php echo "Tous"?></br>
-  <?php
-        $Users = ListeDeroulanteUtilisateur() ;
-        foreach ($Users as $User)
-        {
-  ?>
-          <input type="checkbox" onchange="updateEtat(this.value), showIntervention()" value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?></br>
-  <?php
-        }}
-  ?>
-  </td>
 </table>  
  <input type="submit"  onclick="showIntervention()"> </br> 
 <a href="ajoutintervention.php">Ajout Intervention</a>
-<a href="showinterventionMesResponCli.php">Mes Interventions </a>
 </form>
 </body>
 </html>
