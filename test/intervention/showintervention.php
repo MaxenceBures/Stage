@@ -153,8 +153,9 @@ $fonction = $_SESSION['fonction'];
   </td>
 </table>  
  <input type="submit"  onclick="showIntervention()"> </br> 
-<a href="ajoutintervention.php">Ajout Intervention</a>
-<a href="showinterventionMesResponCli.php">Mes Interventions </a>
+<a href="ajoutintervention.php">Ajout Intervention</a></br>
+<a href="showinterventionMesResponCli.php">Mes Interventions </a></br>
+<a href="Region/test.html">TEST AJAX </a></br>
 </form>
 </body>
 </html>
