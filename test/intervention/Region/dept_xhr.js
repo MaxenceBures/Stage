@@ -48,7 +48,7 @@ function creerRequete()
 function actualiserDepartements()
 {
     var listeDept = requete.responseText;
-    var blocListe = document.getElementById('blocDepartements');
+    var blocListe = document.getElementById('blocEntreprises');
     blocListe.innerHTML = listeDept;
 }
 
@@ -62,12 +62,12 @@ function getDepartements(idr)
     /* Si il n'y a pas d'identifiant de région, on fait disparaître la seconde liste au cas où elle serait affichée */
     if(idr == 'vide')
     {
-        document.getElementById('blocDepartements').innerHTML = '';
+        document.getElementById('blocEntreprises').innerHTML = '';
     }
     else
     {
         /* À cet endroit précis, on peut faire apparaître un message d'attente */
-        var blocListe = document.getElementById('blocDepartements');
+        var blocListe = document.getElementById('blocEntreprises');
         blocListe.innerHTML = "Traitement en cours, veuillez patienter...";
         /* On crée l'objet XHR */
         creerRequete();

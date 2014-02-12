@@ -19,7 +19,7 @@ include('function.php');
   <?php
         }
   ?> </select>   
-  <span id="blocDepartements"></span><br />
+  <span id="blocEntreprises"></span><br />
   <input type="submit" name="ok" id="ok" value="Envoyer" />
   
 </form>
