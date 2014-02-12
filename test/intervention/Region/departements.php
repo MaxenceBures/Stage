@@ -5,11 +5,12 @@
  * correspondant à la région sélectionnée.
  */
 /* Paramètres de connexion */
-$serveur = "localhost";
-$admin   = "root";
-$mdp     = "root";
-$base    = "stage";
-
+// $serveur = "localhost";
+// $admin   = "root";
+// $mdp     = "root";
+// $base    = "stage";
+include('function.php');
+connect();
 /* On récupère l'identifiant de la région choisie. */
 $idr = isset($_GET['idr']) ? $_GET['idr'] : false;
 /* Si on a une région, on procède à la requête */
@@ -24,9 +25,9 @@ if(false !== $idr)
              ORDER BY ID.UTI_CODE
             ";
             var_dump($sql2);
-    $connexion = mysql_connect($serveur, $admin, $mdp);
-    mysql_select_db($base, $connexion);
-    $rech_util = mysql_query($sql2, $connexion);
+  //  $connexion = mysql_connect($serveur, $admin, $mdp);
+  //  mysql_select_db($base, $connexion);
+    $rech_util = mysql_query($sql2);//, $connexion);
     /* Un petit compteur pour les départements */
     $nd = 0;
     /* On crée deux tableaux pour les numéros et les noms des départements */

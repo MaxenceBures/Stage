@@ -9,13 +9,13 @@ include('function.php');
 <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chgdept"> 
   <legend>Sélectionnez une région</legend>
 <select name="region" id="region" onchange="getDepartements(this.value);">
-     <option value="vide">- - - Choisissez une région - - -</option>
+     <option value="vide">- - - Choisissez une Entreprise - - -</option>
      <?php
-        $Users = ListeDeroulanteEntreprise() ;
-        foreach ($Users as $User)
+        $oEntreprises = ListeDeroulanteEntreprise() ;
+        foreach ($oEntreprises as $Entreprise)
         {
   ?>
-          <option value="<?php echo $User['ENT_CODE']; ?>"><?php echo $User['ENT_RAISONSOCIALE'] ?> </option>
+          <option value="<?php echo $Entreprise['ENT_CODE']; ?>"><?php echo $Entreprise['ENT_RAISONSOCIALE'] ?> </option>
   <?php
         }
   ?> </select>   
