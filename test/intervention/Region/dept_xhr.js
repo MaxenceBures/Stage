@@ -1,4 +1,4 @@
-/**
+l/**
  * Lister les départements d'une région avec un objet
  * XMLHTTPRequest.
  */
