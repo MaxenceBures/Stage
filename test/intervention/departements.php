@@ -14,12 +14,13 @@ if(false !== $idr)
              AND ENT_CODE = '".$idr."'
              ORDER BY ID.UTI_CODE
             ";
-            var_dump($sql2);
+            // var_dump($sql2);
   $rech_util = mysql_query($sql2);
   
     $nd = 0;
     $code_util = array();
     $nom_util = array();
+
     while(false != ($ligne_util = mysql_fetch_assoc($rech_util)))
     {
         $code_util[] = $ligne_util['UTI_CODE'];

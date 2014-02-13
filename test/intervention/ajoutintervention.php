@@ -33,7 +33,18 @@ $fonction = $_SESSION['fonction'];
 					</td>
 					<?php if($fonction == "intervenant"){?>	
 					<td>
-						<select id="nomEnt" name="nomEnt" required="">
+					<select name="region" id="region" onchange="getDepartements(this.value);">
+     <option value="vide">- - - Choisissez une Entreprise - - -</option>
+     <?php
+        $oEntreprises = ListeDeroulanteEntreprise() ;
+        foreach ($oEntreprises as $Entreprise)
+        {
+  ?>
+          <option value="<?php echo $Entreprise['ENT_CODE']; ?>"><?php echo $Entreprise['ENT_RAISONSOCIALE'] ?> </option>
+  <?php
+        }
+  ?> </select> 
+						<!-- <select id="nomEnt" name="nomEnt" required="">
 							<?php
 							$oEntreprises = ListeDeroulanteEntreprise() ;
 							foreach ($oEntreprises as $entreprise)
@@ -43,7 +54,7 @@ $fonction = $_SESSION['fonction'];
 				<?php
 							}
 				?>
-						</select>
+						</select> -->
 					</td>
 					<?php
 						}
@@ -60,6 +71,10 @@ $fonction = $_SESSION['fonction'];
 					</td>
 					<?php if($fonction == "intervenant"){?>	
 					<td>
+						<span id="blocEntreprises"></span><br />
+					</td>
+					 
+					<!-- <td>
 						<select id="nomResp" name="nomResp" required="">
 							<?php
 							$oEntreprises = ListeDeroulanteUtilisateur() ;
@@ -71,7 +86,7 @@ $fonction = $_SESSION['fonction'];
 							}
 				?>
 						</select>
-					</td>
+					</td> -->
 					<?php
 						}
 							else { ?>
@@ -144,22 +159,7 @@ $fonction = $_SESSION['fonction'];
 			</table>
 			</br>
 						<input type="submit" name="go_createint" id="go_createint" value="Creer"/>
-		<!-- </form><form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chgdept">  -->
-  <legend>Sélectionnez une région</legend>
-<select name="region" id="region" onchange="getDepartements(this.value);">
-     <option value="vide">- - - Choisissez une Entreprise - - -</option>
-     <?php
-        $oEntreprises = ListeDeroulanteEntreprise() ;
-        foreach ($oEntreprises as $Entreprise)
-        {
-  ?>
-          <option value="<?php echo $Entreprise['ENT_CODE']; ?>"><?php echo $Entreprise['ENT_RAISONSOCIALE'] ?> </option>
-  <?php
-        }
-  ?> </select>   
-
-  <input type="submit" name="ok" id="ok" value="Envoyer" />
-    <span id="blocEntreprises"></span><br />
+ 
 </form>
 	<!--</body>-->
 	</div>
