@@ -1,28 +1,34 @@
-
-    var value = "",
-     value2 ="", 
-     value3="",   
-     q = 0,
-     q2 = 0,
-     q3 = 0;
+var value = "",
+  value2 ="", 
+  value3="",
+  value4=""   
+  q = 0,
+  q2 = 0,
+  q3 = 0,
+  q4 = 0;
      
-    function updateEtat(data) { 
+    function page(data){
+      value4 = "respcli";
+    }
+    function page2(data){
+      value4 = "cli";
+    }
+    function updateEtat(data){ 
         value = data;
-      
     } 
+
     function updateUtil(data) { 
         value2 = data;
-      
     }
     function triDate(data) { 
         value3 = data;
-      
     }
     function showIntervention()
     {
        q = value,
        q2 = value2,
        q3 = value3;
+       q4 = value4;
       var str ="";  
     if (q.value !=="")
       {
@@ -35,6 +41,10 @@
      if (q3.value !=="")
       {
       str += (str.length == 0? "" : "&") + "q3=" + (q3);
+      }
+     if (q4.value !=="")
+      {
+      str += (str.length == 0? "" : "&") + "q4=" + (q4);
       }    
     if (str=="")
       {
@@ -72,7 +82,7 @@
  */
  var requete = null;
 function creerRequete()
-{
+  {
     try
     {
         /* On tente de créer un objet XmlHTTPRequest */
@@ -103,16 +113,16 @@ function creerRequete()
     {
         alert('Impossible de créer l\'objet requête,\nVotre navigateur ne semble pas supporter les object XMLHttpRequest.');
     }
-}
+  }
 /**
  * Fonction privée qui va mettre à jour l'affichage de la page.
  */
 function actualiserDepartements()
-{
+  {
     var listeDept = requete.responseText;
     var blocListe = document.getElementById('blocEntreprises');
     blocListe.innerHTML = listeDept;
-}
+  }
 
 /**
  * Fonction publique appelée par la page affichée.

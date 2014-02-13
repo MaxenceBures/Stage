@@ -213,13 +213,13 @@ function infosInterventionrespcli($q,$q2,$q3)
                   }
                 else {  
         
-                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION
+                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN
                          FROM INCIDENT, UTILISATEUR, ETAT, URGENCE, LIBELLE
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
                          AND INCIDENT.URG_CODE = URGENCE.URG_CODE
                          AND INCIDENT.INC_TYPE = LIBELLE.LIB_CODE
-                         $sql3 $sql4 $sql2
+                         $sql2 $sql3 $sql4 
                          "; //$sql2
                          
                          var_dump($sql);
@@ -274,8 +274,11 @@ function ListeDeroulanteType()
     }
 function ListeDeroulanteUtilisateur()
     {
-        $sReq = " SELECT UTI_CODE, UTI_LOGIN
-                  FROM UTILISATEUR
+        $sReq = " SELECT DISTINCT UTILISATEUR.UTI_CODE, UTI_LOGIN
+                  FROM UTILISATEUR, ID
+                  WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE
+                  AND (ROL_CODE = '1'
+                  OR ROL_CODE = '2')
                    ";
         $rstPdt = mysql_query($sReq) ;
         $iNb = 0 ;
@@ -298,18 +301,18 @@ function createinter()
             $region = mysql_real_escape_string($_POST['region']);
             $departement = mysql_real_escape_string($_POST['departement']);
             var_dump($region); var_dump($departement);
-if($region ==""){
-    $ent = mysql_real_escape_string($_POST['nomEnt']);
-    $resp = mysql_real_escape_string($_POST['nomResp']);
-    $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
-    $resp2 = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$resp."'"));
-    $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
-    $sql = "'".$resp2['UTI_CODE']."', '".$ent2['ENT_CODE']."', '".$id['UTI_CODE']."'";        
-}
-else{
-    echo'stop';
-    $sql = "'".$departement."', '".$region."', '".$departement."'"; 
-}
+            if($region ==""){
+                $ent = mysql_real_escape_string($_POST['nomEnt']);
+                $resp = mysql_real_escape_string($_POST['nomResp']);
+                $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
+                $resp2 = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$resp."'"));
+                $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
+                $sql = "'".$resp2['UTI_CODE']."', '".$ent2['ENT_CODE']."', '".$id['UTI_CODE']."'";        
+            }
+            else{
+                echo'stop';
+                $sql = "'".$departement."', '".$region."', '".$departement."'"; 
+            }
             
             $libelle = mysql_real_escape_string($_POST['libelle']);
             $descr = mysql_real_escape_string($_POST['descr']);
