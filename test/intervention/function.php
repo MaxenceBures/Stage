@@ -295,6 +295,9 @@ function createinter()
 
             $date = date("Y-m-d\TH:i:sP");
            // $id = $_SESSION['login'];
+            $region = mysql_real_escape_string($_POST['region']);
+            $departement = mysql_real_escape_string($_POST['departement']);
+
             $ent = mysql_real_escape_string($_POST['nomEnt']);
             $resp = mysql_real_escape_string($_POST['nomResp']);
             $libelle = mysql_real_escape_string($_POST['libelle']);
