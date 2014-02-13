@@ -36,7 +36,7 @@ echo "<table border='1'>
 <th>DateDemande</th>
 <th>Etat</th>";
 if ($function == "responsablecli"){
-echo "<th>Type</th><th>Urgence</th><th>Login</th>";
+echo "<th>Type</th><th>Urgence</th>";
 }
 
 echo "</tr>";
@@ -52,7 +52,6 @@ while($row = mysqli_fetch_array($result))
   if ($function == "responsablecli"){
 	  echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
   	  echo "<td>" . $row['URG_LIBELLE'] . "</td>";
-  	  echo "<td>" . $row['UTI_LOGIN'] . "</td>";
 	}
   echo "</tr>";
   
