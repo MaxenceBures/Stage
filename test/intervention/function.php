@@ -123,7 +123,7 @@ function infosMesInterventionrespcli($q,$q3)
                 
             }
             else {
-                $sql4 = "";
+                $sql4 = "ORDER BY INC_CODE";
                 
             }
             // if ($q2 == 98){
@@ -182,7 +182,7 @@ function infosInterventionrespcli($q,$q2,$q3)
                 
             }
             else {
-                $sql4 = "";
+                $sql4 = "ORDER BY INC_CODE";
                 
             }
             if ($q2 == 98){

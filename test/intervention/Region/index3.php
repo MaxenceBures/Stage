@@ -3,7 +3,7 @@ include('function.php');
 ?>
 <head>
 <title>Liste déroulantes dynamiques liées</title>
-<script type="text/javascript" src="dept_xhr.js" charset="iso_8859-1"></script>
+<script type="text/javascript" src="./test.js" charset="iso_8859-1"></script>
 </head>
 <body style="font-family: verdana, helvetica, sans-serif; font-size: 85%">
 <form action="<?php echo($_SERVER['PHP_SELF']); ?>" method="post" id="chgdept"> 
