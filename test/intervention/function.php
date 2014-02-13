@@ -164,6 +164,21 @@ function infosMesInterventionrespcli($q,$q3)
                          AND UTI_LOGIN = '".$id."'
                            $sql3 $sql4
                          "; //$sql2
+                                // $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN
+                                //         FROM INCIDENT, UTILISATEUR, ETAT, URGENCE, LIBELLE, ID
+                                //         WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+                                //         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                                //         AND INCIDENT.URG_CODE = URGENCE.URG_CODE
+                                //         AND INCIDENT.INC_TYPE = LIBELLE.LIB_CODE
+                                //         AND ID.UTI_CODE = UTILISATEUR.UTI_CODE
+                                //         AND ID.ENT_CODE = (
+                                //         SELECT ENTREPRISE.ENT_CODE
+                                //         FROM ENTREPRISE, ID, UTILISATEUR
+                                //         WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE
+                                //         AND UTILISATEUR.UTI_CODE = ID.UTI_CODE
+                                //         AND UTILISATEUR.UTI_LOGIN = '$id' )
+                                //         $sql3 $sql4 
+                                //          ";//$sql2
                          
                          var_dump($sql);
                     }     
@@ -174,7 +189,7 @@ function infosInterventionrespcli($q,$q2,$q3)
     {
         $con = connecter();
         $q = intval($q);
-       // $id = $_SESSION['login'];
+        $id = $_SESSION['login'];
         $q2 = intval($q2);
         $q3 = intval($q3);
             if ($q3 == 1){
@@ -213,15 +228,18 @@ function infosInterventionrespcli($q,$q2,$q3)
                   }
                 else {  
         
-                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION
-                         FROM INCIDENT, UTILISATEUR, ETAT, URGENCE, LIBELLE
+                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN
+                         FROM INCIDENT, UTILISATEUR, ETAT, URGENCE, LIBELLE, ID
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
                          AND INCIDENT.URG_CODE = URGENCE.URG_CODE
                          AND INCIDENT.INC_TYPE = LIBELLE.LIB_CODE
+                         AND ID.UTI_CODE = UTILISATEUR.UTI_CODE
+                         AND ID.ENT_CODE = (SELECT ENTREPRISE.ENT_CODE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND UTILISATEUR.UTI_CODE = ID.UTI_CODE AND UTI_LOGIN = '$id')
                          $sql3 $sql4 $sql2
                          "; //$sql2
-                         
+                    
+             
                          var_dump($sql);
                     }     
         $result = mysqli_query($con,$sql);
@@ -288,7 +306,7 @@ function ListeDeroulanteUtilisateur()
         return ($oUser) ;
     }
 function createinter()
-    {
+{
      
             if (isset($_POST['go_createint']))
          {       
@@ -298,7 +316,7 @@ function createinter()
             $region = mysql_real_escape_string($_POST['region']);
             $departement = mysql_real_escape_string($_POST['departement']);
             var_dump($region); var_dump($departement);
-if($region ==""){
+    if($region ==""){
     $ent = mysql_real_escape_string($_POST['nomEnt']);
     $resp = mysql_real_escape_string($_POST['nomResp']);
     $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
@@ -306,7 +324,7 @@ if($region ==""){
     $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
     $sql = "'".$resp2['UTI_CODE']."', '".$ent2['ENT_CODE']."', '".$id['UTI_CODE']."'";        
 }
-else{
+    else{
     echo'stop';
     $sql = "'".$departement."', '".$region."', '".$departement."'"; 
 }
@@ -325,4 +343,4 @@ else{
                 'window.location.replace("showintervention.php")'.
                 '</script>';
         }
-    }
+}
