@@ -245,7 +245,7 @@ function infosInterventionrespcli($q,$q2,$q3)
     {
         $con = connecter();
         $q = intval($q);
-       // $id = $_SESSION['login'];
+        $id = $_SESSION['login'];
         $q2 = intval($q2);
         $q3 = intval($q3);
             if ($q3 == 1){
@@ -284,12 +284,13 @@ function infosInterventionrespcli($q,$q2,$q3)
                   }
                 else {  
         
-                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN
+                     $sql="SELECT DISTINCT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN
                          FROM INCIDENT, UTILISATEUR, ETAT, URGENCE, LIBELLE
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
                          AND INCIDENT.URG_CODE = URGENCE.URG_CODE
                          AND INCIDENT.INC_TYPE = LIBELLE.LIB_CODE
+                         AND INCIDENT.ENT_CODE  = (SELECT DISTINCT ENT_CODE FROM ID WHERE UTI_CODE = (SELECT DISTINCT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN ='".$id."'))
                          $sql2 $sql3 $sql4 
                          "; //$sql2
                          
@@ -369,10 +370,15 @@ function createinter()
 
             $date = date("Y-m-d\TH:i:sP");
            // $id = $_SESSION['login'];
-            $region = mysql_real_escape_string($_POST['region']);
-            $departement = mysql_real_escape_string($_POST['departement']);
-            var_dump($region); var_dump($departement);
-            if($region ==""){
+            if (isset($_POST['region'])) {
+               $region = mysql_real_escape_string($_POST['region']);
+            }
+            if (isset($_POST['departement'])) {
+               $departement = mysql_real_escape_string($_POST['departement']);
+            }
+           // $departement = mysql_real_escape_string($_POST['departement']);
+           // var_dump($region); var_dump($departement);
+           if (!isset($_POST['region'])) {
                 $ent = mysql_real_escape_string($_POST['nomEnt']);
                 $resp = mysql_real_escape_string($_POST['nomResp']);
                 $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));

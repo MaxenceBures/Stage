@@ -57,10 +57,11 @@ $fonction = $_SESSION['fonction'];
         foreach ($Users as $User)
         {
   ?>
-          <option value="<?php echo $User['UTI_CODE']; ?>" ><?php echo $User['UTI_LOGIN'] ?></option>
+          <option value="<?php echo $User['UTI_CODE']; ?>" ><?php echo $User['UTI_LOGIN'] ?></option><?php }?>
  </select>   
 <?php
-}}
+
+}
  ?>
 
 <hr>
