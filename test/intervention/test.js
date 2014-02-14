@@ -187,3 +187,38 @@ function getDepartements(idr)
         requete.send(null);
     }
 }
+function getDepartements2(idr)
+{
+    /* Si il n'y a pas d'identifiant de région, on fait disparaître la seconde liste au cas où elle serait affichée */
+    if(idr == 'vide')
+    {
+        document.getElementById('blocEntreprises').innerHTML = '';
+    }
+    else
+    {
+        /* À cet endroit précis, on peut faire apparaître un message d'attente */
+        var blocListe = document.getElementById('blocEntreprises');
+        blocListe.innerHTML = "Traitement en cours, veuillez patienter...";
+        /* On crée l'objet XHR */
+        creerRequete();
+        /* Définition du fichier de traitement */
+        var url = 'intervention.php?idr='+ idr;
+        /* Envoi de la requête à la page de traitement */
+        requete.open('GET', url, true);
+        /* On surveille le changement d'état de la requête qui va passer successivement de 1 à 4 */
+        requete.onreadystatechange = function()
+        {
+            /* Lorsque l'état est à 4 */
+            if(requete.readyState == 4)
+            {
+                /* Si on a un statut à 200 */
+                if(requete.status == 200)
+                {
+                    /* Mise à jour de l'affichage, on appelle la fonction apropriée */
+                    actualiserDepartements();
+                }
+            }
+        };
+        requete.send(null);
+    }
+}

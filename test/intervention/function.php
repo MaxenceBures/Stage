@@ -344,6 +344,21 @@ function ListeDeroulanteType()
         }
         return ($oTypes) ;
     }
+function ListeDeroulanteTypeInter()
+    {
+        $sReq = " SELECT LIB_CODE, LIB_LIBELLE
+                  FROM LIBELLE
+                  WHERE LIB_TYPE ='interventiontype' ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oTypes = array() ;
+        while ($Type = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oTypes[$iNb] =  $Type ;
+        }
+        return ($oTypes) ;
+    }    
 function ListeDeroulanteUtilisateur()
     {
         $sReq = " SELECT DISTINCT UTILISATEUR.UTI_CODE, UTI_LOGIN
@@ -379,7 +394,7 @@ function ListeDeroulanteIntervenant()
         }
         return ($oUser) ;
     }    
-function createinter()
+function createincident()
     {
      
             if (isset($_POST['go_createint']))
@@ -560,3 +575,54 @@ function infosInterventionintervenant($q,$q3,$q5,$q6)
         $result = mysqli_query($con,$sql);
         return($result);
     }    
+function createinter()
+    {
+     
+            if (isset($_POST['go_createint']))
+         {       
+
+           // $date = date("Y-m-d\TH:i:sP");
+           // $id = $_SESSION['login'];
+            //if (isset($_POST['region'])) {
+
+            // }
+            // if (isset($_POST['departement'])) {
+               
+           // }
+           // $departement = mysql_real_escape_string($_POST['departement']);
+           // var_dump($region); var_dump($departement);
+           //if (!isset($_POST['region'])) {
+           //      $ent = mysql_real_escape_string($_POST['nomEnt']);
+           //      $resp = mysql_real_escape_string($_POST['nomResp']);
+           //      $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
+           //      $resp2 = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$resp."'"));
+                 
+           //      $sql = "'".$resp2['UTI_CODE']."', '".$ent2['ENT_CODE']."', '".$id['UTI_CODE']."'";        
+           // // }
+            // else{
+            //     echo'stop';
+            //     $sql = "'".$departement."', '".$region."', '".$departement."'"; 
+            // }
+               $ent = mysql_real_escape_string($_POST['nomEnt']);
+               $resp = mysql_real_escape_string($_POST['incident']);
+               $type = mysql_real_escape_string($_POST['type']);
+               $libelle = mysql_real_escape_string($_POST['libelle']);
+               $descr = mysql_real_escape_string($_POST['descr']);
+               $date = mysql_real_escape_string($_POST['date']);
+               $deb = mysql_real_escape_string($_POST['deb']);
+               $fin = mysql_real_escape_string($_POST['fin']);
+               $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
+            
+            // $type = mysql_real_escape_string($_POST['type']);
+            // $urgence = mysql_real_escape_string($_POST['urgence']);
+            $count = mysql_fetch_row(mysql_query("SELECT max(INT_CODE) from INTERVENTION"));
+            $test = $count[0] + 1;
+            $query = mysql_query("INSERT INTO INTERVENTION( INT_CODE,    INC_CODE,    LIB_CODE,    UTI_CODE ,   INT_LIBELLE  ,   INT_DESCRIPTION  ,INT_DATEINTER  ,   INT_HEUREDEB  ,  INT_HEUREFIN  ,   INT_TECHNICIEN)
+                                VALUES('".$test."', '".$resp."' ,'".$type."','".$id['UTI_CODE']."','".$libelle."','".$descr."', '".$date."', '".$deb."', '".$fin."', '".$id['UTI_CODE']."')") or die (mysql_error());
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Demande enregistré");'.
+                'window.location.replace("showintervention.php")'.
+                '</script>';
+        }
+    }

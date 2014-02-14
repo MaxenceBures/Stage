@@ -1,7 +1,7 @@
 <?php
 //if(isset($_SESSION['login'])) {
 require_once('function.php');
-createinter();
+createincident();
 $fonction = $_SESSION['fonction'];
 	if($fonction == 'responsablecli' OR $fonction == 'intervenant' OR $fonction == 'responsableint'){
 	$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_LOGIN = '".$_SESSION['login']."'"));
@@ -33,7 +33,7 @@ $fonction = $_SESSION['fonction'];
 					</td>
 					<?php if($fonction == "intervenant"){?>	
 					<td>
-					<select name="region" id="region" onchange="getDepartements(this.value);">
+					<select name="region" id="region" onchange="getDepartements2(this.value);">
      <option value="vide">- - - Choisissez une Entreprise - - -</option>
      <?php
         $oEntreprises = ListeDeroulanteEntreprise() ;

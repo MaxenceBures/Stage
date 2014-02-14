@@ -22,8 +22,9 @@ $fonction = $_SESSION['fonction'];
 					<td>
 						<label for="nomEnt">Nom de l'entreprise : </label>
 					</td>
+					
 					<td>
-					<select name="region" id="region" onchange="getDepartements(this.value);">
+					<select name="nomEnt" id="nomEnt" onchange="getDepartements2(this.value);">
      <option value="vide">- - - Choisissez une Entreprise - - -</option>
      <?php
         $oEntreprises = ListeDeroulanteEntreprise() ;
@@ -33,50 +34,19 @@ $fonction = $_SESSION['fonction'];
           <option value="<?php echo $Entreprise['ENT_CODE']; ?>"><?php echo $Entreprise['ENT_RAISONSOCIALE'] ?> </option>
   <?php
         }
-  ?> </select> 
-						<!-- <select id="nomEnt" name="nomEnt" required="">
-							<?php
-							$oEntreprises = ListeDeroulanteEntreprise() ;
-							foreach ($oEntreprises as $entreprise)
-							{
-				?>
-								<option value="<?php echo $entreprise['ENT_RAISONSOCIALE']; ?>"><?php echo $entreprise["ENT_RAISONSOCIALE"] ?> </option>
-				<?php
-							}
-				?>
-						</select> -->
-					</td>
-					<?php
-						}
-							else { ?>
-					<td>
-						<input type="text" required="" id="nomEnt" value="<?php echo($enreg["ENT_RAISONSOCIALE"]); ?>" name="nomEnt" readonly/>
-					</td>
-					<?php } ?>		
+  ?> </select>
+					</td>	
 				</tr>
 				</br>
 				<tr>
 					<td>
-						<label for="nomResp">Nom du responsable : </label>
+						<label for="incident">Incident: </label>
 					</td>
 					<?php if($fonction == "intervenant"){?>	
 					<td>
 						<span id="blocEntreprises"></span><br />
 					</td>
-					 
-					<!-- <td>
-						<select id="nomResp" name="nomResp" required="">
-							<?php
-							$oEntreprises = ListeDeroulanteUtilisateur() ;
-							foreach ($oEntreprises as $entreprise)
-							{
-				?>
-								<option value="<?php echo $entreprise['UTI_LOGIN']; ?>"><?php echo $entreprise["UTI_LOGIN"] ?> </option>
-				<?php
-							}
-				?>
-						</select>
-					</td> -->
+		
 					<?php
 						}
 							else { ?>
@@ -84,9 +54,7 @@ $fonction = $_SESSION['fonction'];
 						<input type="text" required="" value="<?php echo($enreg2["UTI_LOGIN"]); ?>"  id="nomResp" name="nomResp" readonly/>
 					</td>
 					<?php } ?>		
-					<!-- <td>
-						<input type="text" required="" value="<?php echo($enreg2["UTI_LOGIN"]); ?>"  id="nomResp" name="nomResp" readonly/>
-					</td> -->
+					
 			</tr>
 			</br>
 		 	<tr>
@@ -96,7 +64,7 @@ $fonction = $_SESSION['fonction'];
 				<td>
 				<select id="type" required="" name="type">
 			<?php
-			$oTypes = ListeDeroulanteType() ;
+			$oTypes = ListeDeroulanteTypeInter() ;
 			foreach ($oTypes as $Type)
 			{
 ?>
@@ -108,28 +76,10 @@ $fonction = $_SESSION['fonction'];
 				</td>
 			</tr>
 			</br>
-		 	<tr>
-				<td>
-				<label for="urgence">Type Urgence : </label>
-				</td>
-				<td>
-				<select id="urgence" required=""  name="urgence">
-			<?php
-			$oUrgence = ListeDeroulanteUrgence() ;
-			foreach ($oUrgence as $Urgence)
-			{
-?>
-				<option value="<?php echo $Urgence['URG_CODE']; ?>"><?php echo $Urgence["URG_LIBELLE"] ?> </option>
-<?php
-			}
-?>
-				</select>
-				</td>
-			</tr>
 			</br>
 				<tr>
 					<td>
-						<label for="libelle">Libelle de l'incident : </label>
+						<label for="libelle">Libelle de l'intervention : </label>
 					</td>
 					<td>
 						<input type="text" id="libelle" required="" name="libelle"/>
@@ -138,14 +88,35 @@ $fonction = $_SESSION['fonction'];
 				</br>
 				<tr>
 					<td>
-						<label for="description">description de l'incident : </label>
+						<label for="description">description de l'intervention : </label>
 					</td>
 					<td>
 						<textarea rows="4" cols="50"id="descr" name="descr"></textarea>
 					</td>
 				</tr>
 				</br>
-			<tr></tr>
+			<tr>
+					<td>
+						<label for="date">date de l'intervention : </label>
+					</td>
+					<td>
+						<input type="date" id="date" name="date" placeholder="AAAA-MM-JJ"></input>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="debut">Heure de debut : </label>
+					</td>
+					<td>
+						<input type="text" id="deb" name="deb"></input>
+					</td>
+					<td>
+						<label for="fin">Fin : </label>
+					</td>
+					<td>
+						<input type="text" id="fin" name="fin"></input>
+					</td>
+				</tr>
 			</table>
 			</br>
 						<input type="submit" name="go_createint" id="go_createint" value="Creer"/>
