@@ -7,11 +7,16 @@ if(isset($_GET['q2'])){
   $q2 = $_GET['q2'];
   
  }
-
+$q5 = "";
+if(isset($_GET['q5'])){
+  $q5 = $_GET['q5'];
+  
+ }
 $q4 = $_GET['q4'];
 $q = $_GET['q'];
 //$q2 = $_GET['q2'];
 $q3 = $_GET['q3'];
+//$q5 = $_GET['q5'];
 var_dump($q4);
 
 $function = $_SESSION['fonction'];
@@ -28,6 +33,10 @@ elseif ($function == "responsablecli"){
 		$result = infosInterventionrespcli($q,$q2,$q3);
 		echo"</br><b>infosInterventionrespcli</br></b>";
 	}
+}
+elseif ($function == "intervenant"){
+		$result = infosInterventionintervenant($q,$q3,$q5);
+		echo"</br><b>infosInterventionintervenant</br></b>";
 }
 else {
 $result = infosIntervention($q,$q2,$q3);
@@ -48,6 +57,9 @@ if ($q4 == "cli"){
 		echo "<th>Login</th>";
 	}
 }
+if ($function == "intervenant"){
+		echo "<th>Type</th><th>Urgence</th><th>Entreprise</th>";
+}
 
 echo "</tr>";
 while($row = mysqli_fetch_array($result))
@@ -59,14 +71,19 @@ while($row = mysqli_fetch_array($result))
   echo "<td>" . $row['INC_DESCRIPTION'] . "</td>";
   echo "<td>" . substr($row['INC_DATEDEMANDE'],0,10) . "</td>";
   echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
-  if ($function == "responsablecli"){
+  	if ($function == "responsablecli"){
 	  echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
   	  echo "<td>" . $row['URG_LIBELLE'] . "</td>";
   	  if ($q4 == "cli"){
 		echo "<td>" . $row['UTI_LOGIN'] . "</td>";
-	}
-  	  
-	}
+		}
+	}	
+if ($function == "intervenant"){
+		echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+  	    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+  	    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
+}  	  
+	
   echo "</tr>";
   
   }

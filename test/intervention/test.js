@@ -1,11 +1,13 @@
 var value = "",
   value2 ="", 
   value3="",
-  value4=""   
+  value4="",
+  value5="",   
   q = 0,
   q2 = 0,
   q3 = 0,
-  q4 = 0;
+  q4 = 0,
+  q5 = 0;
      
     function page(data){
       value4 = "respcli";
@@ -23,12 +25,16 @@ var value = "",
     function triDate(data) { 
         value3 = data;
     }
+    function updateEntreprise(data){
+        value5 = data;
+    }
     function showIntervention()
     {
        q = value,
        q2 = value2,
        q3 = value3;
        q4 = value4;
+       q5 = value5;
       var str ="";  
     if (q.value !=="")
       {
@@ -45,7 +51,11 @@ var value = "",
      if (q4.value !=="")
       {
       str += (str.length == 0? "" : "&") + "q4=" + (q4);
-      }    
+      } 
+     if (q5.value !=="")
+      {
+      str += (str.length == 0? "" : "&") + "q5=" + (q5);
+      }     
     if (str=="")
       {
       document.getElementById("container").innerHTML="<p style='text-align:center;'>Please Type In A Name To Retrieve Results</p>";

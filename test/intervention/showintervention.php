@@ -30,9 +30,25 @@ $fonction = $_SESSION['fonction'];
   ?>
   </select>
 <input type="checkbox" value="1" id="Date" name="Date" onchange="triDate(this.value),page2(), showIntervention()" >Date</input>
+<?php if($fonction =='intervenant'){ ?>   
+  <td>
+<select name="entreprise" onchange="updateEntreprise(this.value),page2(), showIntervention()">
+<option value="95" ><?php echo "Tous"?> </option>
+  <?php
+        $lesInters = ListeDeroulanteEntreprise() ;
+        foreach ($lesInters as $unInter)
+        {
+  ?>
+          <option value="<?php echo $unInter['ENT_CODE']; ?>"><?php echo $unInter['ENT_RAISONSOCIALE'] ?> </option>
+  <?php
+        }
+  ?>
+  </select>
+  </td>
+  <?php } ?>  
   <?php if ($fonction == 'utilisateur') {
   }
-  elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
+  elseif ($fonction =='responsablecli' /*OR $fonction =='intervenant'*/ OR $fonction =='responsableint') {
   ?>   
   <select name="users" onchange="updateUtil(this.value),page2(), showIntervention()">
      <option value="98" id="default" selected='selected'><?php echo "Tous"?> </option>
@@ -42,12 +58,10 @@ $fonction = $_SESSION['fonction'];
         {
   ?>
           <option value="<?php echo $User['UTI_CODE']; ?>" ><?php echo $User['UTI_LOGIN'] ?></option>
-  <?php
-        }
-  ?> </select>   
+ </select>   
 <?php
-}
-?>
+}}
+ ?>
 
 <hr>
 <table>
@@ -67,7 +81,7 @@ $fonction = $_SESSION['fonction'];
   if ($fonction == 'utilisateur') {
   
   }
-  elseif ($fonction =='responsablecli' OR $fonction =='intervenant' OR $fonction =='responsableint') {
+  elseif ($fonction =='responsablecli' OR /*$fonction =='intervenant' OR*/ $fonction =='responsableint') {
 
   ?> 
   <td>
@@ -82,6 +96,7 @@ $fonction = $_SESSION['fonction'];
         }}
   ?>
   </td>
+
 </table>  
  <input type="submit"  onclick="showIntervention()"> </br> 
 <a href="ajoutintervention.php">Ajout Intervention</a></br>

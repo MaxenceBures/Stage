@@ -111,6 +111,77 @@ function infosIntervention($q,$q2,$q3)
         $result = mysqli_query($con,$sql);
         return($result);
     }
+function infosInterventionintervenant($q,$q3,$q5)
+    {
+        $con = connecter();
+        $q = intval($q);
+        //$q2 = intval($q2);
+        $q3 = intval($q3);
+        $q5 = intval($q5);
+            if ($q3 == 1){
+                $sql4 = "ORDER BY INC_DATEDEMANDE";
+                
+            }
+            else {
+                $sql4 = "ORDER BY INC_CODE";
+                
+            }
+            // if ($q2 == 98){
+            //     $sql2 = "";
+            //     echo"<br>";
+            // }
+            // if($q2 == ""){
+            //     $sql2 = "";
+            //     echo"1";
+            // }
+            // elseif ($q2 != 98 AND $q2 != ""){
+
+            //     $sql2 = "AND INC_DEMANDE = '".$q2."'";
+            // }
+            if ($q == 99){
+                $sql3 = "";
+            }
+            if ($q == ""){
+                $sql3 = "";
+            }
+            elseif($q != 99 AND $q !=""){
+                $sql3 = "AND INCIDENT.ETA_CODE = '".$q."'";
+            }
+            if ($q5 == 95){
+                $sql5 = "";
+            }
+            if ($q5 == ""){
+                $sql5 = "";
+            }
+            elseif($q5 != 95 AND $q5 !=""){
+                $sql3 = "AND ENTREPRISE.ENT_CODE = '".$q5."'";
+            }
+            
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                else {  
+        
+                //      $sql="SELECT DISTINCT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, INC_DESCRIPTION, ENT_RAISONSOCIALE, INC_TYPE/*, LIB_LIBELLE, URG_LIBELLE*/
+                //          FROM INCIDENT, UTILISATEUR, ETAT, ID, ENTREPRISE 
+                //          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+                //          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                //          AND ENTREPRISE.ENT_CODE =ID.ENT_CODE
+                //           /*$sql2*/ $sql3 $sql5 $sql4
+                //          ";
+                 $sql="SELECT INC_CODE, INC_LIBELLE, INC_DESCRIPTION, INC_DATEDEMANDE, ETA_LIBELLE, LIB_LIBELLE, URG_LIBELLE, ENT_RAISONSOCIALE
+                FROM INCIDENT, ETAT, URGENCE, ENTREPRISE, LIBELLE
+                WHERE ETAT.ETA_CODE = INCIDENT.ETA_CODE
+                AND URGENCE.URG_CODE = INCIDENT.URG_CODE
+                AND ENTREPRISE.ENT_CODE = INCIDENT.ENT_CODE
+                AND LIBELLE.LIB_CODE = INCIDENT.INC_TYPE
+                $sql3 $sql5 $sql4" ;   
+                         var_dump($sql);
+                    }     
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }    
 function infosMesInterventionrespcli($q,$q3)
     {
         $con = connecter();
