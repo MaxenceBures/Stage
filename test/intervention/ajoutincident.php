@@ -3,7 +3,16 @@
 require_once('function.php');
 createinter();
 $fonction = $_SESSION['fonction'];
-
+	if($fonction == 'responsablecli' OR $fonction == 'intervenant' OR $fonction == 'responsableint'){
+	$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_LOGIN = '".$_SESSION['login']."'"));
+	$enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));
+	  //$requete = 
+	}
+	else {
+	$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_LOGIN = '".$_SESSION['login']."'"));
+	$enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM ID, UTILISATEUR WHERE ROL_CODE =2 AND ENT_CODE = (  SELECT ENT_CODE FROM ID, UTILISATEUR WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_LOGIN =  '".$_SESSION['login']."' )  AND ID.UTI_CODE = UTILISATEUR.UTI_CODE"));
+	//Bures Maxence
+}
 	
 ?>
 	<html>
@@ -12,7 +21,7 @@ $fonction = $_SESSION['fonction'];
 		</head>
 		<body>
 		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
-		<H2 align="center">AJOUT Intervention</H2>
+		<H2 align="center">AJOUT INCIDENT</H2>
 		<div data-role="page">
 <!--	<body>-->
 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" data-ajax="false" id="ajout_form"> 
@@ -22,6 +31,7 @@ $fonction = $_SESSION['fonction'];
 					<td>
 						<label for="nomEnt">Nom de l'entreprise : </label>
 					</td>
+					<?php if($fonction == "intervenant"){?>	
 					<td>
 					<select name="region" id="region" onchange="getDepartements(this.value);">
      <option value="vide">- - - Choisissez une Entreprise - - -</option>

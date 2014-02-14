@@ -2,18 +2,23 @@ var value = "",
   value2 ="", 
   value3="",
   value4="",
-  value5="",   
+  value5="", 
+  value6="",   
   q = 0,
   q2 = 0,
   q3 = 0,
   q4 = 0,
-  q5 = 0;
+  q5 = 0,
+  q6 = 0;
      
     function page(data){
       value4 = "respcli";
     }
     function page2(data){
       value4 = "cli";
+    }
+    function page3(data){
+      value4 = "inter";
     }
     function updateEtat(data){ 
         value = data;
@@ -28,13 +33,17 @@ var value = "",
     function updateEntreprise(data){
         value5 = data;
     }
+    function updateInter(data) { 
+        value6 = data;
+    }
     function showIntervention()
     {
        q = value,
        q2 = value2,
-       q3 = value3;
-       q4 = value4;
-       q5 = value5;
+       q3 = value3,
+       q4 = value4,
+       q5 = value5,
+       q6 = value6;
       var str ="";  
     if (q.value !=="")
       {
@@ -55,7 +64,11 @@ var value = "",
      if (q5.value !=="")
       {
       str += (str.length == 0? "" : "&") + "q5=" + (q5);
-      }     
+      }
+     if (q6.value !=="")
+      {
+      str += (str.length == 0? "" : "&") + "q6=" + (q6);
+      }      
     if (str=="")
       {
       document.getElementById("container").innerHTML="<p style='text-align:center;'>Please Type In A Name To Retrieve Results</p>";

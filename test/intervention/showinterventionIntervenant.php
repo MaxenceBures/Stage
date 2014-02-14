@@ -15,13 +15,9 @@ $fonction = $_SESSION['fonction'];
 <form>
 <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
 <br>
-<?php if($fonction =='intervenant'){ 
-echo "<H2 align='center'>MES INCIDENTS</H2>";
-} else {
-echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
-  } ?>
+<H2 align='center'>MES INCIDENTS</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
-<select name="etat" onchange="updateEtat(this.value),page2(), showIntervention()">
+<select name="etat" onchange="updateEtat(this.value),page3(), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>
   <?php
         $lesInters = ListeIntervention() ;
@@ -33,10 +29,22 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
         }
   ?>
   </select>
-<input type="checkbox" value="1" id="Date" name="Date" onchange="triDate(this.value),page2(), showIntervention()" >Date</input>
+  <select name="intervenant" onchange="updateInter(this.value),page3(), showIntervention()">
+<option value="94" ><?php echo "Tous"?> </option>
+  <?php
+        $Inters = ListeDeroulanteIntervenant() ;
+        foreach ($Inters as $unInter)
+        {
+  ?>
+          <option value="<?php echo $unInter['UTI_CODE']; ?>"><?php echo $unInter['UTI_LOGIN'] ?> </option>
+  <?php
+        }
+  ?>
+  </select>
+<input type="checkbox" value="1" id="Date" name="Date" onchange="triDate(this.value),page3(), showIntervention()" >Date</input>
 <?php if($fonction =='intervenant'){ ?>   
   <td>
-<select name="entreprise" onchange="updateEntreprise(this.value),page2(), showIntervention()">
+<select name="entreprise" onchange="updateEntreprise(this.value),page3(), showIntervention()">
 <option value="95" ><?php echo "Tous"?> </option>
   <?php
         $lesInters = ListeDeroulanteEntreprise() ;
@@ -54,7 +62,7 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
   }
   elseif ($fonction =='responsablecli' /*OR $fonction =='intervenant'*/ OR $fonction =='responsableint') {
   ?>   
-  <select name="users" onchange="updateUtil(this.value),page2(), showIntervention()">
+  <select name="users" onchange="updateUtil(this.value),page3(), showIntervention()">
      <option value="98" id="default" selected='selected'><?php echo "Tous"?> </option>
      <?php
         $Users = ListeDeroulanteUtilisateur() ;
@@ -71,13 +79,13 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 <hr>
 <table>
 <td>
-<input type="checkbox" onchange="updateEtat(this.value),page2(), showIntervention()" value="99"><?php echo "Tous"?></br>
+<input type="checkbox" onchange="updateEtat(this.value),page3(), showIntervention()" value="99"><?php echo "Tous"?></br>
   <?php
         $lesInters = ListeIntervention() ;
         foreach ($lesInters as $unInter)
         {
   ?>
-          <input type="checkbox" onchange="updateEtat(this.value),page2(), showIntervention()" value="<?php echo $unInter['ETA_CODE']; ?>"><?php echo $unInter["ETA_LIBELLE"] ?></br>
+          <input type="checkbox" onchange="updateEtat(this.value),page3(), showIntervention()" value="<?php echo $unInter['ETA_CODE']; ?>"><?php echo $unInter["ETA_LIBELLE"] ?></br>
   <?php
         }
   ?>
@@ -90,13 +98,13 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 
   ?> 
   <td>
-  <input type="checkbox" onchange="updateUtil(this.value),page2(), showIntervention()" value="98"><?php echo "Tous"?></br>
+  <input type="checkbox" onchange="updateUtil(this.value),page3(), showIntervention()" value="98"><?php echo "Tous"?></br>
   <?php
         $Users = ListeDeroulanteUtilisateur() ;
         foreach ($Users as $User)
         {
   ?>
-          <input type="checkbox" onchange="updateEtat(this.value),page2(), showIntervention()" value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?></br>
+          <input type="checkbox" onchange="updateEtat(this.value),page3(), showIntervention()" value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?></br>
   <?php
         }}
   ?>
@@ -104,10 +112,9 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 
 </table>  
  <input type="submit"  onclick="showIntervention()"> </br> 
-<a href="ajoutincident.php">Ajout Incident</a></br>
 <a href="ajoutintervention.php">Ajout Intervention</a></br>
 <a href="showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
-<a href="showinterventionIntervenant.php">Interventions / Intervenant </a></br>
+<a href="">Interventions / Intervenant </a></br>
 </form>
 </body>
 </html>
