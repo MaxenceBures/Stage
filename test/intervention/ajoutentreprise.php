@@ -72,7 +72,7 @@ $fonction = $_SESSION['fonction'];
 					<td>
 						<input type="text" id="web" name="web"/>
 					</td>
-				</tr>
+				</tr>1
 			</table>
 			</br>
 						<input type="submit" name="go_createentreprise" id="go_createentreprise" value="Creer"/>

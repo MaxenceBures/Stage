@@ -652,13 +652,13 @@ function infosUtilisateurrespint($q7)
         var_dump($q7);
 
         if ($q7 == 94){
-                $sql7 = "";
+                $sql7 = "ORDER  BY UTILISATEUR.UTI_CODE";
             }
             if ($q7 == ""){
-                $sql7 = "";
+                $sql7 = "ORDER  BY UTILISATEUR.UTI_CODE";
             }
             elseif($q7 != 94 AND $q7 !=""){
-                $sql7 = "AND ID.ROL_CODE = '".$q7."'";
+                $sql7 = "AND ID.ROL_CODE = '".$q7."' ORDER  BY UTILISATEUR.UTI_CODE";
             }
 
             
@@ -675,6 +675,7 @@ function infosUtilisateurrespint($q7)
                          AND ENTREPRISE.ENT_CODE = ID.ENT_CODE
                          AND ROLE.ROL_CODE = ID.ROL_CODE
                            $sql7
+
                          "; //$sql2
                          
                          var_dump($sql);
@@ -741,16 +742,57 @@ function createutilisateur()
             $portable = mysql_real_escape_string($_POST['portable']);
             $login = mysql_real_escape_string($_POST['login']);
             $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
-            $droit = mysql_real_escape_string($_POST['droit']);
                
             $count = mysql_fetch_row(mysql_query("SELECT max(UTI_CODE) from UTILISATEUR"));
             $test = $count[0] + 1;
-            $query = mysql_query("INSERT INTO UTILISATEUR(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES)
-                                VALUES('".$test."', '".$ent."' ,'".$adresse."','".$cp."','".$ville."','".$mail."', '".$fixe."', '".$web."', 0)") or die (mysql_error());
+            $query = mysql_query("INSERT INTO UTILISATEUR(UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE )
+                                VALUES('".$test."', '".$login."' ,'".$pwd."','".$nom."','".$prenom."','".$mail."', '".$fixe."', '".$portable."', 0)") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise enregistré");'.
-                'window.location.replace("showentreprise.php")'.
+                'window.location.replace("showutilisateur.php")'.
                 '</script>';
         }
-    }    
+    }   
+function modifRole()
+    {
+     
+            if (isset($_POST['go_createutilisateur']))
+         {       
+
+      
+            $nom = mysql_real_escape_string($_POST['nom']);
+            $prenom = mysql_real_escape_string($_POST['prenom']);
+            $mail = mysql_real_escape_string($_POST['mail']);
+            $fixe = mysql_real_escape_string($_POST['fixe']);
+            $portable = mysql_real_escape_string($_POST['portable']);
+            $login = mysql_real_escape_string($_POST['login']);
+            $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
+               
+            $count = mysql_fetch_row(mysql_query("SELECT max(UTI_CODE) from UTILISATEUR"));
+            $test = $count[0] + 1;
+            $query = mysql_query("INSERT INTO UTILISATEUR(UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE )
+                                VALUES('".$test."', '".$login."' ,'".$pwd."','".$nom."','".$prenom."','".$mail."', '".$fixe."', '".$portable."', 0)") or die (mysql_error());
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Entreprise enregistré");'.
+                'window.location.replace("showutilisateur.php")'.
+                '</script>';
+        }
+    }        
+function ListeDeroulanteUtilisateursnonattribues()
+    {
+        $sReq = " SELECT DISTINCT UTI_CODE, UTI_LOGIN FROM UTILISATEUR
+                  WHERE UTI_CODE NOT IN ( SELECT DISTINCT UTI_CODE FROM ID)
+                  
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oUser = array() ;
+        while ($Users = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oUser[$iNb] =  $Users ;
+        }
+        return ($oUser) ;
+    }

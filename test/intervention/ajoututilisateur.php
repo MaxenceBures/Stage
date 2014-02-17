@@ -73,27 +73,9 @@ $fonction = $_SESSION['fonction'];
 						<input type="text" id="pwd" name="pwd"/>
 					</td>
 				</tr>
-				<!-- <tr>
-					<td>
-						<label for="droit">Droit: </label>
-					</td>
-					<td>
-				<select id="droit" required="" name="droit">
-			<?php
-			$oTypes = ListeDeroulanteRole() ;
-			foreach ($oTypes as $Type)
-			{
-?>
-				<option value="<?php echo $Type['ROL_CODE']; ?>"><?php echo $Type["ROL_LIBELLE"] ?> </option>
-<?php
-			}
-?>
-				</select>
-				</td>
-				</tr> -->
 			</table>
 			</br>
-						<input type="submit" name="go_createeutilisateur" id="go_createutilisateur" value="Creer"/>
+						<input type="submit" name="go_createutilisateur" id="go_createutilisateur" value="Creer"/>
  
 </form>
 	<!--</body>-->
