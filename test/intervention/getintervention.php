@@ -129,9 +129,9 @@ elseif ($function == "responsableint") {
   echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
   echo "<td>" . $row['UTI_TELEPHONEFIXE'] . "</td>";
   echo "<td>" . $row['UTI_MAIL'] . "</td>";
-  echo "<td>" . $row['ROL_LIBELLE'] . "</td>";
-  echo"<td>" ?>
-  <form action="test.php ?>" method="POST">
+  echo "<td>" . $row['ROL_LIBELLE'] . "</td>";?>
+  <td>
+  <form action="test.php" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo($row['UTI_LOGIN']) ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les stations'))
