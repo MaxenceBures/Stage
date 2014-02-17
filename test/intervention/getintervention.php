@@ -38,6 +38,7 @@ elseif ($function == "responsablecli"){
 	else{
 		$result = infosInterventionResp($q,$q2,$q3);
 		echo"</br><b>infosInterventionResp</br></b>";
+		var_dump($q2);
 	}
 }
 elseif ($function == "intervenant" AND $q4 !="inter"){

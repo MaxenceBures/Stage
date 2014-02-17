@@ -245,11 +245,12 @@ function infosInterventionrespcli($q,$q2,$q3)
     {
         $con = connecter();
         $q = intval($q);
-        $id = $_SESSION['login'];
         $q2 = intval($q2);
         $q3 = intval($q3);
+        $id = $_SESSION['login'];
+        
             if ($q3 == 1){
-                $sql4 = "ORDER BY INC_DATEDEMANDE";
+                $sql4 = "ORDER BY INC_DATEDEMANDE ";
                 
             }
             else {
