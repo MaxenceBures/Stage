@@ -394,7 +394,22 @@ function ListeDeroulanteIntervenant()
             $oUser[$iNb] =  $Users ;
         }
         return ($oUser) ;
-    }    
+    } 
+function ListeDeroulanteRole()
+    {
+        $sReq = " SELECT ROLE.ROL_CODE, ROLE.ROL_LIBELLE
+                  FROM ROLE
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oRole = array() ;
+        while ($Roles = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oRole[$iNb] =  $Roles ;
+        }
+        return ($oRole) ;
+    }        
 function createincident()
     {
      
@@ -627,3 +642,62 @@ function createinter()
                 '</script>';
         }
     }
+function infosUtilisateurrespint($q7)
+    {
+        $con = connecter();
+        // $q = intval($q);
+        // $id = $_SESSION['login'];
+        //$q2 = intval($q2);
+        $q7 = intval($q7);
+        var_dump($q7);
+
+        if ($q7 == 94){
+                $sql7 = "";
+            }
+            if ($q7 == ""){
+                $sql7 = "";
+            }
+            elseif($q7 != 94 AND $q7 !=""){
+                $sql7 = "AND ID.ROL_CODE = '".$q7."'";
+            }
+
+            
+            
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                else {  
+        
+                     $sql="SELECT UTILISATEUR.UTI_CODE, UTI_LOGIN, ENT_RAISONSOCIALE, UTI_TELEPHONEFIXE, UTI_MAIL, ROL_LIBELLE
+                         FROM UTILISATEUR, ID, ENTREPRISE, ROLE
+                         WHERE UTILISATEUR.UTI_CODE = ID.UTI_CODE
+                         AND ENTREPRISE.ENT_CODE = ID.ENT_CODE
+                         AND ROLE.ROL_CODE = ID.ROL_CODE
+                           $sql7
+                         "; //$sql2
+                         
+                         var_dump($sql);
+                    }     
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }   
+function infosEntrepriserespint()
+    {
+        $con = connecter();
+       
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                else {  
+        
+                     $sql="SELECT ENT_CODE, ENT_RAISONSOCIALE, ENT_HEURES, ENT_VILLE, ENT_TELEPHONE, ENT_SITEWEB
+                         FROM ENTREPRISE
+                         "; //$sql2
+                         
+                         var_dump($sql);
+                    }     
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }    

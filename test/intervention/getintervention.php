@@ -17,7 +17,12 @@ if(isset($_GET['q6'])){
   $q6 = $_GET['q6'];
   
  }
- var_dump($q6);
+$q7 = "";
+if(isset($_GET['q7'])){
+  $q7 = $_GET['q7'];
+  
+ } 
+ var_dump($q7);echo"<br>";
 $q4 = $_GET['q4'];
 $q = $_GET['q'];
 //$q2 = $_GET['q2'];
@@ -29,6 +34,11 @@ $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
 $result = infosInterventioncli($q,$q3);
 echo"</br><b>infosInterventioncli</b></br>";
+}
+elseif ($function == "responsableint") {
+	$result = infosUtilisateurrespint($q7);
+	echo"</br><b>infosUtilisateurrespint</br></b>";
+	# code...
 }
 elseif ($function == "responsablecli"){
 	if ($q4 == "respcli"){
@@ -56,7 +66,20 @@ echo"</br><b>infosIntervention</br></b>";
 var_dump($result);
 echo "<hr>";
 echo "<table border='1'>
-<tr>
+<tr> ";
+if($function == "responsableint"){
+echo "
+<th>id</th>
+<th>Login</th>
+<th>Entreprise</th>
+<th>Fixe</th>
+<th>Mail</th>
+<th>Type</th>
+";
+}
+else
+{	
+echo "
 <th>Num</th>
 <th>Libelle</th> ";
 if ($q4 =="inter") {
@@ -81,7 +104,7 @@ if ($q4 == "cli"){
 if ($function == "intervenant" AND $q4 !="inter"){
 		echo "<th>Type</th><th>Urgence</th><th>Entreprise</th>";
 }
-
+}
 echo "</tr>";
 while($row = mysqli_fetch_array($result))
   {
@@ -97,7 +120,17 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
   	echo "<td>" . $row['URG_LIBELLE'] . "</td>";
   	echo "<td>" . $row['UTI_LOGIN'] . "</td>";
   	 
-	}
+}
+elseif ($function == "responsableint") {
+  echo "<tr>";
+  echo "<td>" . $row['UTI_CODE'] . "</td>";
+  echo "<td>" . $row['UTI_LOGIN'] . "</td>";
+  echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
+  echo "<td>" . $row['UTI_TELEPHONEFIXE'] . "</td>";
+  echo "<td>" . $row['UTI_MAIL'] . "</td>";
+  echo "<td>" . $row['ROL_LIBELLE'] . "</td>";
+ 
+}
 elseif ($q4 == "inter") {
   echo "<tr>";
   echo "<td>" . $row['INT_CODE'] . "</td>";
@@ -107,7 +140,6 @@ elseif ($q4 == "inter") {
   echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
   echo "<td>" . $row['INC_DEMANDE'] . "</td>";
   echo "<td>" . $row['INT_TECHNICIEN'] . "</td>";
- 
  
 }
 else {		      

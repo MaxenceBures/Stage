@@ -3,13 +3,15 @@ var value = "",
   value3="",
   value4="",
   value5="", 
-  value6="",   
+  value6="", 
+  value7="",  
   q = 0,
   q2 = 0,
   q3 = 0,
   q4 = 0,
   q5 = 0,
-  q6 = 0;
+  q6 = 0,
+  q7 = 0;
      
     function page(data){
       value4 = "respcli";
@@ -20,6 +22,7 @@ var value = "",
     function page3(data){
       value4 = "inter";
     }
+    
     function updateEtat(data){ 
         value = data;
     } 
@@ -36,6 +39,9 @@ var value = "",
     function updateInter(data) { 
         value6 = data;
     }
+    function updateFonction(data) { 
+        value7 = data;
+    }
     function showIntervention()
     {
        q = value,
@@ -43,7 +49,8 @@ var value = "",
        q3 = value3,
        q4 = value4,
        q5 = value5,
-       q6 = value6;
+       q6 = value6,
+       q7 = value7;
       var str ="";  
     if (q.value !=="")
       {
@@ -68,7 +75,11 @@ var value = "",
      if (q6.value !=="")
       {
       str += (str.length == 0? "" : "&") + "q6=" + (q6);
-      }      
+      }
+     if (q7.value !=="")
+      {
+      str += (str.length == 0? "" : "&") + "q7=" + (q7);
+      }        
     if (str=="")
       {
       document.getElementById("container").innerHTML="<p style='text-align:center;'>Please Type In A Name To Retrieve Results</p>";

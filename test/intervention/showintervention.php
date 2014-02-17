@@ -121,6 +121,8 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 <a href="ajoutintervention.php">Ajout Intervention</a></br>
 <a href="showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
 <a href="showinterventionIntervenant.php">Interventions / Intervenant </a></br>
+<a href="showutilisateur.php">Utilisateur / Admin </a></br>
+<a href="showentreprise.php">Entreprise / Admin </a></br>
 </form>
 </body>
 </html>
