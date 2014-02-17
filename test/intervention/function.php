@@ -701,3 +701,55 @@ function infosEntrepriserespint()
         $result = mysqli_query($con,$sql);
         return($result);
     }    
+function createentreprise()
+    {
+     
+            if (isset($_POST['go_createentreprise']))
+         {       
+
+      
+            $ent = mysql_real_escape_string($_POST['nomEnt']);
+            $adresse = mysql_real_escape_string($_POST['adresse']);
+            $cp = mysql_real_escape_string($_POST['cp']);
+            $ville = mysql_real_escape_string($_POST['ville']);
+            $mail = mysql_real_escape_string($_POST['mail']);
+            $fixe = mysql_real_escape_string($_POST['fixe']);
+            $web = mysql_real_escape_string($_POST['web']);
+               
+            $count = mysql_fetch_row(mysql_query("SELECT max(ENT_CODE) from ENTREPRISE"));
+            $test = $count[0] + 1;
+            $query = mysql_query("INSERT INTO ENTREPRISE(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES)
+                                VALUES('".$test."', '".$ent."' ,'".$adresse."','".$cp."','".$ville."','".$mail."', '".$fixe."', '".$web."', 0)") or die (mysql_error());
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Entreprise enregistré");'.
+                'window.location.replace("showentreprise.php")'.
+                '</script>';
+        }
+    }
+function createutilisateur()
+    {
+     
+            if (isset($_POST['go_createutilisateur']))
+         {       
+
+      
+            $ent = mysql_real_escape_string($_POST['nomEnt']);
+            $adresse = mysql_real_escape_string($_POST['adresse']);
+            $cp = mysql_real_escape_string($_POST['cp']);
+            $ville = mysql_real_escape_string($_POST['ville']);
+            $mail = mysql_real_escape_string($_POST['mail']);
+            $fixe = mysql_real_escape_string($_POST['fixe']);
+            $web = mysql_real_escape_string($_POST['web']);
+               
+            $count = mysql_fetch_row(mysql_query("SELECT max(ENT_CODE) from ENTREPRISE"));
+            $test = $count[0] + 1;
+            $query = mysql_query("INSERT INTO ENTREPRISE(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES)
+                                VALUES('".$test."', '".$ent."' ,'".$adresse."','".$cp."','".$ville."','".$mail."', '".$fixe."', '".$web."', 0)") or die (mysql_error());
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Entreprise enregistré");'.
+                'window.location.replace("showentreprise.php")'.
+                '</script>';
+        }
+    }    

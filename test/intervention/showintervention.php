@@ -117,12 +117,9 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 
 </table>  
  <input type="submit"  onclick="showIntervention()"> </br> 
-<a href="ajoutincident.php">Ajout Incident</a></br>
-<a href="ajoutintervention.php">Ajout Intervention</a></br>
-<a href="showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
-<a href="showinterventionIntervenant.php">Interventions / Intervenant </a></br>
-<a href="showutilisateur.php">Utilisateur / Admin </a></br>
-<a href="showentreprise.php">Entreprise / Admin </a></br>
+ <?php
+include ('footer.html');
+ ?>
 </form>
 </body>
 </html>
