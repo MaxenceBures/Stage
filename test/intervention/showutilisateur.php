@@ -1,5 +1,5 @@
 <?php
-require_once("../function.php") ; 
+require_once("function.php") ; 
 $fonction = $_SESSION['fonction'];
 //getUser();
 ?>
@@ -44,9 +44,9 @@ $fonction = $_SESSION['fonction'];
   </td>
   </table>
  <input type="submit"  onclick="showIntervention()"> </br> 
-<!-- <a href="ajoutintervention.php">Ajout Intervention</a></br>
+<a href="ajoutintervention.php">Ajout Intervention</a></br>
 <a href="showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
-<a href="">Interventions / Intervenant </a></br> -->
+<a href="">Interventions / Intervenant </a></br>
 </form>
 </body>
 </html>

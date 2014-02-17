@@ -101,7 +101,7 @@ var value = "",
         }
       }
     //var variables = "q="str&"q2"=str2;  
-    xmlhttp.open("GET","../getintervention.php?"+str,true);
+    xmlhttp.open("GET","getintervention.php?"+str,true);
     alert(str);
     /*xmlhttp.open("GET","getintervention.php?"
         + "q=" + encodeURIComponent(q)
