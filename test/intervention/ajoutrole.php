@@ -1,7 +1,7 @@
 <?php
 //if(isset($_SESSION['login'])) {
 require_once('function.php');
-createrole();
+createRole();
 $fonction = $_SESSION['fonction'];
 ?>
 	<html>
@@ -72,7 +72,7 @@ $fonction = $_SESSION['fonction'];
 				</td>
 			</tr>
 			</table></br>
-						<input type="submit" name="go_createint" id="go_createint" value="Creer"/>
+						<input type="submit" name="go_createrole" id="go_createrole" value="Creer"/>
  
 </form>
 	<!--</body>-->

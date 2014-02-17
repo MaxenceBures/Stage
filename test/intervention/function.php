@@ -757,22 +757,19 @@ function createutilisateur()
 function createRole()
     {
      
-            if (isset($_POST['go_createutilisateur']))
+            if (isset($_POST['go_createrole']))
          {       
 
       
-            $nom = mysql_real_escape_string($_POST['nom']);
-            $prenom = mysql_real_escape_string($_POST['prenom']);
-            $mail = mysql_real_escape_string($_POST['mail']);
-            $fixe = mysql_real_escape_string($_POST['fixe']);
-            $portable = mysql_real_escape_string($_POST['portable']);
-            $login = mysql_real_escape_string($_POST['login']);
-            $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
+            $user = mysql_real_escape_string($_POST['user']);
+            $entreprise = mysql_real_escape_string($_POST['entreprise']);
+            $role = mysql_real_escape_string($_POST['role']);
+            
                
-            $count = mysql_fetch_row(mysql_query("SELECT max(UTI_CODE) from UTILISATEUR"));
-            $test = $count[0] + 1;
-            $query = mysql_query("INSERT INTO UTILISATEUR(UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE )
-                                VALUES('".$test."', '".$login."' ,'".$pwd."','".$nom."','".$prenom."','".$mail."', '".$fixe."', '".$portable."', 0)") or die (mysql_error());
+            // $count = mysql_fetch_row(mysql_query("SELECT max(UTI_CODE) from UTILISATEUR"));
+            // $test = $count[0] + 1;
+            $query = mysql_query("INSERT INTO ID(UTI_CODE, ENT_CODE, ROL_CODE)
+                                VALUES('".$user."', '".$entreprise."' ,'".$role."')") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise enregistré");'.
