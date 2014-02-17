@@ -1,5 +1,5 @@
 <?php
-require_once("function.php") ; 
+require_once("../function.php") ; 
 $fonction = $_SESSION['fonction'];
  $test = infosEntrepriserespint()
 //getUser();
@@ -16,7 +16,7 @@ $fonction = $_SESSION['fonction'];
 <form>
 <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
 <br>
-<H2 align='center'>Utilisateur</H2>
+<H2 align='center'>Entreprise</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
 
 <table border='1'>
@@ -69,9 +69,9 @@ while($row = mysqli_fetch_array($test))
   </td>
   </table> -->
  <input type="submit"  onclick="showIntervention()"> </br> 
-<a href="ajoutintervention.php">Ajout Intervention</a></br>
-<a href="showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
-<a href="">Interventions / Intervenant </a></br>
+<!-- <a href="ajoutintervention.php">Ajout Intervention</a></br>
+<a href="../Intervention/showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
+<a href="">Interventions / Intervenant </a></br> -->
 </form>
 </body>
 </html>
