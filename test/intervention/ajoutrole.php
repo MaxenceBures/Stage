@@ -23,7 +23,7 @@ $fonction = $_SESSION['fonction'];
 				<td>
 				<select id="user" required="" name="user">
 			<?php
-			$oUsers = ListeDeroulanteUtilisateur() ;
+			$oUsers = ListeDeroulanteUtilisateursnonattribues() ;
 			foreach ($oUsers as $User)
 			{
 ?>
@@ -60,11 +60,11 @@ $fonction = $_SESSION['fonction'];
 				<td>
 				<select id="role" required="" name="role">
 			<?php
-			$oEntreprises = ListeDeroulanteUtilisateursnonattribues() ;
-			foreach ($oEntreprises as $entreprise)
+			$oRoles = ListeDeroulanteRole() ;
+			foreach ($oRoles as $role)
 			{
 ?>
-				<option value="<?php echo $entreprise['ROL_CODE']; ?>"><?php echo $entreprise["ROL_LIBELLE"] ?> </option>
+				<option value="<?php echo $role['ROL_CODE']; ?>"><?php echo $role["ROL_LIBELLE"] ?> </option>
 <?php
 			}
 ?>

@@ -397,7 +397,7 @@ function ListeDeroulanteIntervenant()
     } 
 function ListeDeroulanteRole()
     {
-        $sReq = " SELECT ROLE.ROL_CODE, ROLE.ROL_LIBELLE
+        $sReq = " SELECT ROL_CODE, ROL_LIBELLE
                   FROM ROLE
                    ";
         $rstPdt = mysql_query($sReq) ;
@@ -754,7 +754,7 @@ function createutilisateur()
                 '</script>';
         }
     }   
-function modifRole()
+function createRole()
     {
      
             if (isset($_POST['go_createutilisateur']))
