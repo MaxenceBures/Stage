@@ -444,7 +444,7 @@ function infosInterventionResp($q,$q2,$q3)
         $con = connecter();
         $q = intval($q);
         $id = $_SESSION['login'];
-        //$q2 = intval($q2);
+        $q2 = intval($q2);
         $q3 = intval($q3);
             if ($q3 == 1){
                 $sql4 = "ORDER BY INT_DATEINTER";
@@ -464,7 +464,7 @@ function infosInterventionResp($q,$q2,$q3)
             }
             elseif ($q2 != 98 AND $q2 != ""){
 
-                $sql2 = "AND INT_DEMANDE = '".$q2."'";
+                $sql2 = "AND INC_DEMANDE = '".$q2."'";
             }
             if ($q == 99){
                 $sql3 = "";
@@ -489,8 +489,8 @@ function infosInterventionResp($q,$q2,$q3)
                            AND INCIDENT.URG_CODE = URGENCE.URG_CODE
                            AND INTERVENTION.INT_TECHNICIEN = UTILISATEUR.UTI_CODE
                            AND ETAT.ETA_CODE = INCIDENT.ETA_CODE
-                           AND INCIDENT.INC_DEMANDE = (SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN= '$id')
-                           $sql3 $sql4
+                           -- AND INCIDENT.INC_DEMANDE = (SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN= '$id')
+                           $sql2 $sql3 $sql4
                          "; //$sql2
                          
                          var_dump($sql);

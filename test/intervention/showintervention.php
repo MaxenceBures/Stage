@@ -99,6 +99,19 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
           <input type="checkbox" onchange="updateEtat(this.value),page2(), showIntervention()" value="<?php echo $User['UTI_CODE']; ?>"><?php echo $User['UTI_LOGIN'] ?></br>
   <?php
         }}
+  elseif ($fonction =='intervenant' ) {
+
+  ?> 
+  <td>
+  <input type="checkbox" onchange="updateEntreprise(this.value),page2(), showIntervention()" value="95"><?php echo "Tous"?></br>
+  <?php
+        $Entreprises = ListeDeroulanteEntreprise() ;
+        foreach ($Entreprises as $Entreprise)
+        {
+  ?>
+          <input type="checkbox" onchange="updateEntreprise(this.value),page2(), showIntervention()" value="<?php echo $Entreprise['ENT_CODE']; ?>"><?php echo $Entreprise['ENT_RAISONSOCIALE'] ?></br>
+  <?php
+        }}      
   ?>
   </td>
 
