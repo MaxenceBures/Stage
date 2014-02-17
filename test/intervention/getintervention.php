@@ -75,6 +75,7 @@ echo "
 <th>Fixe</th>
 <th>Mail</th>
 <th>Type</th>
+<th>TEst</th>
 ";
 }
 else
@@ -129,6 +130,21 @@ elseif ($function == "responsableint") {
   echo "<td>" . $row['UTI_TELEPHONEFIXE'] . "</td>";
   echo "<td>" . $row['UTI_MAIL'] . "</td>";
   echo "<td>" . $row['ROL_LIBELLE'] . "</td>";
+  echo"<td>" ?>
+  <form action="test.php ?>" method="POST">
+                
+                <input type="submit" name="test" id="test" value="<?php echo($row['UTI_LOGIN']) ?>" onClick="
+                  if(confirm('Vous allez consulter les informations concernant les stations'))
+                  {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  "/>
+              </form>
+  <?php
+echo "</td>";
  
 }
 elseif ($q4 == "inter") {
