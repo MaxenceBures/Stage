@@ -510,7 +510,7 @@ function infosInterventionintervenant($q,$q3,$q5,$q6)
                 
             }
             else {
-                $sql4 = "";//"ORDER BY INT_CODE";
+                $sql4 = "ORDER BY INT_CODE ";//"ORDER BY INT_CODE";
                 
             }
             // if ($q2 == 98){
@@ -570,7 +570,7 @@ function infosInterventionintervenant($q,$q3,$q5,$q6)
                 FROM INCIDENT, INTERVENTION, LIBELLE, UTILISATEUR
                 WHERE INCIDENT.INC_CODE = INTERVENTION.INC_CODE
                 AND INTERVENTION.LIB_CODE = LIBELLE.LIB_CODE
-                $sql3 $sql5 $sql4 $sql6" ;   
+                $sql3 $sql5 $sql6 $sql4"  ;   
                          var_dump($sql);
                     }     
         $result = mysqli_query($con,$sql);
