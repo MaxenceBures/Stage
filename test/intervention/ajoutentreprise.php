@@ -73,14 +73,6 @@ $fonction = $_SESSION['fonction'];
 						<input type="text" id="web" name="web"/>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<label for="web">Droit: </label>
-					</td>
-					<td>
-						<input type="text" id="web" name="web"/>
-					</td>
-				</tr>
 			</table>
 			</br>
 						<input type="submit" name="go_createentreprise" id="go_createentreprise" value="Creer"/>

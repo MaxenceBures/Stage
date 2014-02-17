@@ -734,17 +734,18 @@ function createutilisateur()
          {       
 
       
-            $ent = mysql_real_escape_string($_POST['nomEnt']);
-            $adresse = mysql_real_escape_string($_POST['adresse']);
-            $cp = mysql_real_escape_string($_POST['cp']);
-            $ville = mysql_real_escape_string($_POST['ville']);
+            $nom = mysql_real_escape_string($_POST['nom']);
+            $prenom = mysql_real_escape_string($_POST['prenom']);
             $mail = mysql_real_escape_string($_POST['mail']);
             $fixe = mysql_real_escape_string($_POST['fixe']);
-            $web = mysql_real_escape_string($_POST['web']);
+            $portable = mysql_real_escape_string($_POST['portable']);
+            $login = mysql_real_escape_string($_POST['login']);
+            $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
+            $droit = mysql_real_escape_string($_POST['droit']);
                
-            $count = mysql_fetch_row(mysql_query("SELECT max(ENT_CODE) from ENTREPRISE"));
+            $count = mysql_fetch_row(mysql_query("SELECT max(UTI_CODE) from UTILISATEUR"));
             $test = $count[0] + 1;
-            $query = mysql_query("INSERT INTO ENTREPRISE(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES)
+            $query = mysql_query("INSERT INTO UTILISATEUR(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES)
                                 VALUES('".$test."', '".$ent."' ,'".$adresse."','".$cp."','".$ville."','".$mail."', '".$fixe."', '".$web."', 0)") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
