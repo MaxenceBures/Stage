@@ -24,7 +24,7 @@ var value = "",
     }
     
     function updateEtat(data){ 
-        value = data;
+        value = data; 
     } 
 
     function updateUtil(data) { 
