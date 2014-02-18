@@ -820,18 +820,19 @@ function modifentreprise()
             if (isset($_POST['go_modifentreprise']))
          {       
 
-      
+            $ent = mysql_real_escape_string($_POST['nomEnt']);
+            $adresse = mysql_real_escape_string($_POST['adresse']);
+            $cp = mysql_real_escape_string($_POST['cp']);
+            $ville = mysql_real_escape_string($_POST['ville']);
             $mail = mysql_real_escape_string($_POST['mail']);
             $fixe = mysql_real_escape_string($_POST['fixe']);
-            $portable = mysql_real_escape_string($_POST['portable']);
-            $login = mysql_real_escape_string($_POST['login']);
-            $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
-               
-            $query = mysql_query("UPDATE UTILISATEUR SET UTI_MAIL = '".$mail."', UTI_TELEPHONEFIXE = '".$fixe."', UTI_TELEPHONEMOBILE = '".$portable."', UTI_PWD = '".$pwd."'
-                                 WHERE UTI_LOGIN = '".$login."'") or die (mysql_error());
+            $web = mysql_real_escape_string($_POST['web']);
+            $query = mysql_query("UPDATE ENTREPRISE SET ENT_RUE = '".$adresse."', ENT_CP = '".$cp."', ENT_VILLE = '".$ville."', ENT_MAIL = '".$mail."', ENT_TELEPHONE = '".$fixe."', ENT_SITEWEB= '".$web."'
+                                WHERE ENT_RAISONSOCIALE = '".$ent."'") or die (mysql_error());
+            
             var_dump($query);
             echo '<script language="Javascript">'.
-                'alert("Utilisateur modifié");'.
-                'window.location.replace("showutilisateur.php")'.
+                'alert("Entreprise modifié");'.
+                'window.location.replace("showentreprise.php")'.
                 '</script>';
         }}
