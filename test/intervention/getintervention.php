@@ -1,7 +1,6 @@
 <?php
 require("function.php");
 
-
 $q2 = "";
 if(isset($_GET['q2'])){
   $q2 = $_GET['q2'];
@@ -68,21 +67,21 @@ echo "<hr>";
 echo "<table border='1'>
 <tr> ";
 if($function == "responsableint"){
-echo "
-<th>id</th>
-<th>Login</th>
-<th>Entreprise</th>
-<th>Fixe</th>
-<th>Mail</th>
-<th>Type</th>
-<th>TEst</th>
-";
+  echo "
+  <th>id</th>
+  <th>Login</th>
+  <th>Entreprise</th>
+  <th>Fixe</th>
+  <th>Mail</th>
+  <th>Type</th>
+  <th>TEst</th>
+  ";
 }
 else
 {	
-echo "
-<th>Num</th>
-<th>Libelle</th> ";
+  echo "
+  <th>Num</th>
+  <th>Libelle</th> ";
 if ($q4 =="inter") {
 	echo "<th>Date</th> ";
 	echo "<th>Incident</th> ";
@@ -91,19 +90,20 @@ if ($q4 =="inter") {
 	echo "<th>Intervenant</th> ";
 	
 }
-else { echo"
-<th>Description</th>
-<th>DateDemande</th>
-<th>Etat</th>";
+else {
+  echo"
+  <th>Description</th>
+  <th>DateDemande</th>
+  <th>Etat</th>";
 }
 if ($function == "responsablecli"){
-echo "<th>Type</th><th>Urgence</th>";
-if ($q4 == "cli"){
-		echo "<th>intervenant</th>";
-	}
+  echo "<th>Type</th><th>Urgence</th>";
+    if ($q4 == "cli"){
+    		echo "<th>intervenant</th>";
+    	}
 }
 if ($function == "intervenant" AND $q4 !="inter"){
-		echo "<th>Type</th><th>Urgence</th><th>Entreprise</th>";
+	echo "<th>Type</th><th>Urgence</th><th>Entreprise</th>";
 }
 }
 echo "</tr>";
@@ -117,9 +117,9 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
 	echo "<td>" . $row['INC_LIBELLE'] . "</td>";
 	echo "<td>" . substr($row['INT_DATEINTER'],0,10) . "</td>";
 	echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
-  	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
-  	echo "<td>" . $row['URG_LIBELLE'] . "</td>";
-  	echo "<td>" . $row['UTI_LOGIN'] . "</td>";
+  echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+  echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+  echo "<td>" . $row['UTI_LOGIN'] . "</td>";
   	 
 }
 elseif ($function == "responsableint") {
@@ -131,9 +131,9 @@ elseif ($function == "responsableint") {
   echo "<td>" . $row['UTI_MAIL'] . "</td>";
   echo "<td>" . $row['ROL_LIBELLE'] . "</td>";?>
   <td>
-  <form action="test.php" method="POST">
+  <form action="modifutilisateur.php" method="POST">
                 
-                <input type="submit" name="test" id="test" value="<?php echo($row['UTI_LOGIN']) ?>" onClick="
+                <input type="submit" name="test" id="test" value="<?php echo ($row['UTI_LOGIN']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les stations'))
                   {
                     submit()
@@ -167,12 +167,12 @@ else {
   echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
 if ($q4 =="respcli"){ 
 	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
-  	echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+  echo "<td>" . $row['URG_LIBELLE'] . "</td>";
   	}
 if ($function == "intervenant"){
 		echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
-  	    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
-  	    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
+  	echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+  	echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
 }  	  
 if ($q4 == "inter" ) {
 	echo "test";
@@ -181,6 +181,6 @@ if ($q4 == "inter" ) {
   echo "</tr>";
   
   }
-echo "</table>";
+  echo "</table>";
 
 ?>
