@@ -41,15 +41,16 @@ $enreg2 = mysqli_query($con,"SELECT INT_CODE, INT_LIBELLE, INT_DESCRIPTION, INT_
 					</td>
 			</tr>
 </table>
-<table border='1'>
+
 
 <?php
-//while($enreg2 = mysqli_fetch_array($enreg2))
-	    $rows[] = mysqli_fetch_array($enreg2);
-foreach($rows as $enreg2)
+while($enreg2 = mysqli_fetch_array($enreg2))
+//	    $rows[] = mysqli_fetch_array($enreg2);
+//foreach($rows as $enreg2)
   {
 ?>
 			<hr>
+			<table border='1'>
 				<tr>
 					<td>
 						<label for="num">Intervention n° : </label>
@@ -101,4 +102,5 @@ foreach($rows as $enreg2)
 					<td>
 						<textarea value=""><?php echo($enreg2['INT_DESCRIPTION']); ?></textarea>
 					</td>
-				</tr> <?}
+				</tr>
+			</table>	 <?}
