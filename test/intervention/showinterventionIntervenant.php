@@ -98,7 +98,7 @@ $fonction = $_SESSION['fonction'];
 
   ?> 
   <td>
-  <input type="checkbox" onchange="updateUtil(this.value),page3(), showIntervention()" value="98"><?php echo "Tous"?></br>
+  <input type="checkbox" onchange="updateUtil(this.value),page3() showIntervention()" value="98"><?php echo "Tous"?></br>
   <?php
         $Users = ListeDeroulanteUtilisateur() ;
         foreach ($Users as $User)

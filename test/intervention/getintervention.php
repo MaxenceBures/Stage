@@ -31,13 +31,22 @@ var_dump($q4);
 
 $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
-$result = infosInterventioncli($q,$q3);
-echo"</br><b>infosInterventioncli</b></br>";
+  $result = infosInterventioncli($q,$q3);
+  echo"</br><b>infosInterventioncli</b></br>";
 }
 elseif ($function == "responsableint") {
+  if($q4 != "inter" AND $q4 !="cli"){
 	$result = infosUtilisateurrespint($q7);
 	echo"</br><b>infosUtilisateurrespint</br></b>";
-	# code...
+  }
+  elseif ($q4 == "cli") {
+  $result = infosIncidentintervenant($q,$q3,$q5);
+    echo"</br><b>infosIncidentintervenant</br></b>";
+  }
+  elseif ($q4 == "inter") {
+  $result = infosInterventionintervenant($q,$q3,$q5,$q6);
+  echo"</br><b>infosInterventionintervenant</br></b>";
+  }
 }
 elseif ($function == "responsablecli"){
 	if ($q4 == "respcli"){
@@ -50,23 +59,26 @@ elseif ($function == "responsablecli"){
 		var_dump($q2);
 	}
 }
-elseif ($function == "intervenant" AND $q4 !="inter"){
-		$result = infosIncidentintervenant($q,$q3,$q5);
-		echo"</br><b>infosIncidentintervenant</br></b>";
-}
-elseif ($q4 == "inter") {
-	$result = infosInterventionintervenant($q,$q3,$q5,$q6);
-	echo"</br><b>infosInterventionintervenant</br></b>";
+elseif ($function == "intervenant" ){
+  if ($q4 != "inter") {
+    $result = infosIncidentintervenant($q,$q3,$q5);
+    echo"</br><b>infosIncidentintervenant</br></b>";
+  }
+	elseif ($q4 == "inter") {
+    $result = infosInterventionintervenant($q,$q3,$q5,$q6);
+    echo"</br><b>infosInterventionintervenant</br></b>";
+    }	
 }
 else {
 $result = infosIntervention($q,$q2,$q3);
 echo"</br><b>infosIntervention</br></b>";  
 }
+
 var_dump($result);
 echo "<hr>";
 echo "<table border='1'>
 <tr> ";
-if($function == "responsableint"){
+if($function == "responsableint" and $q4!= "inter" and $q4 != "cli"){
   echo "
   <th>id</th>
   <th>Login</th>
@@ -97,7 +109,7 @@ else {
   <th>DateDemande</th>
   <th>Etat</th>";
 }
-if ($function == "responsablecli"){
+if ($function == "responsablecli" OR ($function == "responsableint" AND $q4 =="cli")){
   echo "<th>Type</th><th>Urgence</th>";
     if ($q4 == "cli"){
     		echo "<th>intervenant</th>";
@@ -123,7 +135,7 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
   echo "<td>" . $row['UTI_LOGIN'] . "</td>";
   	 
 }
-elseif ($function == "responsableint") {
+elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
   echo "<tr>";
   echo "<td>" . $row['UTI_CODE'] . "</td>";
   echo "<td>" . $row['UTI_LOGIN'] . "</td>";
@@ -175,28 +187,46 @@ echo "</td>";
  
 }
 else {		      
-  echo "<tr>";
-  echo "<td>" . $row['INC_CODE'] . "</td>";
-  echo "<td>" . $row['INC_LIBELLE'] . "</td>";
-  echo "<td>" . $row['INC_DESCRIPTION'] . "</td>";
-  echo "<td>" . substr($row['INC_DATEDEMANDE'],0,10) . "</td>";
-  echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
-if ($q4 =="respcli"){ 
-	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
-  echo "<td>" . $row['URG_LIBELLE'] . "</td>";
-  	}
-if ($function == "intervenant"){
-		echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
-  	echo "<td>" . $row['URG_LIBELLE'] . "</td>";
-  	echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
-}  	  
-if ($q4 == "inter" ) {
-	echo "test";
-}
+    echo "<tr>";
+    echo "<td>" . $row['INC_CODE'] . "</td>";
+    echo "<td>" . $row['INC_LIBELLE'] . "</td>";
+    echo "<td>" . $row['INC_DESCRIPTION'] . "</td>";
+    echo "<td>" . substr($row['INC_DATEDEMANDE'],0,10) . "</td>";
+    echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
+  if ($function == "responsableint") {
+    echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";?>
+  <td>
+  <form action="ficheincident.php" method="POST">
+                
+                <input type="submit" name="test" id="test" value="<?php echo ($row['INC_CODE']); ?>" onClick="
+                  if(confirm('Vous allez consulter les informations concernant les stations'))
+                  {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  "/>
+              </form>
+  <?php
+echo "</td>";
+    }  
+  if ($q4 =="respcli" ){ 
+  	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+    	}
+  if ($function == "intervenant" ){
+  	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
+  }  	  
+  if ($q4 == "inter" ) {
+  	echo "test";
+  }
 }	
   echo "</tr>";
-  
   }
   echo "</table>";
-
 ?>

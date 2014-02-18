@@ -1,4 +1,4 @@
- <?php  
+<?php  
     function connect(){
     $oSql= mysql_connect("localhost","root","root") ;
     mysql_select_db("stage");

@@ -3,9 +3,11 @@ require_once('function.php');
 //afficheintervention();
 $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
-var_dump($test);
+//var_dump($test);
+/*</form><form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" data-ajax="false" id="ajout_form"> */
+
 $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRIPTION, INT_HEUREDEB, INT_HEUREFIN, INT_DATEINTER, UTI_LOGIN   FROM INTERVENTION, UTILISATEUR WHERE INT_CODE ='".$test."' AND INT_TECHNICIEN = UTILISATEUR.UTI_CODE"));
-	
+//ob_start();	
 ?>
 	<html>
 		<head>
@@ -13,10 +15,9 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRI
 		</head>
 		<body>
 		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
-		<H2 align="center">Affiche intervention</H2>
+		<h2 align="center">Affiche intervention</H2>
 		<div data-role="page">
-<!--	<body>-->
-<form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" data-ajax="false" id="ajout_form"> 
+
 			<table class="style1">
 				<tr>
 					<td>
@@ -71,12 +72,23 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRI
 					</td>
 				</tr>
 			</table>
-			</br>
+			
 					
  
-</form>
-	<!--</body>-->
+
 	</div>
 	</body>
 	</html>
-
+<?php
+/*$content = ob_get_clean();
+require('html2pdf/html2pdf.class.php');
+try{
+	$pdf = new HTML2PDF('P','A4','fr');
+	$pdf-> writeHTML($content);
+	$pdf->Output('test.pdf');
+}
+catch(HTML2PDF_exception $e){
+	die($e);
+}
+*/
+?>
