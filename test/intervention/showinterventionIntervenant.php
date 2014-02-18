@@ -15,7 +15,7 @@ $fonction = $_SESSION['fonction'];
 <form>
 <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
 <br>
-<H2 align='center'>MES INCIDENTS</H2>
+<H2 align='center'>MES INTERVENTIONS</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
 <select name="etat" onchange="updateEtat(this.value),page3(), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>

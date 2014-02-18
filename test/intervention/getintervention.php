@@ -88,6 +88,7 @@ if ($q4 =="inter") {
 	echo "<th>Type</th> ";
 	echo "<th>Client</th> ";
 	echo "<th>Intervenant</th> ";
+  echo "<th>Afficher</th> ";
 	
 }
 else {
@@ -155,7 +156,22 @@ elseif ($q4 == "inter") {
   echo "<td>" . substr($row['INT_DATEINTER'],0,10) . "</td>";
   echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
   echo "<td>" . $row['INC_DEMANDE'] . "</td>";
-  echo "<td>" . $row['INT_TECHNICIEN'] . "</td>";
+  echo "<td>" . $row['INT_TECHNICIEN'] . "</td>";?>
+  <td>
+  <form action="afficheintervention.php" method="POST">
+                
+                <input type="submit" name="test" id="test" value="<?php echo ($row['INT_CODE']); ?>" onClick="
+                  if(confirm('Vous allez consulter les informations concernant les interventions'))
+                  {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  "/>
+              </form>
+  <?php
+echo "</td>";
  
 }
 else {		      
