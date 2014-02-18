@@ -800,22 +800,38 @@ function modifutilisateur()
          {       
 
       
-            $nom = mysql_real_escape_string($_POST['nom']);
-            $prenom = mysql_real_escape_string($_POST['prenom']);
             $mail = mysql_real_escape_string($_POST['mail']);
             $fixe = mysql_real_escape_string($_POST['fixe']);
             $portable = mysql_real_escape_string($_POST['portable']);
             $login = mysql_real_escape_string($_POST['login']);
             $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
                
-            $count = mysql_fetch_row(mysql_query("SELECT max(UTI_CODE) from UTILISATEUR"));
-            $test = $count[0] + 1;
-            $query = mysql_query("INSERT INTO UTILISATEUR(UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE )
-                                VALUES('".$test."', '".$login."' ,'".$pwd."','".$nom."','".$prenom."','".$mail."', '".$fixe."', '".$portable."', 0)") or die (mysql_error());
+            $query = mysql_query("UPDATE UTILISATEUR SET UTI_MAIL = '".$mail."', UTI_TELEPHONEFIXE = '".$fixe."', UTI_TELEPHONEMOBILE = '".$portable."', UTI_PWD = '".$pwd."'
+                                 WHERE UTI_LOGIN = '".$login."'") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
-                'alert("Entreprise enregistré");'.
+                'alert("Utilisateur modifié");'.
                 'window.location.replace("showutilisateur.php")'.
                 '</script>';
-        }
-    }
+        }}
+function modifentreprise()
+    {
+     
+            if (isset($_POST['go_modifentreprise']))
+         {       
+
+      
+            $mail = mysql_real_escape_string($_POST['mail']);
+            $fixe = mysql_real_escape_string($_POST['fixe']);
+            $portable = mysql_real_escape_string($_POST['portable']);
+            $login = mysql_real_escape_string($_POST['login']);
+            $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
+               
+            $query = mysql_query("UPDATE UTILISATEUR SET UTI_MAIL = '".$mail."', UTI_TELEPHONEFIXE = '".$fixe."', UTI_TELEPHONEMOBILE = '".$portable."', UTI_PWD = '".$pwd."'
+                                 WHERE UTI_LOGIN = '".$login."'") or die (mysql_error());
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Utilisateur modifié");'.
+                'window.location.replace("showutilisateur.php")'.
+                '</script>';
+        }}

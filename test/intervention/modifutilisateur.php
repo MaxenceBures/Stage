@@ -1,15 +1,10 @@
 <?php
 require_once('function.php');
-//session_start();
-$test = $_POST['test'];
-//$test = $_GET['test'];
-var_dump($test);
-$enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE  FROM UTILISATEUR WHERE UTI_LOGIN ='".$test."'"));
-// $enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));
-
-
 modifutilisateur();
 $fonction = $_SESSION['fonction'];
+$test = $_POST['test'];
+var_dump($test);
+$enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE  FROM UTILISATEUR WHERE UTI_LOGIN ='".$test."'"));
 	
 ?>
 	<html>
@@ -82,7 +77,7 @@ $fonction = $_SESSION['fonction'];
 				</tr>
 			</table>
 			</br>
-						<input type="submit" name="go_createutilisateur" id="go_createutilisateur" value="Creer"/>
+						<input type="submit" name="go_modifutilisateur" id="go_modifutilisateur" value="Creer"/>
  
 </form>
 	<!--</body>-->

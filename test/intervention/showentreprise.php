@@ -37,8 +37,21 @@ while($row = mysqli_fetch_array($test))
   echo "<td>" . $row['ENT_HEURES'] . "</td>";
   echo "<td>" . $row['ENT_VILLE'] . "</td>";
   echo "<td>" . $row['ENT_TELEPHONE'] . "</td>";
-  echo "<td>" . $row['ENT_SITEWEB'] . "</td>";
-  echo "</tr>";
+  echo "<td>" . $row['ENT_SITEWEB'] . "</td>";?>
+  <td>
+  <form action="modifentreprise.php" method="POST">
+                
+                <input type="submit" name="test" id="test" value="<?php echo ($row['ENT_CODE']); ?>" onClick="
+                  if(confirm('Vous allez consulter les informations concernant les stations'))
+                  {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  "/>
+              </form>
+  <?php echo "</td>";            
 }
   ?>
 </table>
