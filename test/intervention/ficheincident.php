@@ -67,7 +67,7 @@ foreach($new_array as $array){
   if( $array['INT_CODE'] == "") {echo "test";} 
   else {  ?>
    <hr>
-   		<table border='1'>
+   		<table border='1'  width=60%>
    		<tr>
 					<td>
 						<label for="num">Intervention n° : </label>
@@ -124,7 +124,10 @@ foreach($new_array as $array){
 				
 				<?php }
 
-}?><input type="button"  value="<?php echo($enreg['INC_CODE'])?>" > <?php/* //}
+}?><form action="pdf.php" method="POST"><table><td>
+<input type="submit" name="test" id="test" value="<?php echo($enreg['INC_CODE'])?>">PDF</input>
+</td></table></form>
+<!-- <?php/* //}
 /*
 while($enreg2 = mysql_fetch_array($enreg2)){
 //	    $rows[] = mysqli_fetch_array($enreg2);
