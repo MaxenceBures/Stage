@@ -43,7 +43,7 @@ $fonction = $_SESSION['fonction'];
 					<td>
 						<label for="incident">Incident: </label>
 					</td>
-					<?php if($fonction == "intervenant" OR $function == "responsableint"){?>	
+					<?php if($fonction == "intervenant" OR $fonction == "responsableint"){?>	
 					<td>
 						<span id="blocEntreprises"></span><br />
 					</td>
