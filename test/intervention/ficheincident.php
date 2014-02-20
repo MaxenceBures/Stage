@@ -125,7 +125,8 @@ foreach($new_array as $array){
 				<?php }
 
 }?><form action="pdf.php" method="POST"><table><td>
-<input type="submit" name="test" id="test" value="<?php echo($enreg['INC_CODE'])?>">PDF</input>
+<input type="submit" value="PDF"></input>
+<input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
 </td></table></form>
 <!-- <?php/* //}
 /*
