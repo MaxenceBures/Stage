@@ -110,13 +110,20 @@ else {
   <th>Etat</th>";
 }
 if ($function == "responsablecli" OR ($function == "responsableint" AND $q4 =="cli")){
-  echo "<th>Type</th><th>Urgence</th>";
-    if ($q4 == "cli"){
+  echo "<th>Type</th>
+        <th>Urgence</th>";
+    if($function == "responsableint"){
+        echo "<th>Entreprise</th>";
+    }    
+    if ($q4 == "cli" AND $function != "responsableint"){
     		echo "<th>intervenant</th>";
+         echo "<th>Utilisateur</th>";
     	}
 }
 if ($function == "intervenant" AND $q4 !="inter"){
-	echo "<th>Type</th><th>Urgence</th><th>Entreprise</th>";
+	echo "<th>Type</th>
+        <th>Urgence</th>
+        <th>Entreprise</th>";
 }
 }
 echo "</tr>";
@@ -133,6 +140,7 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
   echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
   echo "<td>" . $row['URG_LIBELLE'] . "</td>";
   echo "<td>" . $row['UTI_LOGIN'] . "</td>";
+  echo "<td>" . $row['INC_DEMANDE'] . "</td>";
   	 
 }
 elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {

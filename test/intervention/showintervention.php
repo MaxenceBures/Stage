@@ -52,7 +52,20 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
   <?php } ?>  
   <?php if ($fonction == 'utilisateur') {
   }
-  elseif ($fonction =='responsablecli' /*OR $fonction =='intervenant'*/ OR $fonction =='responsableint') {
+  elseif ($fonction =='responsableint') {
+    ?>   
+  <select name="users" onchange="updateEntreprise(this.value),page2(), showIntervention()">
+     <option value="95" id="default" selected='selected'><?php echo "Tous"?> </option>
+     <?php
+        $Users = ListeDeroulanteEntreprise() ;
+        foreach ($Users as $User)
+        {
+  ?>
+          <option value="<?php echo $User['ENT_CODE']; ?>" ><?php echo $User['ENT_RAISONSOCIALE'] ?></option><?php }?>
+ </select>   
+<?php
+  }
+  elseif ($fonction =='responsablecli' /*OR $fonction =='intervenant'*/ /*OR $fonction =='responsableint'*/) {
   ?>   
   <select name="users" onchange="updateUtil(this.value),page2(), showIntervention()">
      <option value="98" id="default" selected='selected'><?php echo "Tous"?> </option>

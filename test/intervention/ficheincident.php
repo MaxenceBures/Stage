@@ -124,10 +124,14 @@ foreach($new_array as $array){
 				
 				<?php }
 
-}?><form action="pdf.php" method="POST"><table><td>
+}?><form action="pdf.php" method="POST">
 <input type="submit" value="PDF"></input>
 <input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
-</td></table></form>
+</form>
+<form action="cloturer.php" method="POST">
+ <input type="submit" value="Cloturer"></input>
+<input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
+</form>
 <!-- <?php/* //}
 /*
 while($enreg2 = mysql_fetch_array($enreg2)){

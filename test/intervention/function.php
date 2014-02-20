@@ -285,7 +285,7 @@ function infosInterventionrespcli($q,$q2,$q3)
                   }
                 else {  
         
-                     $sql="SELECT DISTINCT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN
+                     $sql="SELECT DISTINCT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, LIB_LIBELLE, URG_LIBELLE, INC_DESCRIPTION, UTI_LOGIN, INC_DEMANDE
                          FROM INCIDENT, UTILISATEUR, ETAT, URGENCE, LIBELLE
                          WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
                          AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
@@ -497,7 +497,7 @@ function infosInterventionResp($q,$q2,$q3)
                   }
                 else {  
         
-                     $sql="SELECT INT_CODE, INT_LIBELLE, INC_LIBELLE, INT_DATEINTER, UTI_LOGIN, LIB_LIBELLE, URG_LIBELLE, ETA_LIBELLE
+                     $sql="SELECT INT_CODE, INT_LIBELLE, INC_LIBELLE, INT_DATEINTER, UTI_LOGIN, LIB_LIBELLE, URG_LIBELLE, ETA_LIBELLE, INC_DEMANDE
                            FROM INTERVENTION, INCIDENT, LIBELLE, URGENCE, UTILISATEUR, ETAT
                            WHERE INTERVENTION.INC_CODE = INCIDENT.INC_CODE
                            AND INTERVENTION.LIB_CODE = LIBELLE.LIB_CODE
@@ -836,3 +836,18 @@ function modifentreprise()
                 'window.location.replace("showentreprise.php")'.
                 '</script>';
         }}
+function cloturer($test)
+    {
+     
+             
+            $date = date("Y-m-d\TH:i:sP");
+            $test = $test;
+            $query = mysql_query("UPDATE INCIDENT SET ETA_CODE = '5', INC_DATECLOTURE = '".$date."', INC_VALIDATION ='1'
+                                WHERE INC_CODE = '".$test."'") or die (mysql_error());
+            
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Entreprise modifié");'.
+                'window.location.replace("showincident.php")'.
+                '</script>';
+        }
