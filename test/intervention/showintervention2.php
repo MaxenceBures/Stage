@@ -130,9 +130,7 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 
 </table>  
  <input type="submit"  onclick="showIntervention()"> </br> 
- <?php
-include ('footer.html');
- ?>
+ 
 </form>
 </body>
 </html>

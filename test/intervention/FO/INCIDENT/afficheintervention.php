@@ -14,7 +14,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRI
 		<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
-		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
+		<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
 		<h2 align="center">Affiche intervention</H2>
 		<div data-role="page">
 
@@ -68,7 +68,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRI
 						<label for="description">Description : </label>
 					</td>
 					<td>
-						<textarea value=""><?php echo($enreg['INT_DESCRIPTION']); ?></textarea>
+						<textarea value="" readonly><?php echo($enreg['INT_DESCRIPTION']); ?></textarea>
 					</td>
 				</tr>
 			</table>

@@ -13,8 +13,8 @@ $fonction = $_SESSION['fonction'];
 <body>
 
 <form>
-<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
-<br>
+<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
+ --><br>
 <H2 align='center'>Utilisateur</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
 <select name="etat" onchange="updateFonction(this.value), showIntervention()">

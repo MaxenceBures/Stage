@@ -1,6 +1,6 @@
 <?php
 //if(isset($_SESSION['login'])) {
-require_once('function.php');
+// require_once('function.php');
 createincident();
 $fonction = $_SESSION['fonction'];
 	if($fonction == 'responsablecli' OR $fonction == 'intervenant' OR $fonction == 'responsableint'){
@@ -20,7 +20,7 @@ $fonction = $_SESSION['fonction'];
 		<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
-		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
+		<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
 		<H2 align="center">AJOUT INCIDENT</H2>
 		<div data-role="page">
 <!--	<body>-->

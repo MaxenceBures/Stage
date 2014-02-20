@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include('connexion.inc.php');
 connect();
 
@@ -57,6 +57,45 @@ function infosInterventioncli($q,$q3)
         $result = mysqli_query($con,$sql);
         return($result);
     }
+function infosIncidentcli($q,$q3)
+    {
+           $con = connecter();
+            $id = $_SESSION['login'];
+            $q = intval($q);
+            $q3 = intval($q3);
+            if ($q3 == 1){
+                $sql4 = "ORDER BY INC_DATEDEMANDE";
+                
+            }
+            else {
+                $sql4 = "ORDER BY INC_CODE";
+                }
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                   if ($q == 99){
+                      
+                    $sql="SELECT INC_CODE, INC_LIBELLE,INC_DESCRIPTION, ETA_LIBELLE, INC_DATEDEMANDE
+                         FROM INCIDENT, UTILISATEUR, ETAT
+                         WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+                         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                         AND UTI_LOGIN = '".$id."' $sql4
+                         ";
+                    }
+                    else{
+                //  var_dump($q);
+                     $sql="SELECT INC_CODE, INC_LIBELLE, ETA_LIBELLE, INC_DATEDEMANDE, INC_DESCRIPTION
+                         FROM INCIDENT, UTILISATEUR, ETAT
+                         WHERE INCIDENT.INC_DEMANDE = UTILISATEUR.UTI_CODE
+                         AND INCIDENT.ETA_CODE = ETAT.ETA_CODE
+                         AND UTI_LOGIN = '".$id."'
+                         AND INCIDENT.ETA_CODE = '".$q."'  $sql4
+                         ";    
+                    }
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }    
 function infosIntervention($q,$q2,$q3)
     {
         $con = connecter();
@@ -450,7 +489,7 @@ function createincident()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Demande enregistré");'.
-                'window.location.replace("showintervention.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }
     }
@@ -504,9 +543,9 @@ function infosInterventionResp($q,$q2,$q3)
                            AND INCIDENT.URG_CODE = URGENCE.URG_CODE
                            AND INTERVENTION.INT_TECHNICIEN = UTILISATEUR.UTI_CODE
                            AND ETAT.ETA_CODE = INCIDENT.ETA_CODE
-                           -- AND INCIDENT.INC_DEMANDE = (SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN= '$id')
+                          
                            $sql2 $sql3 $sql4
-                         "; //$sql2
+                         "; //$sql2 -- AND INCIDENT.INC_DEMANDE = (SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN= '$id')
                          
                          var_dump($sql);
                     }     
@@ -638,7 +677,7 @@ function createinter()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Demande enregistré");'.
-                'window.location.replace("showintervention.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }
     }
@@ -724,7 +763,7 @@ function createentreprise()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise enregistré");'.
-                'window.location.replace("showentreprise.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }
     }
@@ -750,7 +789,7 @@ function createutilisateur()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise enregistré");'.
-                'window.location.replace("showutilisateur.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }
     }   
@@ -773,7 +812,7 @@ function createRole()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise enregistré");'.
-                'window.location.replace("showutilisateur.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }
     }        
@@ -811,7 +850,7 @@ function modifutilisateur()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Utilisateur modifié");'.
-                'window.location.replace("showutilisateur.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }}
 function modifentreprise()
@@ -833,7 +872,7 @@ function modifentreprise()
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise modifié");'.
-                'window.location.replace("showentreprise.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }}
 function cloturer($test)
@@ -848,6 +887,6 @@ function cloturer($test)
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise modifié");'.
-                'window.location.replace("showincident.php")'.
+                'window.location.replace("index.php")'.
                 '</script>';
         }

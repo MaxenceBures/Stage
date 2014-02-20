@@ -110,7 +110,7 @@ foreach($new_array as $array){
 				}
 
 
-} if ($enreg['INC_VALIDATION'] == '0' ) {
+} if ($enreg['INC_VALIDATION'] == '0' OR  $enreg['INC_VALIDATION'] == '' ) {
 					echo "<h2 bgcolor='red'>Non Validé </h2>";
 				 	# code...
 				 }

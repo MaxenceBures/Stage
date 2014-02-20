@@ -129,7 +129,7 @@ foreach($new_array as $array){
 <input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
 </form>
 <form action="cloturer.php" method="POST">
- <input type="submit" value="Cloturer"></input>
+<input type="submit" value="Cloturer"></input>
 <input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
 </form>
 <!-- <?php/* //}

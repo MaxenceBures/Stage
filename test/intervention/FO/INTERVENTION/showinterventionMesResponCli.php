@@ -17,7 +17,7 @@ return(hu);
 <body>
 
 <form>
-<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
+<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
 <br>
 <H2 align="center">MES INCIDENTS</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
