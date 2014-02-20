@@ -41,7 +41,6 @@ ob_start();
 			</tr>
 </table>
 
-
 <?php
 $row = 1;
 //$result = mysql_query("SELECT id,link FROM mytable Order By id DESC LIMIT 0,5");
@@ -67,7 +66,7 @@ foreach($new_array as $array){
   if( $array['INT_CODE'] == "") {echo "test";} 
   else {  ?>
    <hr>
-   		<table border='1'  width=>
+   		<table border='1' bgcolor="#FFFFCC" align="center">
    		<tr>
 					<td>
 						<label for="num">Intervention n° :  <?php echo $array['INT_CODE']; ?></label>
@@ -106,10 +105,9 @@ foreach($new_array as $array){
 					
 				</tr>
 				</table>
-				
 				<?php }
 
-}
+} 
 $content = ob_get_clean();
 require('html2pdf/html2pdf.class.php');
 try{
