@@ -1,7 +1,7 @@
 <?php
-session_start();
+// session_start();
 // if(isset($_SESSION['login'])) {
- require_once('function.php');
+ // require_once('function.php');
 createinter();
 $fonction = $_SESSION['fonction'];
 
@@ -43,7 +43,7 @@ $fonction = $_SESSION['fonction'];
 					<td>
 						<label for="incident">Incident: </label>
 					</td>
-					<?php if($fonction == "intervenant"){?>	
+					<?php if($fonction == "intervenant" OR $function == "responsableint"){?>	
 					<td>
 						<span id="blocEntreprises"></span><br />
 					</td>
@@ -52,7 +52,7 @@ $fonction = $_SESSION['fonction'];
 						}
 							else { ?>
 					<td>
-						<input type="text" required="" value="<?php echo($enreg2["UTI_LOGIN"]); ?>"  id="nomResp" name="nomResp" readonly/>
+						<input type="text" required="" value="<?php echo($_SESSION['login']); ?>"  id="nomResp" name="nomResp" readonly/>
 					</td>
 					<?php } ?>		
 					

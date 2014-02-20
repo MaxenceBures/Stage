@@ -67,11 +67,27 @@
 						case "modifutilisateur":
 							$fichier = "FO/ADMIN/modifutilisateur.php";
 							$titre   =  "ListeAjout";
+						case "showentreprise":
+							$fichier = "FO/ADMIN/showentreprise.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "ajoutentreprise":
+							$fichier = "FO/ADMIN/ajoutentreprise.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "ajoutrole":
+							$fichier = "FO/ADMIN/ajoutrole.php";
+							$titre   =  "ListeAjout";
+							break ;	
+						case "modifentreprise":
+							$fichier = "FO/ADMIN/modifentreprise.php";
+							$titre   =  "ListeAjout";	
 							break ;
 						case "ajoutintervention":
 							$fichier = "FO/INTERVENTION/ajoutintervention.php";
 							$titre   =  "ListeAjout";
-							break ;					
+							break ;	
+													
 						
 						case "Accueil":
 							$fichier = "Pages/accueil.php" ;

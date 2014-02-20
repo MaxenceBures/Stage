@@ -1,5 +1,5 @@
 <?php
-require_once("function.php") ; 
+// require_once("function.php") ; 
 $fonction = $_SESSION['fonction'];
  $test = infosEntrepriserespint()
 //getUser();
@@ -14,7 +14,7 @@ $fonction = $_SESSION['fonction'];
 <body>
 
 <form>
-<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
+<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
 <br>
 <H2 align='center'>Utilisateur</H2>
 <div id="container"><b>Person info will be listed here.</b></div>
@@ -39,7 +39,7 @@ while($row = mysqli_fetch_array($test))
   echo "<td>" . $row['ENT_TELEPHONE'] . "</td>";
   echo "<td>" . $row['ENT_SITEWEB'] . "</td>";?>
   <td>
-  <form action="modifentreprise.php" method="POST">
+  <form action="?page=modifentreprise" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['ENT_CODE']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les stations'))
