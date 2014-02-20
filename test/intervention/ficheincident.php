@@ -4,6 +4,7 @@ $con = connecter();
 $test = $_POST['test'];
 $enreg = mysqli_fetch_assoc(mysqli_query($con, "SELECT INC_CODE, INC_LIBELLE, INC_DATEDEMANDE, UTI_LOGIN, INC_DATECLOTURE, ENT_RAISONSOCIALE FROM INCIDENT, UTILISATEUR, ENTREPRISE WHERE INC_CODE ='".$test."'AND INCIDENT.UTI_CODE = UTILISATEUR.UTI_CODE AND INCIDENT.ENT_CODE = ENTREPRISE.ENT_CODE"));
 $enreg2 = mysqli_query($con, "SELECT INT_CODE, INT_LIBELLE, INT_DESCRIPTION, INT_HEUREDEB, INT_HEUREFIN, INT_DATEINTER, UTI_LOGIN   FROM INTERVENTION, UTILISATEUR WHERE INC_CODE ='".$test."' AND INT_TECHNICIEN = UTILISATEUR.UTI_CODE") ;
+//ob_start();
 ?>
 <table class="style1">
 				<tr>
@@ -72,7 +73,7 @@ foreach($new_array as $array){
 						<label for="num">Intervention n° : </label>
 					</td>
 					<td>
-						<input type="text" id="num" required="" value="<?php echo $array['INT_CODE']; ?>" name="num" readonly/>
+						<input type="text" id="num" required="" value="<?php echo $array['INT_CODE']; ?>"  name="num" readonly/>
 					</td>
 				
 					<td>
@@ -120,14 +121,16 @@ foreach($new_array as $array){
 					</td>
 				</tr>
 				</table>
+				
 				<?php }
-}//}
+
+}?><input type="button"  value="<?php echo($enreg['INC_CODE'])?>" > <?php/* //}
 /*
 while($enreg2 = mysql_fetch_array($enreg2)){
 //	    $rows[] = mysqli_fetch_array($enreg2);
 //foreach($rows as $enreg2)
   var_dump($enreg2);
-?>
+
 			<hr>
 				<tr>
 					<td>
@@ -183,4 +186,14 @@ while($enreg2 = mysql_fetch_array($enreg2)){
 				</tr>
 				 
 				 <?php }?>
-				 </table>*/
+// 				 </table>*$content = ob_get_clean();
+// require('html2pdf/html2pdf.class.php');
+// try{
+// 	$pdf = new HTML2PDF('P','A4','fr');
+// 	$pdf-> writeHTML($content);
+// 	$pdf->Output('test.pdf');
+// }
+// catch(HTML2PDF_exception $e){
+// 	die($e);
+// }*/
+?>
