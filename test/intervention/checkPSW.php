@@ -14,6 +14,7 @@ $membre = mysql_fetch_assoc($result);
 
 if ($pseudo == $membre['UTI_LOGIN'] && $mdp == $membre['UTI_PWD']) {
 // session_start();
+			session_start();
 			$_SESSION["login"]    = $membre['UTI_LOGIN'];
 			$_SESSION["fonction"] = $membre['ROL_LIBELLE'];
 echo 'OK';
