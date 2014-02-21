@@ -9,6 +9,7 @@
 	
 	//require_once('include/connexion.inc.php');
 	require_once('INC/function.inc.php');
+	// require_once ('test/Bdd.class.php');	
 
 	/**
 	 * @todo ce truc la est un peu bof,
@@ -19,7 +20,8 @@
 	// Si la variable de session n'existe pas
 	if(!isset($_SESSION['login'])) {
 		// On affiche une page de login
-		//include_once('Pages/connexion.php');
+		 header("Location: test/a.html");
+		// echo "non connecte";
 		//die();// on stop le chargement de la page
    }
    else{
@@ -95,11 +97,16 @@
 							$fichier = "FO/INCIDENT/ficheincident.php";
 							$titre   =  "ListeAjout";
 							break ;
-						case "pdf":
-							$fichier = "FO/INCIDENT/pdf.php";
+						case "deconnexion":
+							$fichier = "INC/deconnecter.inc.php";
 							$titre   =  "ListeAjout";
-							break ;				
-													
+							break ;	
+						// case "verifCnx":
+						// 	$fichier = "INC/verifierConnexion.inc.php";
+						// 	$titre   =  "ListeAjout";
+						// 	break ;
+								
+															
 						
 						case "Accueil":
 							$fichier = "Pages/accueil.php" ;

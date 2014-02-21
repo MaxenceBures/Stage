@@ -1,5 +1,5 @@
 <?php
-require_once("function.php") ; 
+// require_once("function.php") ; 
 $fonction = $_SESSION['fonction'];
 //getUser();
 ?>

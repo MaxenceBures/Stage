@@ -1,5 +1,5 @@
 <?php
-require_once('function.php');
+// require_once('function.php');
 //afficheintervention();
 $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
@@ -15,7 +15,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRI
 		</head>
 		<body>
 		<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
-		<h2 align="center">Affiche intervention</H2>
+		<h2 align="center">fiche Intervention</H2>
 		<div data-role="page">
 
 			<table class="style1">

@@ -1,6 +1,6 @@
 <?php
 //if(isset($_SESSION['login'])) {
-require_once('function.php');
+// require_once('function.php');
 createentreprise();
 $fonction = $_SESSION['fonction'];
 	

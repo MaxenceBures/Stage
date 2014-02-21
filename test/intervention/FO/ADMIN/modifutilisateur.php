@@ -1,5 +1,5 @@
 <?php
-require_once('function.php');
+// require_once('function.php');
 modifutilisateur();
 $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];

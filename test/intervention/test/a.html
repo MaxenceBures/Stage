@@ -1,0 +1,24 @@
+﻿<?php ?>
+<script>function checkForm(pseudo, mdp) {
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function () {
+	if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 0)) {
+			if (xhr.responseText == 'OK') {
+				alert('Connexion réussie !');
+				window.location.replace('../index.php'); // Mettez ici les instructions lorsque la connexion est faite
+				}
+				else {
+				alert('Mot de passe ou pseudo incorrect'); // Et ici le message d'erreur que vous souhaitez
+				}
+			}
+		};
+	pseudo = encodeURIComponent(pseudo);
+	mdp = encodeURIComponent(mdp);
+	xhr.open("GET", "./checkPSW.php?pseudo=" + pseudo + "&mdp=" + mdp, true);
+	xhr.send(null);
+	}</script>
+<form method="#" onSubmit="checkForm(document.getElementById('p').value, document.getElementById('m').value);" action="#">
+<input type="text" id="a" placeholder="pseudo" />
+<input type="password" id="m" placeholder="****" />
+<div id="e"></div>
+<button onClick="checkForm(document.getElementById('a').value, document.getElementById('m').value);">Connexion</button>

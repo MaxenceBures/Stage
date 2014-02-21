@@ -1,10 +1,10 @@
 <?php
-require_once('function.php');
+// require_once('function.php');
 modifentreprise();
 $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
 var_dump($test);
-$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB  FROM ENTREPRISE WHERE ENT_CODE ='".$test."'"));
+$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_ADRESSE2, ENT_ADRESSE3, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB  FROM ENTREPRISE WHERE ENT_CODE ='".$test."'"));
 
 	
 ?>
@@ -33,6 +33,22 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_C
 					</td>
 					<td>
 						<input type="text" id="adresse" required="" name="adresse" value="<?php echo ($enreg['ENT_RUE']); ?>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="adresse">Adresse2 : </label>
+					</td>
+					<td>
+						<input type="text" id="adresse2" required="" name="adresse2" value="<?php echo ($enreg['ENT_ADRESSE2']); ?>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="adresse">Adresse3 : </label>
+					</td>
+					<td>
+						<input type="text" id="adresse3" required="" name="adresse3" value="<?php echo ($enreg['ENT_ADRESSE2']); ?>" />
 					</td>
 				</tr>
 				<tr>
