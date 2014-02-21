@@ -1,6 +1,6 @@
 <?php
 
-include('function.php');
+include('INC/function.inc.php');
 connect();
 
 $idr = isset($_GET['idr']) ? $_GET['idr'] : false;

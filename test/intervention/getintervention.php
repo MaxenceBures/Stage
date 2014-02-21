@@ -1,6 +1,6 @@
 <?php
 session_start();
-require("function.php");
+require("INC/function.inc.php");
 
 $q2 = "";
 if(isset($_GET['q2'])){
@@ -229,7 +229,7 @@ else {
     echo "<td>" . $row['URG_LIBELLE'] . "</td>";
     echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";?>
   <td>
-  <form action="ficheincident.php" method="POST">
+  <form action="?page=ficheincident" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['INC_CODE']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les stations'))
@@ -247,7 +247,7 @@ echo "</td>";
   if ($q4 =="respcli" ){ 
   	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
     echo "<td>" . $row['URG_LIBELLE'] . "</td>";?>
-    <td> <form action="ficheincident.php" method="POST">
+    <td> <form action="?page=ficheincident" method="POST">
 <input type="submit" value="PDF"></input>
 <input type="hidden" name="test" id="test" value="<?php echo ($row['INC_CODE'])?>">
 </form></td><?php

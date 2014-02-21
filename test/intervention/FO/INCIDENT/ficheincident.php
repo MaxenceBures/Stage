@@ -1,8 +1,8 @@
 <?php
-require_once('function.php');
+// require_once('function.php');
 $con = connecter();
 $test = $_POST['test'];
-$enreg = mysqli_fetch_assoc(mysqli_query($con, "SELECT INC_CODE, INC_LIBELLE, INC_DATEDEMANDE, UTI_LOGIN, INC_DATECLOTURE, ENT_RAISONSOCIALE FROM INCIDENT, UTILISATEUR, ENTREPRISE WHERE INC_CODE ='".$test."'AND INCIDENT.UTI_CODE = UTILISATEUR.UTI_CODE AND INCIDENT.ENT_CODE = ENTREPRISE.ENT_CODE"));
+$enreg = mysqli_fetch_assoc(mysqli_query($con, "SELECT INC_CODE, INC_LIBELLE, INC_DATEDEMANDE, UTI_LOGIN, INC_DATECLOTURE, ENT_RAISONSOCIALE, INC_CLOTURE FROM INCIDENT, UTILISATEUR, ENTREPRISE WHERE INC_CODE ='".$test."'AND INCIDENT.UTI_CODE = UTILISATEUR.UTI_CODE AND INCIDENT.ENT_CODE = ENTREPRISE.ENT_CODE"));
 $enreg2 = mysqli_query($con, "SELECT INT_CODE, INT_LIBELLE, INT_DESCRIPTION, INT_HEUREDEB, INT_HEUREFIN, INT_DATEINTER, UTI_LOGIN   FROM INTERVENTION, UTILISATEUR WHERE INC_CODE ='".$test."' AND INT_TECHNICIEN = UTILISATEUR.UTI_CODE") ;
 //ob_start();
 ?>
@@ -28,7 +28,7 @@ $enreg2 = mysqli_query($con, "SELECT INT_CODE, INT_LIBELLE, INT_DESCRIPTION, INT
 						<label for="num">Date cloture :  <?php echo($enreg['INC_DATECLOTURE']); ?></label>
 					</td>
 					<td>
-						<label for="libelle" >Par : <?php echo($enreg['UTI_LOGIN']);?></label>
+						<label for="libelle" >Par : <?php echo($enreg['INC_CLOTURE']);?></label>
 					</td>
 			</tr>
 			<tr>
@@ -128,7 +128,7 @@ foreach($new_array as $array){
 <input type="submit" value="PDF"></input>
 <input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
 </form>
-<form action="cloturer.php" method="POST">
+<form action="?page=cloturer" method="POST">
 <input type="submit" value="Cloturer"></input>
 <input type="hidden" name="test" id="test" value="<?php echo ($enreg['INC_CODE'])?>">
 </form>

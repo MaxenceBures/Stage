@@ -879,9 +879,10 @@ function cloturer($test)
     {
      
              
+           // $test = $_SESSION['login'];
             $date = date("Y-m-d\TH:i:sP");
             $test = $test;
-            $query = mysql_query("UPDATE INCIDENT SET ETA_CODE = '5', INC_DATECLOTURE = '".$date."', INC_VALIDATION ='1'
+            $query = mysql_query("UPDATE INCIDENT SET ETA_CODE = '5', INC_DATECLOTURE = '".$date."', INC_VALIDATION ='1', INC_CLOTURE = '".$_SESSION['login']."'
                                 WHERE INC_CODE = '".$test."'") or die (mysql_error());
             
             var_dump($query);

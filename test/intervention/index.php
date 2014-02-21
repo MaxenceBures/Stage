@@ -8,7 +8,7 @@
 
 	
 	//require_once('include/connexion.inc.php');
-	require_once('function.php');
+	require_once('INC/function.inc.php');
 
 	/**
 	 * @todo ce truc la est un peu bof,
@@ -45,7 +45,7 @@
 							$titre   =  "test";
 							break ;	
 						case "afficheintervention":
-							$fichier = "FO/INCIDENT/afficheintervention.php";
+							$fichier = "FO/INTERVENTION/afficheintervention.php";
 							$titre   =  "Liste";
 							break ;
 						case "showinterventionMesResponCli":
@@ -86,7 +86,19 @@
 						case "ajoutintervention":
 							$fichier = "FO/INTERVENTION/ajoutintervention.php";
 							$titre   =  "ListeAjout";
+							break ;
+						case "cloturer":
+							$fichier = "FO/cloturer.php";
+							$titre   =  "ListeAjout";
 							break ;	
+						case "ficheincident":
+							$fichier = "FO/INCIDENT/ficheincident.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "pdf":
+							$fichier = "FO/INCIDENT/pdf.php";
+							$titre   =  "ListeAjout";
+							break ;				
 													
 						
 						case "Accueil":
