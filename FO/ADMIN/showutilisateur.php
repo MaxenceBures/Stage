@@ -31,7 +31,7 @@
   </select></br>
   <table>
     <td>
-  <input type="checkbox" onchange="updateFonction(this.value), showIntervention()" value="95"><?php echo "Tous"?></br>
+  <input type="checkbox" onchange="updateFonction(this.value), showIntervention()" value="94"><?php echo "Tous"?></br>
   <?php
         $Entreprises = ListeDeroulanteRole() ;
         foreach ($Entreprises as $Entreprise)

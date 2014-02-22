@@ -844,8 +844,13 @@ function modifutilisateur()
             $portable = mysql_real_escape_string($_POST['portable']);
             $login = mysql_real_escape_string($_POST['login']);
             $pwd = mysql_real_escape_string(sha1($_POST['pwd']));
-               
-            $query = mysql_query("UPDATE UTILISATEUR SET UTI_MAIL = '".$mail."', UTI_TELEPHONEFIXE = '".$fixe."', UTI_TELEPHONEMOBILE = '".$portable."', UTI_PWD = '".$pwd."'
+            if ($pwd == "" ) {
+                 $sql =", UTI_PWD = '".$pwd."' ";
+               }
+            else{
+              $sql = "";
+            }      
+            $query = mysql_query("UPDATE UTILISATEUR SET UTI_MAIL = '".$mail."', UTI_TELEPHONEFIXE = '".$fixe."', UTI_TELEPHONEMOBILE = '".$portable."' $sql
                                  WHERE UTI_LOGIN = '".$login."'") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.

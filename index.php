@@ -70,6 +70,7 @@ $fonction = $_SESSION['fonction'];
 						case "modifutilisateur":
 							$fichier = "FO/ADMIN/modifutilisateur.php";
 							$titre   =  "ListeAjout";
+							break ;
 						case "showentreprise":
 							$fichier = "FO/ADMIN/showentreprise.php";
 							$titre   =  "ListeAjout";

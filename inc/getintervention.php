@@ -86,7 +86,7 @@ if($function == "responsableint" and $q4!= "inter" and $q4 != "cli"){
   <th>Entreprise</th>
   <th>Fixe</th>
   <th>Mail</th>
-  <th>Type</th>
+  <th>Role</th>
   <th>TEst</th>
   ";
 }
@@ -178,7 +178,7 @@ elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
   <form action="?page=modifutilisateur" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['UTI_LOGIN']); ?>" onClick="
-                  if(confirm('Vous allez consulter les informations concernant les incidents'))
+                  if(confirm('Vous allez consulter les informations concernant les utilisateurs'))
                   {
                     submit()
                   }

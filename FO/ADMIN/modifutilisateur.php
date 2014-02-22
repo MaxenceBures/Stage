@@ -1,10 +1,16 @@
 <?php
-// require_once('function.php');
+//require_once('function.php');
+//session_start();
 modifutilisateur();
-// $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
+//$test = $_GET['test'];
 var_dump($test);
 $enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE  FROM UTILISATEUR WHERE UTI_LOGIN ='".$test."'"));
+// $enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));
+
+
+
+$fonction = $_SESSION['fonction'];
 	
 ?>
 	<html>
@@ -12,8 +18,8 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI
 		<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
-		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
-		<H2 align="center">AJOUT Utilisateur</H2>
+		<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
+		<H2 align="center">Modifier Utilisateur</H2>
 		<div data-role="page">
 <!--	<body>-->
 <form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" data-ajax="false" id="ajout_form"> 
@@ -77,7 +83,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI
 				</tr>
 			</table>
 			</br>
-						<input type="submit" name="go_modifutilisateur" id="go_modifutilisateur" value="Creer"/>
+						<input type="submit" name="go_modifutilisateur" id="go_modifutilisateur" value="Modifier"/>
  
 </form>
 	<!--</body>-->
