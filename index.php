@@ -20,11 +20,12 @@
 	// Si la variable de session n'existe pas
 	if(!isset($_SESSION['login'])) {
 		// On affiche une page de login
-		 header("Location: a.html");
+		 header("Location: INC/connexion.html");
 		// echo "non connecte";
 		//die();// on stop le chargement de la page
    }
    else{
+$fonction = $_SESSION['fonction'];
 					if(!isset($_GET['page']))
 						$_GET['page'] = null;
 
@@ -109,12 +110,12 @@
 															
 						
 						case "Accueil":
-							$fichier = "Pages/accueil.php" ;
+							$fichier = "PAGES/accueil.php" ;
 							$titre   = "Deconnexion";
 							break ;
 
 						default :
-							$fichier = "Pages/accueil.html" ;
+							$fichier = "PAGES/accueil.html" ;
 							$titre   = "Accueil";
 							break;
 					}

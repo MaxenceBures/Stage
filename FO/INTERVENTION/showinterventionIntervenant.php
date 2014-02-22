@@ -1,13 +1,13 @@
 <?php
 //require_once("function.php") ; 
-$fonction = $_SESSION['fonction'];
+// $fonction = $_SESSION['fonction'];
 //getUser();
 ?>
 <html>
 <head>
 <!--<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>-->
 <script type="text/javascript">alert ($('#Date').attr('checked')); </script>
-<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
+<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 </head>
 <body>

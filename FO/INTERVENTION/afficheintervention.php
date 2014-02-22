@@ -1,7 +1,7 @@
 <?php
 // require_once('function.php');
 //afficheintervention();
-$fonction = $_SESSION['fonction'];
+// $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
 //var_dump($test);
 /*</form><form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" data-ajax="false" id="ajout_form"> */
@@ -11,7 +11,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT INT_CODE, INT_LIBELLE, INT_DESCRI
 ?>
 	<html>
 		<head>
-		<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
+		<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
 		<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->

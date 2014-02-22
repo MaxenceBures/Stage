@@ -1,7 +1,7 @@
 <?php
 // require_once('function.php');
 modifentreprise();
-$fonction = $_SESSION['fonction'];
+// $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
 var_dump($test);
 $enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_ADRESSE2, ENT_ADRESSE3, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB  FROM ENTREPRISE WHERE ENT_CODE ='".$test."'"));
@@ -10,7 +10,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_A
 ?>
 	<html>
 		<head>
-		<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
+		<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
 		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>

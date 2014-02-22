@@ -1,7 +1,7 @@
 <?php
 // require_once('function.php');
 modifutilisateur();
-$fonction = $_SESSION['fonction'];
+// $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
 var_dump($test);
 $enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI_NOM, UTI_PRENOM, UTI_MAIL, UTI_TELEPHONEFIXE, UTI_TELEPHONEMOBILE, UTI_DESACTIVE  FROM UTILISATEUR WHERE UTI_LOGIN ='".$test."'"));
@@ -9,7 +9,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE, UTI_LOGIN, UTI_PWD, UTI
 ?>
 	<html>
 		<head>
-		<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
+		<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
 		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>

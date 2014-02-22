@@ -2,7 +2,7 @@
 //if(isset($_SESSION['login'])) {
 // require_once('function.php');
 createincident();
-$fonction = $_SESSION['fonction'];
+// $fonction = $_SESSION['fonction'];
 	if($fonction == 'responsablecli' OR $fonction == 'intervenant' OR $fonction == 'responsableint'){
 	$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE FROM ENTREPRISE, ID, UTILISATEUR WHERE ENTREPRISE.ENT_CODE = ID.ENT_CODE AND ID.UTI_CODE = UTILISATEUR.UTI_CODE AND UTILISATEUR.UTI_LOGIN = '".$_SESSION['login']."'"));
 	$enreg2 = mysql_fetch_assoc(mysql_query("SELECT UTI_LOGIN FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));
@@ -17,7 +17,7 @@ $fonction = $_SESSION['fonction'];
 ?>
 	<html>
 		<head>
-		<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
+		<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
 		<!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->

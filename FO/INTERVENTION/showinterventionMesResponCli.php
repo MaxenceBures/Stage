@@ -1,11 +1,11 @@
 <?php
 // require_once("function.php") ; 
-$fonction = $_SESSION['fonction'];
+// $fonction = $_SESSION['fonction'];
 //getUser();
 ?>
 <html>
 <head>
-<script type="text/javascript" src="test.js" charset="iso_8859-1"></script>
+<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <script type="text/javascript">
 function getHU()
