@@ -1,13 +1,9 @@
 <?php
-function test(){
-
-            if (isset($_POST['connexion']))
-         {   
-	//rÃ©cupÃ©ration des valeurs valeurs saisies
+	//récupération des valeurs valeurs saisies
 	$sLogin = $_POST["txt_login"];
 	$sMdp   = $_POST["pwd_mdp"];
-	// il faudrait amÃ©liorer la vÃ©rification (utilisation de tableaux)
-	// et Ã©viter les injections SQL 
+	// il faudrait améliorer la vérification (utilisation de tableaux)
+	// et éviter les injections SQL 
 	$oBdd = $_SESSION['bdd'];
 	
 	//verification du login et du mot de passe
@@ -23,7 +19,7 @@ function test(){
 			  AND UTI_DESACTIVE ='0'
 			  AND U.UTI_CODE = I.UTI_CODE
 			  AND I.ROL_CODE = R.ROL_CODE";
-	//traitement de la requÃªte
+	//traitement de la requête
 	//$rstUti  = $oSql->query($sReq) ;						
 	
 	
@@ -33,7 +29,7 @@ function test(){
 	//{
 		//$sLoginR = $ligne["Uti_Login"] ;
 	
-		//si le curseur prÃ©sente un rÃ©sultat
+		//si le curseur présente un résultat
 		if (!empty($user))
 		{
 			//on ouvre la session
@@ -50,7 +46,7 @@ function test(){
 
 		else
 		{
-			//retour Ã  la page de connexion
+			//retour à la page de connexion
 ?>
 			<script language="Javascript">
 				alert("Impossible de se connecter. Identifiants incorrects.");
@@ -58,5 +54,5 @@ function test(){
 			</script>
 <?php
 		}
-}}
+
 ?>

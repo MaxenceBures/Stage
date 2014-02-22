@@ -1,77 +1,129 @@
 <?php
-header("Content-Type: text/html; charset=ISO-8859-15");
-require_once ('classe/Bdd.class.php');	
-session_start() ;
-if(!empty($_SESSION['login'])){
-header('location: index_2.php');
-}
-else {		
-$dDatJour = date("Y-m-d");	
-$page     = @$_GET["page"] ;
-require_once("inc/connecter.inc.php") ;	
-$titre = "Gestion des interventions" ;
-?>
+ 	session_start();
+ 	/**
+ 	 * @todo mettre ici un include
+ 	 *       du fichier function connexion bdd
+ 	 *       et virer les autres dans le code
+ 	 */
+
+	
+	//require_once('include/connexion.inc.php');
+	require_once('INC/function.inc.php');
+	// require_once ('test/Bdd.class.php');	
+
+	/**
+	 * @todo ce truc la est un peu bof,
+	 *       faut le passer dans connexion.inc
+	 */
+	//login();
+
+	// Si la variable de session n'existe pas
+	if(!isset($_SESSION['login'])) {
+		// On affiche une page de login
+		 header("Location: a.html");
+		// echo "non connecte";
+		//die();// on stop le chargement de la page
+   }
+   else{
+					if(!isset($_GET['page']))
+						$_GET['page'] = null;
 
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-	<head>
-	    <meta name="description" content="">
-	    <meta name="author" content="">
-	    <meta charset="utf-8">
-	    <meta name="robots" content="all">
+					if($_GET['page'] == "Deconnexion"){
+							logout();
+							header('Location: index.php');
+						    die();
+					}
 
-	    <!--[if lt IE 9]>
-	    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
+					switch($_GET['page'])
+					{
 
-	    <title><?php echo $titre ?></title>
+						case "showincident":
+							$fichier = "FO/INCIDENT/showincident.php";
+							$titre   =  "test";
+							break ;
+						case "ajoutincident":
+							$fichier = "FO/INCIDENT/ajoutincident.php";
+							$titre   =  "test";
+							break ;	
+						case "afficheintervention":
+							$fichier = "FO/INTERVENTION/afficheintervention.php";
+							$titre   =  "Liste";
+							break ;
+						case "showinterventionMesResponCli":
+							$fichier = "FO/INTERVENTION/showinterventionMesResponCli.php";
+							$titre   =  "ListeAjout";
+							break ;	
+						case "showinterventionIntervenant":
+							$fichier = "FO/INTERVENTION/showinterventionIntervenant.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "showutilisateur":
+							$fichier = "FO/ADMIN/showutilisateur.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "ajoututilisateur":
+							$fichier = "FO/ADMIN/ajoututilisateur.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "modifutilisateur":
+							$fichier = "FO/ADMIN/modifutilisateur.php";
+							$titre   =  "ListeAjout";
+						case "showentreprise":
+							$fichier = "FO/ADMIN/showentreprise.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "ajoutentreprise":
+							$fichier = "FO/ADMIN/ajoutentreprise.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "ajoutrole":
+							$fichier = "FO/ADMIN/ajoutrole.php";
+							$titre   =  "ListeAjout";
+							break ;	
+						case "modifentreprise":
+							$fichier = "FO/ADMIN/modifentreprise.php";
+							$titre   =  "ListeAjout";	
+							break ;
+						case "ajoutintervention":
+							$fichier = "FO/INTERVENTION/ajoutintervention.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "cloturer":
+							$fichier = "FO/cloturer.php";
+							$titre   =  "ListeAjout";
+							break ;	
+						case "ficheincident":
+							$fichier = "FO/INCIDENT/ficheincident.php";
+							$titre   =  "ListeAjout";
+							break ;
+						case "deconnexion":
+							$fichier = "INC/deconnecter.inc.php";
+							$titre   =  "ListeAjout";
+							break ;	
+						// case "verifCnx":
+						// 	$fichier = "INC/verifierConnexion.inc.php";
+						// 	$titre   =  "ListeAjout";
+						// 	break ;
+								
+															
+						
+						case "Accueil":
+							$fichier = "Pages/accueil.php" ;
+							$titre   = "Deconnexion";
+							break ;
 
-	<!-- Appel des modules de CSS et de JS -->
-<?php				
-	require_once("mdl/fct_css.html") ;				
-	require_once("mdl/fct_js.html") ;
-?>
+						default :
+							$fichier = "Pages/accueil.html" ;
+							$titre   = "Accueil";
+							break;
+					}
+						include 'INC/header.php';
+						include($fichier);
+						include 'INC/footer.html';
+					?>
 
-	</head>
-	<body>
-		<header class="header-top">
-		    <div class="container clr">
-		        <div class="row no-margin-col">
-		         
-	<?php				
-			require_once("mdl/banniere.php") ;
-	?>
-
-				</div>
-		    </div>
-		</header>
-		<br/>
-		<article>
-	<?php
-			switch($page)
-			{
-				case "connexion":
-					$fichier = "FO/Vues/fo_connexion.html" ;
-					$titre   = "Se connecter";
-					break ;
-			
-				case "verifCnx":
-					$fichier = "inc/verifierConnexion.inc.php" ;
-					break ;
-					
-				case "infoCnx":
-					$fichier = "FO/Vues/fo_infoCnx.php" ;
-					break ;				
-				
-				default: $fichier = "FO/Vues/fo_connexion.html" ;
-			}
-		
-			include($fichier) ;
-	?>					
-		</article>
-	</body>
-</html>
 <?php
+
 }
 ?>
