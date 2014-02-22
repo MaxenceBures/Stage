@@ -22,15 +22,13 @@ var value = "",
     function page3(data){
       value4 = "inter";
     }
-    
     function updateEtat(data){ 
         value = data; 
     } 
-
     function updateUtil(data) { 
         value2 = data;
     }
-    function triDate(data) { 
+    function triDate(data) {
         value3 = data;
     }
     function updateEntreprise(data){
