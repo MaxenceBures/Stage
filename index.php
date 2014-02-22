@@ -20,7 +20,7 @@
 	// Si la variable de session n'existe pas
 	if(!isset($_SESSION['login'])) {
 		// On affiche une page de login
-		 header("Location: INC/connexion.html");
+		 header("Location: PAGES/connexion.html");
 		// echo "non connecte";
 		//die();// on stop le chargement de la page
    }

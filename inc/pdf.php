@@ -1,5 +1,5 @@
 <?php
-require_once('INC/function.inc.php');
+require_once('function.inc.php');
 $con = connecter();
 $test = $_POST['test'];
 $enreg = mysqli_fetch_assoc(mysqli_query($con, "SELECT INC_CODE, INC_LIBELLE, INC_DATEDEMANDE, UTI_LOGIN, INC_DATECLOTURE, ENT_RAISONSOCIALE, INC_VALIDATION FROM INCIDENT, UTILISATEUR, ENTREPRISE WHERE INC_CODE ='".$test."'AND INCIDENT.UTI_CODE = UTILISATEUR.UTI_CODE AND INCIDENT.ENT_CODE = ENTREPRISE.ENT_CODE"));
