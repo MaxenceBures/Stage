@@ -101,7 +101,7 @@ var value = "",
         }
       }
     //var variables = "q="str&"q2"=str2;  
-    xmlhttp.open("GET","getintervention.php?"+str,true);
+    xmlhttp.open("GET","INC/getintervention.php?"+str,true);
     alert(str);
     /*xmlhttp.open("GET","getintervention.php?"
         + "q=" + encodeURIComponent(q)
@@ -178,7 +178,7 @@ function getDepartements(idr)
         /* On crée l'objet XHR */
         creerRequete();
         /* Définition du fichier de traitement */
-        var url = 'departements.php?idr='+ idr;
+        var url = './INC/intervention.php?idr='+ idr;
         /* Envoi de la requête à la page de traitement */
         requete.open('GET', url, true);
         /* On surveille le changement d'état de la requête qui va passer successivement de 1 à 4 */
@@ -213,7 +213,7 @@ function getDepartements2(idr)
         /* On crée l'objet XHR */
         creerRequete();
         /* Définition du fichier de traitement */
-        var url = 'intervention.php?idr='+ idr;
+        var url = './INC/departements.php?idr='+ idr;
         /* Envoi de la requête à la page de traitement */
         requete.open('GET', url, true);
         /* On surveille le changement d'état de la requête qui va passer successivement de 1 à 4 */

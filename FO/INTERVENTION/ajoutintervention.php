@@ -25,7 +25,7 @@ createinter();
 					</td>
 					
 					<td>
-					<select name="nomEnt" id="nomEnt" onchange="getDepartements2(this.value);">
+					<select name="nomEnt" id="nomEnt" onchange="getDepartements(this.value);">
      <option value="vide">- - - Choisissez une Entreprise - - -</option>
      <?php
         $oEntreprises = ListeDeroulanteEntreprise() ;

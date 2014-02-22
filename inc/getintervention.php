@@ -1,6 +1,6 @@
 <?php
 session_start();
-require("INC/function.inc.php");
+require("function.inc.php");
 
 $q2 = "";
 if(isset($_GET['q2'])){

@@ -119,9 +119,9 @@ $fonction = $_SESSION['fonction'];
 							$titre   = "Accueil";
 							break;
 					}
-						include 'INC/header.php';
+						include 'PAGES/header.php';
 						include($fichier);
-						include 'INC/footer.html';
+						include 'PAGES/footer.html';
 					?>
 
 <?php
