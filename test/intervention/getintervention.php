@@ -33,54 +33,54 @@ var_dump($q4);
 $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
   $result = infosIncidentcli($q,$q3);
-  ?></br><b>infosIncidentcli</b></br><?php
+  echo"</br><b>infosIncidentcli</b></br>";
 }
 elseif ($function == "responsableint") {
   if($q4 != "inter" AND $q4 !="cli"){
 	$result = infosUtilisateurrespint($q7);
-?></br><b>infosUtilisateurrespint</br></b><?php
+	echo"</br><b>infosUtilisateurrespint</br></b>";
   }
   elseif ($q4 == "cli") {
   $result = infosIncidentintervenant($q,$q3,$q5);
-   ?></br><b>infosIncidentintervenant</br></b><?php
+    echo"</br><b>infosIncidentintervenant</br></b>";
   }
   elseif ($q4 == "inter") {
   $result = infosInterventionintervenant($q,$q3,$q5,$q6);
- ?></br><b>infosInterventionintervenant</br></b><?php
+  echo"</br><b>infosInterventionintervenant</br></b>";
   }
 }
 elseif ($function == "responsablecli"){
 	if ($q4 == "respcli"){
 		$result = infosMesIncidentsrespcli($q,$q3);
-	?></br><b>infosMesIncidentsrespcli</br></b><?php
+		echo"</br><b>infosMesIncidentsrespcli</br></b>";
 	}
 	else{
 		$result = infosInterventionResp($q,$q2,$q3);
-	?></br><b>infosInterventionResp</br></b><?php
+		echo"</br><b>infosInterventionResp</br></b>";
 		var_dump($q2);
 	}
 }
 elseif ($function == "intervenant" ){
   if ($q4 != "inter") {
     $result = infosIncidentintervenant($q,$q3,$q5);
-   ?></br><b>infosIncidentintervenant</br></b><?php
+    echo"</br><b>infosIncidentintervenant</br></b>";
   }
 	elseif ($q4 == "inter") {
     $result = infosInterventionintervenant($q,$q3,$q5,$q6);
-   ?></br><b>infosInterventionintervenant</br></b><?php
+    echo"</br><b>infosInterventionintervenant</br></b>";
     }	
 }
 else {
 $result = infosIntervention($q,$q2,$q3);
-?></br><b>infosIntervention</br></b><?php  
+echo"</br><b>infosIntervention</br></b>";  
 }
 
 var_dump($result);
-?><hr>
-<table border='1'>
-<tr> <?php
+echo "<hr>";
+echo "<table border='1'>
+<tr> ";
 if($function == "responsableint" and $q4!= "inter" and $q4 != "cli"){
-  ?>
+  echo "
   <th>id</th>
   <th>Login</th>
   <th>Entreprise</th>
@@ -88,82 +88,67 @@ if($function == "responsableint" and $q4!= "inter" and $q4 != "cli"){
   <th>Mail</th>
   <th>Type</th>
   <th>TEst</th>
-  <?php
+  ";
 }
 else
 {	
- ?>
+  echo "
   <th>Num</th>
-  <th>Libelle</th>
- <?php 
+  <th>Libelle</th> ";
 if ($q4 =="inter") {
- ?>
-	<th>Date</th> 
-	<th>Incident</th> 
-	<th>Type</th> 
-	<th>Client</th> 
-	<th>Intervenant</th> 
-  <th>Afficher</th>
- <?php
+	echo "<th>Date</th> ";
+	echo "<th>Incident</th> ";
+	echo "<th>Type</th> ";
+	echo "<th>Client</th> ";
+	echo "<th>Intervenant</th> ";
+  echo "<th>Afficher</th> ";
 	
 }
 elseif ($function =="responsablecli") {
- ?>
+  echo"
   <th>Description</th>
   <th>DateInter</th>
-  <th>EtatIncid</th>
- <?php 
+  <th>EtatIncid</th>";
 }
 else {
- ?>
+  echo"
   <th>Description</th>
   <th>DateDemande</th>
-  <th>Etat</th>
- <?php 
+  <th>Etat</th>";
 }
 if ($function == "responsablecli" OR ($function == "responsableint" AND $q4 =="cli")){
- ?>
-  <th>TypeInter</th>
-  <th>Urgence</th>
- <?php         
+  echo "<th>TypeInter</th>
+        <th>Urgence</th>";   
     if($function == "responsableint"){
-      ?>
-       <th>Entreprise</th>
-      <?php
+        echo "<th>Entreprise</th>";
     }    
     if ($q4 == "cli" AND $function != "responsableint"){
-    	?>
-       <th>intervenant</th>
-       <th>Utilisateur</th>
-       <th>FicheInter2</th>
-      <?php
+    		echo "<th>intervenant</th>";
+        echo "<th>Utilisateur</th>";
+        echo "<th>FicheInter2</th>";
     	}
 }
 if ($function == "intervenant" AND $q4 !="inter"){
-	    ?>  
-        <th>Type</th>
+	echo "<th>Type</th>
         <th>Urgence</th>
-        <th>Entreprise</th>
-      <?php  
+        <th>Entreprise</th>";
 }
 }
-?>
- </tr>
- <?php
+echo "</tr>";
 while($row = mysqli_fetch_array($result))
   {
 if ($function == "responsablecli" AND $q4 !="respcli"){
-?>
-	<tr>
-	<td><?php echo ($row['INT_CODE']);?></td>
-	<td><?php echo ($row['INT_LIBELLE']);?></td>
-	<td><?php echo ($row['INC_LIBELLE']);?></td>
-	<td><?php echo (substr($row['INT_DATEINTER'],0,10));?></td>
-	<td><?php echo ($row['ETA_LIBELLE']);?></td>
-  <td><?php echo ($row['LIB_LIBELLE']);?></td>
-  <td><?php echo ($row['URG_LIBELLE']);?></td>
-  <td><?php echo ($row['UTI_LOGIN']);?></td>
-  <td><?php echo ($row['INC_DEMANDE']);?></td>
+
+	echo "<tr>";
+	echo "<td>" . $row['INT_CODE'] . "</td>";
+	echo "<td>" . $row['INT_LIBELLE'] . "</td>";
+	echo "<td>" . $row['INC_LIBELLE'] . "</td>";
+	echo "<td>" . substr($row['INT_DATEINTER'],0,10) . "</td>";
+	echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
+  echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+  echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+  echo "<td>" . $row['UTI_LOGIN'] . "</td>";
+  echo "<td>" . $row['INC_DEMANDE'] . "</td>";?>
   <td>
   <form action="?page=afficheintervention" method="POST">
                 
@@ -177,18 +162,18 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
                   }
                   "/>
               </form>
- </td>
-<?php  	 
+  <?php
+echo "</td>";
+  	 
 }
 elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
-?>  
-  <tr>
-  <td><?php echo ($row['UTI_CODE']);?></td>
-  <td><?php echo ($row['UTI_LOGIN']);?></td>
-  <td><?php echo ($row['ENT_RAISONSOCIALE']);?></td>
-  <td><?php echo ($row['UTI_TELEPHONEFIXE']);?></td>
-  <td><?php echo ($row['UTI_MAIL']);?></td>
-  <td><?php echo ($row['ROL_LIBELLE']);?></td>
+  echo "<tr>";
+  echo "<td>" . $row['UTI_CODE'] . "</td>";
+  echo "<td>" . $row['UTI_LOGIN'] . "</td>";
+  echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
+  echo "<td>" . $row['UTI_TELEPHONEFIXE'] . "</td>";
+  echo "<td>" . $row['UTI_MAIL'] . "</td>";
+  echo "<td>" . $row['ROL_LIBELLE'] . "</td>";?>
   <td>
   <form action="?page=modifutilisateur" method="POST">
                 
@@ -202,20 +187,19 @@ elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
                   }
                   "/>
               </form>
-  
-</td>
-<?php 
+  <?php
+echo "</td>";
+ 
 }
 elseif ($q4 == "inter") {
-?>  
-  <tr>
-  <td><?php echo ($row['INT_CODE']);?></td>
-  <td><?php echo ($row['INT_LIBELLE']);?></td>
-  <td><?php echo ($row['INC_LIBELLE']);?></td>
-  <td><?php echo (substr($row['INT_DATEINTER'],0,10));?></td>
-  <td><?php echo ($row['LIB_LIBELLE']);?></td>
-  <td><?php echo ($row['INC_DEMANDE']);?></td>
-  <td><?php echo ($row['INT_TECHNICIEN']);?></td>
+  echo "<tr>";
+  echo "<td>" . $row['INT_CODE'] . "</td>";
+  echo "<td>" . $row['INT_LIBELLE'] . "</td>";
+  echo "<td>" . $row['INC_LIBELLE'] . "</td>";
+  echo "<td>" . substr($row['INT_DATEINTER'],0,10) . "</td>";
+  echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+  echo "<td>" . $row['INC_DEMANDE'] . "</td>";
+  echo "<td>" . $row['INT_TECHNICIEN'] . "</td>";?>
   <td>
   <form action="?page=afficheintervention" method="POST">
                 
@@ -229,21 +213,21 @@ elseif ($q4 == "inter") {
                   }
                   "/>
               </form>
- </td>
-<?php 
+  <?php
+echo "</td>";
+ 
 }
 else {		      
-?>
-    <tr>
-    <td><?php echo ($row['INC_CODE']);?></td>
-    <td><?php echo ($row['INC_LIBELLE']);?></td>
-    <td><?php echo ($row['INC_DESCRIPTION']);?></td>
-    <td><?php echo (substr($row['INC_DATEDEMANDE'],0,10));?></td>
-    <td><?php echo ($row['ETA_LIBELLE']);?></td>
+    echo "<tr>";
+    echo "<td>" . $row['INC_CODE'] . "</td>";
+    echo "<td>" . $row['INC_LIBELLE'] . "</td>";
+    echo "<td>" . $row['INC_DESCRIPTION'] . "</td>";
+    echo "<td>" . substr($row['INC_DATEDEMANDE'],0,10) . "</td>";
+    echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
   if ($function == "responsableint") {
-    <td><?php echo ($row['LIB_LIBELLE']);?></td>
-    <td><?php echo ($row['URG_LIBELLE']);?></td>
-    <td><?php echo ($row['ENT_RAISONSOCIALE']);?></td>
+    echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";?>
   <td>
   <form action="?page=ficheincident" method="POST">
                 
@@ -257,47 +241,27 @@ else {
                   }
                   "/>
               </form>
-  </td>
- <?php 
+  <?php
+echo "</td>";
     }  
   if ($q4 =="respcli" ){ 
-    ?>
-  	<td><?php echo ($row['LIB_LIBELLE'] );?></td>
-    <td><?php echo ($row['URG_LIBELLE'] );?></td>
-    <td> 
-      <form action="?page=ficheincident" method="POST">
-      <input type="submit" value="PDF"></input>
-      <input type="hidden" name="test" id="test" value="<?php echo ($row['INC_CODE'])?>">
-      </form>
-    </td>
-  <?php
+  	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+    echo "<td>" . $row['URG_LIBELLE'] . "</td>";?>
+    <td> <form action="?page=ficheincident" method="POST">
+<input type="submit" value="PDF"></input>
+<input type="hidden" name="test" id="test" value="<?php echo ($row['INC_CODE'])?>">
+</form></td><?php
     	}
   if ($function == "intervenant" ){
-    ?>
-  	<td><?php echo ($row['LIB_LIBELLE'] );?></td>
-    <td><?php echo ($row['URG_LIBELLE'] );?></td>
-    <td><?php echo ($row['ENT_RAISONSOCIALE'] );?></td>
-  <td>
-  <form action="?page=ficheincident" method="POST">
-                
-                <input type="submit" name="test" id="test" value="<?php echo ($row['INC_CODE']); ?>" onClick="
-                  if(confirm('Vous allez consulter les informations concernant les incidents'))
-                  {
-                    submit()
-                  }
-                  else{
-                  return false;
-                  }
-                  "/>
-              </form>
-  <?php
-
+  	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
+    echo "<td>" . $row['URG_LIBELLE'] . "</td>";
+    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
   }  	  
   if ($q4 == "inter" ) {
   	echo "test";
   }
 }	
   echo "</tr>";
-  
+  }
   echo "</table>";
 ?>
