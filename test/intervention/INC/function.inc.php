@@ -676,7 +676,7 @@ function createinter()
                                 VALUES('".$test."', '".$resp."' ,'".$type."','".$id['UTI_CODE']."','".$libelle."','".$descr."', '".$date."', '".$deb."', '".$fin."', '".$id['UTI_CODE']."')") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
-                'alert("Demande enregistré");'.
+                'alert("Intervention enregistré");'.
                 'window.location.replace("index.php")'.
                 '</script>';
         }
@@ -788,7 +788,7 @@ function createutilisateur()
                                 VALUES('".$test."', '".$login."' ,'".$pwd."','".$nom."','".$prenom."','".$mail."', '".$fixe."', '".$portable."', 0)") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
-                'alert("Entreprise enregistré");'.
+                'alert("Utilisateur enregistré");'.
                 'window.location.replace("index.php")'.
                 '</script>';
         }
@@ -811,7 +811,7 @@ function createRole()
                                 VALUES('".$user."', '".$entreprise."' ,'".$role."')") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
-                'alert("Entreprise enregistré");'.
+                'alert("Fonction enregistré");'.
                 'window.location.replace("index.php")'.
                 '</script>';
         }
@@ -887,7 +887,7 @@ function cloturer($test)
             
             var_dump($query);
             echo '<script language="Javascript">'.
-                'alert("Entreprise modifié");'.
+                'alert("Incident cloturé");'.
                 'window.location.replace("index.php")'.
                 '</script>';
         }

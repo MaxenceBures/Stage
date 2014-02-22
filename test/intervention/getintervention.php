@@ -153,7 +153,7 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
   <form action="?page=afficheintervention" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['INT_CODE']); ?>" onClick="
-                  if(confirm('Vous allez consulter les informations concernant les stations'))
+                  if(confirm('Vous allez consulter les informations concernant les incidents'))
                   {
                     submit()
                   }
@@ -178,7 +178,7 @@ elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
   <form action="?page=modifutilisateur" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['UTI_LOGIN']); ?>" onClick="
-                  if(confirm('Vous allez consulter les informations concernant les stations'))
+                  if(confirm('Vous allez consulter les informations concernant les incidents'))
                   {
                     submit()
                   }
@@ -232,7 +232,7 @@ else {
   <form action="?page=ficheincident" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['INC_CODE']); ?>" onClick="
-                  if(confirm('Vous allez consulter les informations concernant les stations'))
+                  if(confirm('Vous allez consulter les informations concernant les incidents'))
                   {
                     submit()
                   }
