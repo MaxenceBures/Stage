@@ -2,7 +2,9 @@
 // require_once('function.php');
 //afficheintervention();
 // $fonction = $_SESSION['fonction'];
-$test = $_POST['test'];
+
+// $test = $_POST['test'];
+$test = $_GET['test'];
 //var_dump($test);
 /*</form><form action="<?php $_SERVER['PHP_SELF']; ?>" method="post" data-ajax="false" id="ajout_form"> */
 
