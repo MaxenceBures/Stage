@@ -137,6 +137,7 @@ if ($function == "intervenant" AND $q4 !="inter"){
 echo "</tr>";
 while($row = mysqli_fetch_array($result))
   {
+
 if ($function == "responsablecli" AND $q4 !="respcli"){
 
 	echo "<tr>";
