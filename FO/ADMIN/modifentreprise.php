@@ -4,7 +4,7 @@ modifentreprise();
 // $fonction = $_SESSION['fonction'];
 $test = $_POST['test'];
 var_dump($test);
-$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_ADRESSE2, ENT_ADRESSE3, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB  FROM ENTREPRISE WHERE ENT_CODE ='".$test."'"));
+$enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE,ENT_ADRESSE2, ENT_ADRESSE3, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_TRIGRAMME  FROM ENTREPRISE WHERE ENT_CODE ='".$test."'"));
 
 	
 ?>
@@ -13,7 +13,6 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_A
 		<script type="text/javascript" src="JS/fonctions.js" charset="iso_8859-1"></script>
 		</head>
 		<body>
-		<h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3>
 		<H2 align="center">Modif ENTREPRISE</H2>
 		<div data-role="page">
 <!--	<body>-->
@@ -48,7 +47,7 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_A
 						<label for="adresse">Adresse3 : </label>
 					</td>
 					<td>
-						<input type="text" id="adresse3" required="" name="adresse3" value="<?php echo ($enreg['ENT_ADRESSE2']); ?>" />
+						<input type="text" id="adresse3" required="" name="adresse3" value="<?php echo ($enreg['ENT_ADRESSE3']); ?>" />
 					</td>
 				</tr>
 				<tr>
@@ -91,7 +90,15 @@ $enreg = mysql_fetch_assoc(mysql_query("SELECT ENT_RAISONSOCIALE, ENT_RUE, ENT_A
 					<td>
 						<input type="text" id="web" name="web" value="<?php echo ($enreg['ENT_SITEWEB']); ?>" />
 					</td>
-				</tr>1
+				</tr>
+				<tr>
+					<td>
+						<label for="web">Trigramme : </label>
+					</td>
+					<td>
+						<input type="text" id="tri" name="tri" value="<?php echo ($enreg['ENT_TRIGRAMME']); ?>" readonly/>
+					</td>
+				</tr>
 			</table>
 			</br>
 						<input type="submit" name="go_modifentreprise" id="go_modifentreprise" value="Modifier"/>

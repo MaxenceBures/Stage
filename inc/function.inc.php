@@ -774,7 +774,7 @@ function createentreprise()
             $mail = mysql_real_escape_string($_POST['mail']);
             $fixe = mysql_real_escape_string($_POST['fixe']);
             $web = mysql_real_escape_string($_POST['web']);
-            $trigramme = mysql_real_escape_string($_POST['trigramme']);
+            $trigramme = mysql_real_escape_string($_POST['tri']);
                
             $count = mysql_fetch_row(mysql_query("SELECT max(ENT_CODE) from ENTREPRISE"));
             $test = $count[0] + 1;
@@ -870,12 +870,14 @@ function modifentreprise()
 
             $ent = mysql_real_escape_string($_POST['nomEnt']);
             $adresse = mysql_real_escape_string($_POST['adresse']);
+            $adresse2 = mysql_real_escape_string($_POST['adresse2']);
+            $adresse3 = mysql_real_escape_string($_POST['adresse3']);
             $cp = mysql_real_escape_string($_POST['cp']);
             $ville = mysql_real_escape_string($_POST['ville']);
             $mail = mysql_real_escape_string($_POST['mail']);
             $fixe = mysql_real_escape_string($_POST['fixe']);
             $web = mysql_real_escape_string($_POST['web']);
-            $query = mysql_query("UPDATE ENTREPRISE SET ENT_RUE = '".$adresse."', ENT_CP = '".$cp."', ENT_VILLE = '".$ville."', ENT_MAIL = '".$mail."', ENT_TELEPHONE = '".$fixe."', ENT_SITEWEB= '".$web."'
+            $query = mysql_query("UPDATE ENTREPRISE SET ENT_RUE = '".$adresse."',ENT_ADRESSE2='".$adresse2."',ENT_ADRESSE3='".$adresse3."', ENT_CP = '".$cp."', ENT_VILLE = '".$ville."', ENT_MAIL = '".$mail."', ENT_TELEPHONE = '".$fixe."', ENT_SITEWEB= '".$web."'
                                 WHERE ENT_RAISONSOCIALE = '".$ent."'") or die (mysql_error());
             
             var_dump($query);
