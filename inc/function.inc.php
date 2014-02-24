@@ -2,9 +2,10 @@
 //session_start();
 include('connexion.inc.php');
 connect();
-
-function ListeIntervention()
+$con = connecter();
+function ListeDeroulanteEtat()
     {
+
             $sReq = " SELECT ETA_CODE, ETA_LIBELLE 
                       FROM ETAT";
             $rstPdt = mysql_query($sReq) ;
@@ -339,160 +340,66 @@ function infosInterventionrespcli($q,$q2,$q3)
         $result = mysqli_query($con,$sql);
         return($result);
     }        
-function ListeDeroulanteUrgence()
+function infosUtilisateurrespint($q7)
     {
-        $sReq = " SELECT URG_CODE, URG_LIBELLE
-                  FROM URGENCE
-                  ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oUrgences = array() ;
-        while ($Urgence = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oUrgences[$iNb] =  $Urgence ;
-        }
-        return ($oUrgences) ;
-    }
-function ListeDeroulanteEntreprise()
-    {
-        $sReq = " SELECT ENT_CODE, ENT_RAISONSOCIALE
-                  FROM ENTREPRISE
-                  ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oEntreprises = array() ;
-        while ($Entreprise = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oEntreprises[$iNb] =  $Entreprise ;
-        }
-        return ($oEntreprises) ;
-    }    
-function ListeDeroulanteType()
-    {
-        $sReq = " SELECT LIB_CODE, LIB_LIBELLE
-                  FROM LIBELLE
-                  WHERE LIB_TYPE ='incidenttype' ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oTypes = array() ;
-        while ($Type = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oTypes[$iNb] =  $Type ;
-        }
-        return ($oTypes) ;
-    }
-function ListeDeroulanteTypeInter()
-    {
-        $sReq = " SELECT LIB_CODE, LIB_LIBELLE
-                  FROM LIBELLE
-                  WHERE LIB_TYPE ='interventiontype' ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oTypes = array() ;
-        while ($Type = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oTypes[$iNb] =  $Type ;
-        }
-        return ($oTypes) ;
-    }    
-function ListeDeroulanteUtilisateur()
-    {
-        $sReq = " SELECT DISTINCT UTILISATEUR.UTI_CODE, UTI_LOGIN
-                  FROM UTILISATEUR, ID
-                  WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE
-                  AND (ROL_CODE = '1'
-                  OR ROL_CODE = '2')
-                   ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oUser = array() ;
-        while ($Users = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oUser[$iNb] =  $Users ;
-        }
-        return ($oUser) ;
-    }
-function ListeDeroulanteIntervenant()
-    {
-        $sReq = " SELECT DISTINCT UTILISATEUR.UTI_CODE, UTI_LOGIN
-                  FROM UTILISATEUR, ID
-                  WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE
-                  AND ROL_CODE = '3'
-                   ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oUser = array() ;
-        while ($Users = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oUser[$iNb] =  $Users ;
-        }
-        return ($oUser) ;
-    } 
-function ListeDeroulanteRole()
-    {
-        $sReq = " SELECT ROL_CODE, ROL_LIBELLE
-                  FROM ROLE
-                   ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oRole = array() ;
-        while ($Roles = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oRole[$iNb] =  $Roles ;
-        }
-        return ($oRole) ;
-    }        
-function createincident()
-    {
-     
-            if (isset($_POST['go_createint']))
-         {       
+        $con = connecter();
+        // $q = intval($q);
+        // $id = $_SESSION['login'];
+        //$q2 = intval($q2);
+        $q7 = intval($q7);
+        var_dump($q7);
 
-            $date = date("Y-m-d\TH:i:sP");
-           // $id = $_SESSION['login'];
-            if (isset($_POST['region'])) {
-               $region = mysql_real_escape_string($_POST['region']);
+        if ($q7 == 94){
+                $sql7 = "ORDER  BY UTILISATEUR.UTI_CODE";
             }
-            if (isset($_POST['departement'])) {
-               $departement = mysql_real_escape_string($_POST['departement']);
+            if ($q7 == ""){
+                $sql7 = "ORDER  BY UTILISATEUR.UTI_CODE";
             }
-           // $departement = mysql_real_escape_string($_POST['departement']);
-           // var_dump($region); var_dump($departement);
-           if (!isset($_POST['region'])) {
-                $ent = mysql_real_escape_string($_POST['nomEnt']);
-                $resp = mysql_real_escape_string($_POST['nomResp']);
-                $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
-                $resp2 = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$resp."'"));
-                $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
-                $sql = "'".$resp2['UTI_CODE']."', '".$ent2['ENT_CODE']."', '".$id['UTI_CODE']."'";        
+            elseif($q7 != 94 AND $q7 !=""){
+                $sql7 = "AND ID.ROL_CODE = '".$q7."' ORDER  BY UTILISATEUR.UTI_CODE";
             }
-            else{
-                echo'stop';
-                $sql = "'".$departement."', '".$region."', '".$departement."'"; 
-            }
+
             
-            $libelle = mysql_real_escape_string($_POST['libelle']);
-            $descr = mysql_real_escape_string($_POST['descr']);
-            $type = mysql_real_escape_string($_POST['type']);
-            $urgence = mysql_real_escape_string($_POST['urgence']);
-            $count = mysql_fetch_row(mysql_query("SELECT max(INC_CODE) from INCIDENT"));
-            $test = $count[0] + 1;
-            $query = mysql_query("INSERT INTO INCIDENT(INC_CODE ,URG_CODE ,UTI_CODE ,ENT_CODE ,INC_DEMANDE ,ETA_CODE ,INC_LIBELLE ,INC_DESCRIPTION, INC_DATEDEMANDE , INC_TYPE)
-                                VALUES('".$test."', '".$urgence."' ,$sql, 1, '".$libelle."','".$descr."','".$date."', '".$type."')") or die (mysql_error());
-            var_dump($query);
-            echo '<script language="Javascript">'.
-                'alert("Demande enregistré");'.
-                'window.location.replace("index.php")'.
-                '</script>';
-        }
-    }
+            
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                else {  
+        
+                     $sql="SELECT UTILISATEUR.UTI_CODE, UTI_LOGIN, ENT_RAISONSOCIALE, UTI_TELEPHONEFIXE, UTI_MAIL, ROL_LIBELLE
+                         FROM UTILISATEUR, ID, ENTREPRISE, ROLE
+                         WHERE UTILISATEUR.UTI_CODE = ID.UTI_CODE
+                         AND ENTREPRISE.ENT_CODE = ID.ENT_CODE
+                         AND ROLE.ROL_CODE = ID.ROL_CODE
+                           $sql7
+
+                         "; //$sql2
+                         
+                         var_dump($sql);
+                    }     
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }   
+function infosEntrepriserespint()
+    {
+        $con = connecter();
+       
+                if (!$con)
+                  {
+                    die('Could not connect: ' . mysqli_error($con));
+                  }
+                else {  
+        
+                     $sql="SELECT ENT_CODE, ENT_RAISONSOCIALE, ENT_HEURES, ENT_VILLE, ENT_TELEPHONE, ENT_SITEWEB
+                         FROM ENTREPRISE
+                         "; //$sql2
+                         
+                         var_dump($sql);
+                    }     
+        $result = mysqli_query($con,$sql);
+        return($result);
+    }    
 function infosInterventionResp($q,$q2,$q3)
     {
         $con = connecter();
@@ -630,6 +537,176 @@ function infosInterventionintervenant($q,$q3,$q5,$q6)
         $result = mysqli_query($con,$sql);
         return($result);
     }    
+function ListeDeroulanteUrgence()
+    {
+        $sReq = " SELECT URG_CODE, URG_LIBELLE
+                  FROM URGENCE
+                  ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oUrgences = array() ;
+        while ($Urgence = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oUrgences[$iNb] =  $Urgence ;
+        }
+        return ($oUrgences) ;
+    }
+function ListeDeroulanteEntreprise()
+    {
+        $sReq = " SELECT ENT_CODE, ENT_RAISONSOCIALE
+                  FROM ENTREPRISE
+                  ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oEntreprises = array() ;
+        while ($Entreprise = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oEntreprises[$iNb] =  $Entreprise ;
+        }
+        return ($oEntreprises) ;
+    }    
+function ListeDeroulanteType()
+    {
+        $sReq = " SELECT LIB_CODE, LIB_LIBELLE
+                  FROM LIBELLE
+                  WHERE LIB_TYPE ='incidenttype' ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oTypes = array() ;
+        while ($Type = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oTypes[$iNb] =  $Type ;
+        }
+        return ($oTypes) ;
+    }
+function ListeDeroulanteTypeInter()
+    {
+        $sReq = " SELECT LIB_CODE, LIB_LIBELLE
+                  FROM LIBELLE
+                  WHERE LIB_TYPE ='interventiontype' ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oTypes = array() ;
+        while ($Type = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oTypes[$iNb] =  $Type ;
+        }
+        return ($oTypes) ;
+    }    
+function ListeDeroulanteUtilisateur()
+    {
+        $sReq = " SELECT DISTINCT UTILISATEUR.UTI_CODE, UTI_LOGIN
+                  FROM UTILISATEUR, ID
+                  WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE
+                  AND (ROL_CODE = '1'
+                  OR ROL_CODE = '2')
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oUser = array() ;
+        while ($Users = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oUser[$iNb] =  $Users ;
+        }
+        return ($oUser) ;
+    }
+function ListeDeroulanteIntervenant()
+    {
+        $sReq = " SELECT DISTINCT UTILISATEUR.UTI_CODE, UTI_LOGIN
+                  FROM UTILISATEUR, ID
+                  WHERE ID.UTI_CODE = UTILISATEUR.UTI_CODE
+                  AND ROL_CODE = '3'
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oUser = array() ;
+        while ($Users = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oUser[$iNb] =  $Users ;
+        }
+        return ($oUser) ;
+    } 
+function ListeDeroulanteRole()
+    {
+        $sReq = " SELECT ROL_CODE, ROL_LIBELLE
+                  FROM ROLE
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oRole = array() ;
+        while ($Roles = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oRole[$iNb] =  $Roles ;
+        }
+        return ($oRole) ;
+    }        
+function ListeDeroulanteUtilisateursnonattribues()
+    {
+        $sReq = " SELECT DISTINCT UTI_CODE, UTI_LOGIN FROM UTILISATEUR
+                  WHERE UTI_CODE NOT IN ( SELECT DISTINCT UTI_CODE FROM ID)
+                  
+                   ";
+        $rstPdt = mysql_query($sReq) ;
+        $iNb = 0 ;
+        $oUser = array() ;
+        while ($Users = mysql_fetch_assoc($rstPdt) )
+        {
+            $iNb = $iNb + 1 ;
+            $oUser[$iNb] =  $Users ;
+        }
+        return ($oUser) ;
+    }    
+function createincident()
+    {
+     
+            if (isset($_POST['go_createint']))
+         {       
+
+            $date = date("Y-m-d\TH:i:sP");
+           // $id = $_SESSION['login'];
+            if (isset($_POST['region'])) {
+               $region = mysql_real_escape_string($_POST['region']);
+            }
+            if (isset($_POST['departement'])) {
+               $departement = mysql_real_escape_string($_POST['departement']);
+            }
+           // $departement = mysql_real_escape_string($_POST['departement']);
+           // var_dump($region); var_dump($departement);
+           if (!isset($_POST['region'])) {
+                $ent = mysql_real_escape_string($_POST['nomEnt']);
+                $resp = mysql_real_escape_string($_POST['nomResp']);
+                $ent2 = mysql_fetch_assoc(mysql_query("SELECT ENT_CODE FROM ENTREPRISE WHERE ENT_RAISONSOCIALE = '".$ent."'"));
+                $resp2 = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$resp."'"));
+                $id = mysql_fetch_assoc(mysql_query("SELECT UTI_CODE FROM UTILISATEUR WHERE UTI_LOGIN = '".$_SESSION['login']."'"));  
+                $sql = "'".$resp2['UTI_CODE']."', '".$ent2['ENT_CODE']."', '".$id['UTI_CODE']."'";        
+            }
+            else{
+                echo'stop';
+                $sql = "'".$departement."', '".$region."', '".$departement."'"; 
+            }
+            
+            $libelle = mysql_real_escape_string($_POST['libelle']);
+            $descr = mysql_real_escape_string($_POST['descr']);
+            $type = mysql_real_escape_string($_POST['type']);
+            $urgence = mysql_real_escape_string($_POST['urgence']);
+            $count = mysql_fetch_row(mysql_query("SELECT max(INC_CODE) from INCIDENT"));
+            $test = $count[0] + 1;
+            $query = mysql_query("INSERT INTO INCIDENT(INC_CODE ,URG_CODE ,UTI_CODE ,ENT_CODE ,INC_DEMANDE ,ETA_CODE ,INC_LIBELLE ,INC_DESCRIPTION, INC_DATEDEMANDE , INC_TYPE)
+                                VALUES('".$test."', '".$urgence."' ,$sql, 1, '".$libelle."','".$descr."','".$date."', '".$type."')") or die (mysql_error());
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Demande enregistré");'.
+                'window.location.replace("index.php")'.
+                '</script>';
+        }
+    }
 function createinter()
     {
      
@@ -681,66 +758,6 @@ function createinter()
                 '</script>';
         }
     }
-function infosUtilisateurrespint($q7)
-    {
-        $con = connecter();
-        // $q = intval($q);
-        // $id = $_SESSION['login'];
-        //$q2 = intval($q2);
-        $q7 = intval($q7);
-        var_dump($q7);
-
-        if ($q7 == 94){
-                $sql7 = "ORDER  BY UTILISATEUR.UTI_CODE";
-            }
-            if ($q7 == ""){
-                $sql7 = "ORDER  BY UTILISATEUR.UTI_CODE";
-            }
-            elseif($q7 != 94 AND $q7 !=""){
-                $sql7 = "AND ID.ROL_CODE = '".$q7."' ORDER  BY UTILISATEUR.UTI_CODE";
-            }
-
-            
-            
-                if (!$con)
-                  {
-                    die('Could not connect: ' . mysqli_error($con));
-                  }
-                else {  
-        
-                     $sql="SELECT UTILISATEUR.UTI_CODE, UTI_LOGIN, ENT_RAISONSOCIALE, UTI_TELEPHONEFIXE, UTI_MAIL, ROL_LIBELLE
-                         FROM UTILISATEUR, ID, ENTREPRISE, ROLE
-                         WHERE UTILISATEUR.UTI_CODE = ID.UTI_CODE
-                         AND ENTREPRISE.ENT_CODE = ID.ENT_CODE
-                         AND ROLE.ROL_CODE = ID.ROL_CODE
-                           $sql7
-
-                         "; //$sql2
-                         
-                         var_dump($sql);
-                    }     
-        $result = mysqli_query($con,$sql);
-        return($result);
-    }   
-function infosEntrepriserespint()
-    {
-        $con = connecter();
-       
-                if (!$con)
-                  {
-                    die('Could not connect: ' . mysqli_error($con));
-                  }
-                else {  
-        
-                     $sql="SELECT ENT_CODE, ENT_RAISONSOCIALE, ENT_HEURES, ENT_VILLE, ENT_TELEPHONE, ENT_SITEWEB
-                         FROM ENTREPRISE
-                         "; //$sql2
-                         
-                         var_dump($sql);
-                    }     
-        $result = mysqli_query($con,$sql);
-        return($result);
-    }    
 function createentreprise()
     {
      
@@ -750,16 +767,19 @@ function createentreprise()
       
             $ent = mysql_real_escape_string($_POST['nomEnt']);
             $adresse = mysql_real_escape_string($_POST['adresse']);
+            $adresse2 = mysql_real_escape_string($_POST['adresse2']);
+            $adresse3 = mysql_real_escape_string($_POST['adresse3']);
             $cp = mysql_real_escape_string($_POST['cp']);
             $ville = mysql_real_escape_string($_POST['ville']);
             $mail = mysql_real_escape_string($_POST['mail']);
             $fixe = mysql_real_escape_string($_POST['fixe']);
             $web = mysql_real_escape_string($_POST['web']);
+            $trigramme = mysql_real_escape_string($_POST['trigramme']);
                
             $count = mysql_fetch_row(mysql_query("SELECT max(ENT_CODE) from ENTREPRISE"));
             $test = $count[0] + 1;
-            $query = mysql_query("INSERT INTO ENTREPRISE(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES)
-                                VALUES('".$test."', '".$ent."' ,'".$adresse."','".$cp."','".$ville."','".$mail."', '".$fixe."', '".$web."', 0)") or die (mysql_error());
+            $query = mysql_query("INSERT INTO ENTREPRISE(ENT_CODE, ENT_RAISONSOCIALE, ENT_RUE, ENT_CP, ENT_VILLE, ENT_MAIL, ENT_TELEPHONE, ENT_SITEWEB, ENT_HEURES, ENT_ADRESSE2, ENT_ADRESSE3, ENT_TRIGRAMME)
+                                VALUES('".$test."', '".$ent."' ,'".$adresse."','".$cp."','".$ville."','".$mail."', '".$fixe."', '".$web."', 0,'".$adresse2."','".$adresse3."','".$trigramme."')") or die (mysql_error());
             var_dump($query);
             echo '<script language="Javascript">'.
                 'alert("Entreprise enregistré");'.
@@ -816,22 +836,6 @@ function createRole()
                 '</script>';
         }
     }        
-function ListeDeroulanteUtilisateursnonattribues()
-    {
-        $sReq = " SELECT DISTINCT UTI_CODE, UTI_LOGIN FROM UTILISATEUR
-                  WHERE UTI_CODE NOT IN ( SELECT DISTINCT UTI_CODE FROM ID)
-                  
-                   ";
-        $rstPdt = mysql_query($sReq) ;
-        $iNb = 0 ;
-        $oUser = array() ;
-        while ($Users = mysql_fetch_assoc($rstPdt) )
-        {
-            $iNb = $iNb + 1 ;
-            $oUser[$iNb] =  $Users ;
-        }
-        return ($oUser) ;
-    }
 function modifutilisateur()
     {
      

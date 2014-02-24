@@ -34,6 +34,22 @@ createentreprise();
 				</tr>
 				<tr>
 					<td>
+						<label for="adresse">Adresse 2: </label>
+					</td>
+					<td>
+						<input type="text" id="adresse2" required="" name="adresse2"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="adresse">Adresse 3: </label>
+					</td>
+					<td>
+						<input type="text" id="adresse3" required="" name="adresse3"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						<label for="cp">Code postal : </label>
 					</td>
 					<td>
@@ -72,7 +88,15 @@ createentreprise();
 					<td>
 						<input type="text" id="web" name="web"/>
 					</td>
-				</tr>1
+				</tr>
+				<tr>
+					<td>
+						<label for="web">Trigramme : </label>
+					</td>
+					<td>
+						<input type="text" id="tri" name="tri"/>
+					</td>
+				</tr>
 			</table>
 			</br>
 						<input type="submit" name="go_createentreprise" id="go_createentreprise" value="Creer"/>
