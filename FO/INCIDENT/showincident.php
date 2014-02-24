@@ -24,7 +24,7 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 <select name="etat" onchange="updateEtat(this.value),page2(), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>
   <?php
-        $lesInters = ListeDeroulanteEtat() ;
+        $lesInters = ListeIntervention() ;
         foreach ($lesInters as $unInter)
         {
   ?>
@@ -86,7 +86,7 @@ echo " <H2 align='center'>MES INTERVENTIONS</H2> ";
 <td>
 <input type="checkbox" onchange="updateEtat(this.value),page2(), showIntervention()" value="99"><?php echo "Tous"?></br>
   <?php
-        $lesInters = ListeDeroulanteEtat() ;
+        $lesInters = ListeIntervention() ;
         foreach ($lesInters as $unInter)
         {
   ?>

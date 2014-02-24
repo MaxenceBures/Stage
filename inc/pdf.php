@@ -119,7 +119,7 @@ foreach($new_array as $array){
 				 } 
 
 $content = ob_get_clean();
-require('../html2pdf/html2pdf.class.php');
+require('html2pdf/html2pdf.class.php');
 try{
 	$pdf = new HTML2PDF('P','A4','fr');
 	$pdf-> writeHTML($content);

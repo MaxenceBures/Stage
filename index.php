@@ -1,7 +1,5 @@
 <?php
  	session_start();
- 	header( 'content-type: text/html; charset=utf-8' );
-
  	/**
  	 * @todo mettre ici un include
  	 *       du fichier function connexion bdd
