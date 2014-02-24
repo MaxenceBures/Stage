@@ -3,22 +3,8 @@
 include('connexion.inc.php');
 connect();
 $con = connecter();
-function ListeDeroulanteEtat()
-    {
 
-            $sReq = " SELECT ETA_CODE, ETA_LIBELLE 
-                      FROM ETAT";
-            $rstPdt = mysql_query($sReq) ;
-            $iNb = 0 ;
-            $lesProduits = array() ;
-                while ($uneLigne = mysql_fetch_array($rstPdt))
-                {
-                    $iNb = $iNb + 1 ;
-                    $lesProduits[$iNb] =  $uneLigne ;
-                }
-            return ($lesProduits) ;
-        mysql_close($oSql);
-    }
+
 function infosInterventioncli($q,$q3)
     {
            $con = connecter();
@@ -552,6 +538,22 @@ function ListeDeroulanteUrgence()
         }
         return ($oUrgences) ;
     }
+function ListeDeroulanteEtat()
+    {
+
+            $sReq = " SELECT ETA_CODE, ETA_LIBELLE 
+                      FROM ETAT";
+            $rstPdt = mysql_query($sReq) ;
+            $iNb = 0 ;
+            $lesProduits = array() ;
+                while ($uneLigne = mysql_fetch_array($rstPdt))
+                {
+                    $iNb = $iNb + 1 ;
+                    $lesProduits[$iNb] =  $uneLigne ;
+                }
+            return ($lesProduits) ;
+        mysql_close($oSql);
+    }    
 function ListeDeroulanteEntreprise()
     {
         $sReq = " SELECT ENT_CODE, ENT_RAISONSOCIALE
