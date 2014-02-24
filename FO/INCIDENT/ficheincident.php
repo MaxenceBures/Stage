@@ -122,7 +122,7 @@ foreach($new_array as $array){
 				</tr>
 				</table>
 				
-				<?php }
+				<?php }}
 if ($enreg['ETA_CODE'] == '5') 
 {
 	?>
@@ -142,4 +142,4 @@ elseif ($enreg['ETA_CODE'] == '3' OR $enreg['ETA_CODE'] == '4')
 	<?php	
 }	
 
-}?>
+?>

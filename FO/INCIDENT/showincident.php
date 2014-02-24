@@ -15,7 +15,7 @@
 <form>
 <!-- <h3 align="right">Vous etes connectes en tant que <?php echo($_SESSION['login'].' '.$fonction) ?> </h3> -->
 <br>
-<?php if($fonction =='intervenant'){ 
+<?php if($fonction =='intervenant' or $fonction =='responsableint' ){ 
 echo "<H2 align='center'>MES INCIDENTS</H2>";
 } else {
 echo " <H2 align='center'>MES INTERVENTIONS</H2> ";

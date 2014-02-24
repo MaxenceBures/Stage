@@ -21,12 +21,18 @@ $q7 = "";
 if(isset($_GET['q7'])){
   $q7 = $_GET['q7'];
   
- } 
- var_dump($q7);echo"<br>";
+ }
 $q4 = $_GET['q4'];
 $q = $_GET['q'];
 //$q2 = $_GET['q2'];
 $q3 = $_GET['q3'];
+var_dump($q2);echo"<br>";
+var_dump($q5);echo"<br>"; 
+var_dump($q6);echo"<br>";
+var_dump($q7);echo"<br>";
+var_dump($q);echo"<br>"; 
+var_dump($q3);echo"<br>";
+
 //$q5 = $_GET['q5'];
 var_dump($q4);
 
@@ -92,10 +98,15 @@ if($function == "responsableint" and $q4!= "inter" and $q4 != "cli"){
 }
 else
 {	
-  echo "
-  <th>Num</th>
-  <th>Libelle Int</th>
-  <th>Libelle Inc</th> ";
+  
+echo "<th>Num</th>";
+if ($q4 =="inter") {
+echo "<th>Libelle Int</th>";
+echo "<th>Libelle Inc</th> ";
+}
+else{
+  echo "<th>Libelle Inc</th> ";//
+}
 if ($q4 =="inter") {
 	echo "<th>Date</th> ";
 	echo "<th>Incident</th> ";
@@ -107,9 +118,10 @@ if ($q4 =="inter") {
 }
 elseif ($function =="responsablecli") {
   echo"
-  <th>Description</th>
+
   <th>DateInter</th>
-  <th>EtatIncid</th>";
+  <th>EtatIncid</th>";//<th>Description</th>
+  
 }
 else {
   echo"
@@ -121,7 +133,9 @@ if ($function == "responsablecli" OR ($function == "responsableint" AND $q4 =="c
   echo "<th>TypeInter</th>
         <th>Urgence</th>";   
     if($function == "responsableint"){
-        echo "<th>Entreprise</th>";
+        echo "<th>Entreprise</th>
+              <th>1</th>
+              <th>ModifierEtat</th>";
     }    
     if ($q4 == "cli" AND $function != "responsableint"){
     		echo "<th>intervenant</th>";
@@ -132,7 +146,9 @@ if ($function == "responsablecli" OR ($function == "responsableint" AND $q4 =="c
 if ($function == "intervenant" AND $q4 !="inter"){
 	echo "<th>Type</th>
         <th>Urgence</th>
-        <th>Entreprise</th>";
+        <th>Entreprise</th>
+        <th>ModifierEtat</th>
+        ";
 }
 }
 echo "</tr>";
@@ -144,6 +160,7 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
 	echo "<tr>";
 	echo "<td>" . $row['INT_CODE'] . "</td>";
 	echo "<td>" . $row['INT_LIBELLE'] . "</td>";
+  // echo "<td>" . $row['INT_DESC'] . "</td>";
 	echo "<td>" . $row['INC_LIBELLE'] . "</td>";
 	echo "<td>" . substr($row['INT_DATEINTER'],0,10) . "</td>";
 	echo "<td>" . $row['ETA_LIBELLE'] . "</td>";
@@ -152,7 +169,7 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
   echo "<td>" . $row['UTI_LOGIN'] . "</td>";
   echo "<td>" . $row['INC_DEMANDE'] . "</td>";?>
   <td>
-       <a href="?page=affciheintervention&test=<?php print($row['INT_CODE']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les incidents'))
+       <a href="?page=afficheintervention&test=<?php print($row['INT_CODE']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les incidents'))
                  {
                     submit()
                   }
@@ -281,6 +298,17 @@ else {
               </form> -->
   <?php
 echo "</td>";
+?><td>
+<a href="?page=modifieretat&test=<?php print($row['INC_CODE']) ?>"><input type="button" value="Modifier Etat" id="test" onClick="if(confirm('Etat Modification'))
+                 {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  
+              " /></a></td>
+<?php
     }  
   if ($q4 =="respcli" ){ 
   	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
@@ -297,7 +325,18 @@ echo "</td>";
   if ($function == "intervenant" ){
   	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
     echo "<td>" . $row['URG_LIBELLE'] . "</td>";
-    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";
+    echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";?>
+    <td>
+     <a href="?page=modifieretat&test=<?php print($row['INC_CODE']) ?>"><input type="button" value="Modifier Etat" id="test" onClick="if(confirm('Etat Modification'))
+                 {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  
+              " /></a>
+    <?php
   }  	  
   if ($q4 == "inter" ) {
   	echo "test";

@@ -53,6 +53,10 @@ $fonction = $_SESSION['fonction'];
 							$fichier = "FO/INTERVENTION/afficheintervention.php";
 							$titre   =  "Liste";
 							break ;
+						case "modifieretat":
+							$fichier = "FO/INCIDENT/modifieretat.php";
+							$titre   =  "Liste";
+							break ;	
 						case "showinterventionMesResponCli":
 							$fichier = "FO/INTERVENTION/showinterventionMesResponCli.php";
 							$titre   =  "ListeAjout";

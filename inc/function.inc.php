@@ -554,6 +554,24 @@ function ListeDeroulanteEtat()
             return ($lesProduits) ;
         mysql_close($oSql);
     }    
+function ListeDeroulanteEtatModif()
+    {
+
+            $sReq = " SELECT ETA_CODE, ETA_LIBELLE 
+                      FROM ETAT
+                      WHERE ETA_CODE !=1
+                      AND ETA_CODE !=5";
+            $rstPdt = mysql_query($sReq) ;
+            $iNb = 0 ;
+            $lesProduits = array() ;
+                while ($uneLigne = mysql_fetch_array($rstPdt))
+                {
+                    $iNb = $iNb + 1 ;
+                    $lesProduits[$iNb] =  $uneLigne ;
+                }
+            return ($lesProduits) ;
+        mysql_close($oSql);
+    }    
 function ListeDeroulanteEntreprise()
     {
         $sReq = " SELECT ENT_CODE, ENT_RAISONSOCIALE
@@ -888,6 +906,24 @@ function modifentreprise()
                 'window.location.replace("index.php")'.
                 '</script>';
         }}
+function modifetat()
+    {
+     
+            if (isset($_POST['go_modifetat']))
+         {       
+
+            $code = mysql_real_escape_string($_POST['code']);
+            $etat = mysql_real_escape_string($_POST['etat']);
+           
+            $query = mysql_query("UPDATE INCIDENT SET ETA_CODE = '".$etat."'
+                                WHERE INC_CODE = '".$code."'") or die (mysql_error());
+            
+            var_dump($query);
+            echo '<script language="Javascript">'.
+                'alert("Etat modifié");'.
+                'window.location.replace("index.php")'.
+                '</script>';
+        }}        
 function cloturer($test)
     {
      
