@@ -1,5 +1,5 @@
 <?php
-if (!isset($_GET['pseudo']) || !isset($_GET['mdp'])) { header('Location: ../connexion.html');} // Vérifie que l'on vient bien du formulaire
+if (!isset($_GET['pseudo']) || !isset($_GET['mdp'])) { header('Location: ../Pages/connexion.html');} // Vérifie que l'on vient bien du formulaire
 $pseudo = $_GET['pseudo'];
 $mdp = sha1($_GET['mdp']);
 // $pseudo_correct = 'a';

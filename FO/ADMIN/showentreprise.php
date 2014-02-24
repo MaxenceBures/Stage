@@ -37,7 +37,8 @@ while($row = mysqli_fetch_array($test))
   echo "<td>" . $row['ENT_HEURES'] . "</td>";
   echo "<td>" . $row['ENT_VILLE'] . "</td>";
   echo "<td>" . $row['ENT_TELEPHONE'] . "</td>";
-  echo "<td>" . $row['ENT_SITEWEB'] . "</td>";?>
+  echo "<td>" . $row['ENT_SITEWEB'] . "</td>";
+  echo "<td>" . $row['ENT_TRIGRAMME'] . "</td>";?>
   <td>
   <form action="?page=modifentreprise" method="POST">
                 
