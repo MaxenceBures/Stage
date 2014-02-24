@@ -41,7 +41,7 @@ function infosInterventioncli($q,$q3)
                          AND INCIDENT.ETA_CODE = '".$q."'  $sql4
                          ";    
                     }
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }
 function infosIncidentcli($q,$q3)
@@ -80,7 +80,7 @@ function infosIncidentcli($q,$q3)
                          AND INCIDENT.ETA_CODE = '".$q."'  $sql4
                          ";    
                     }
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }    
 function infosIntervention($q,$q2,$q3)
@@ -134,7 +134,7 @@ function infosIntervention($q,$q2,$q3)
                          
                          var_dump($sql);
                     }     
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }
 function infosIncidentintervenant($q,$q3,$q5)
@@ -205,7 +205,7 @@ function infosIncidentintervenant($q,$q3,$q5)
                 $sql3 $sql5 $sql4" ;   
                          var_dump($sql);
                     }     
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }    
 function infosMesIncidentsrespcli($q,$q3)
@@ -264,7 +264,7 @@ function infosMesIncidentsrespcli($q,$q3)
                          
                          var_dump($sql);
                     }     
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }    
 function infosInterventionrespcli($q,$q2,$q3)
@@ -323,7 +323,7 @@ function infosInterventionrespcli($q,$q2,$q3)
                          
                          var_dump($sql);
                     }     
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }        
 function infosUtilisateurrespint($q7)
@@ -364,7 +364,7 @@ function infosUtilisateurrespint($q7)
                          
                          var_dump($sql);
                     }     
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }   
 function infosEntrepriserespint()
@@ -383,7 +383,7 @@ function infosEntrepriserespint()
                          
                          var_dump($sql);
                     }     
-        $result = mysqli_query($con,$sql) or die(mysqli_error());
+        $result = mysqli_query($con,$sql);
         return($result);
     }    
 function infosInterventionResp($q,$q2,$q3)

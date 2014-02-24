@@ -29,7 +29,7 @@ $q = $_GET['q'];
 $q3 = $_GET['q3'];
 //$q5 = $_GET['q5'];
 var_dump($q4);
-$i = 1;
+
 $function = $_SESSION['fonction'];
 if ($function == "utilisateur"){
   $result = infosIncidentcli($q,$q3);
@@ -71,7 +71,7 @@ elseif ($function == "intervenant" ){
     }	
 }
 else {
-$result = infosIntervention($q,$q2,$q3) ;
+$result = infosIntervention($q,$q2,$q3);
 echo"</br><b>infosIntervention</br></b>";  
 }
 
@@ -135,26 +135,7 @@ if ($function == "intervenant" AND $q4 !="inter"){
 }
 }
 echo "</tr>";
-/*$row2 = mysqli_fetch_array($result);
-/ if ($i == 1) {?>
-//   <form action='?page=afficheintervention' method="POST">
-                
-//                 <input type="submit" name="test" id="test" value="<?php echo ($row['INT_CODE']); ?>" onClick="
-//                   if(confirm('Vous allez consulter les informations concernant les incidents'))
-//                   {
-//                     submit()
-//                   }
-//                   else{
-//                   return false;
-//                   }
-//                   "/>
-// </form></td><?php
-// ++$i;
-// }
-// else{
-*/
-
-while($row = mysqli_fetch_array($result)) 
+while($row = mysqli_fetch_array($result))
   {
 
 if ($function == "responsablecli" AND $q4 !="respcli"){
@@ -168,20 +149,11 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
   echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
   echo "<td>" . $row['URG_LIBELLE'] . "</td>";
   echo "<td>" . $row['UTI_LOGIN'] . "</td>";
-  echo "<td>" . $row['INC_DEMANDE'] . "</td>";
-  echo "<td>";?>
-        <a href="?page=afficheintervention&variable=<?php print($row['INT_CODE']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les incidents'))
-                  {
-                    submit()
-                  }
-                  else{
-                  return false;
-                  }
-                  
-              " /></a>
-<!--   <form action='?page=afficheintervention' method="POST">
+  echo "<td>" . $row['INC_DEMANDE'] . "</td>";?>
+  <td>
+  <form action="?page=afficheintervention" method="POST">
                 
-                <input type="submit" name="test" id="test" value="<?php print($row['INT_CODE']); ?>" onClick="
+                <input type="submit" name="test" id="test" value="<?php echo ($row['INT_CODE']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les incidents'))
                   {
                     submit()
@@ -190,11 +162,11 @@ if ($function == "responsablecli" AND $q4 !="respcli"){
                   return false;
                   }
                   "/>
-</form> -->
-<?php echo "</td>";
-
+              </form>
+  <?php
+echo "</td>";
+  	 
 }
-
 elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
   echo "<tr>";
   echo "<td>" . $row['UTI_CODE'] . "</td>";
@@ -204,18 +176,9 @@ elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
   echo "<td>" . $row['UTI_MAIL'] . "</td>";
   echo "<td>" . $row['ROL_LIBELLE'] . "</td>";?>
   <td>
-      <a href="?page=modifutilisateur&variable=<?php print($row['UTI_LOGIN']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les utilisateurs'))
-                  {
-                    submit()
-                  }
-                  else{
-                  return false;
-                  }
-                  
-              " /></a>
-  <!-- <form action="?page=modifutilisateur" method="POST">
+  <form action="?page=modifutilisateur" method="POST">
                 
-                <input type="submit" name="test" id="test" value="<?php printh($row['UTI_LOGIN']); ?>" onClick="
+                <input type="submit" name="test" id="test" value="<?php echo ($row['UTI_LOGIN']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les utilisateurs'))
                   {
                     submit()
@@ -224,7 +187,7 @@ elseif ($function == "responsableint" and $q4 !="inter" and $q4 !="cli") {
                   return false;
                   }
                   "/>
-              </form> -->
+              </form>
   <?php
 echo "</td>";
  
@@ -239,18 +202,9 @@ elseif ($q4 == "inter") {
   echo "<td>" . $row['INC_DEMANDE'] . "</td>";
   echo "<td>" . $row['INT_TECHNICIEN'] . "</td>";?>
   <td>
-    <a href="?page=afficheintervention&variable=<?php print($row['INT_CODE']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les interventions'))
-                  {
-                    submit()
-                  }
-                  else{
-                  return false;
-                  }
-                  
-              " /></a>
-  <!-- <form action="?page=afficheintervention" method="POST">
+  <form action="?page=afficheintervention" method="POST">
                 
-                <input type="submit" name="test" id="test" value="<?php print($row['INT_CODE']); ?>" onClick="
+                <input type="submit" name="test" id="test" value="<?php echo ($row['INT_CODE']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les interventions'))
                   {
                     submit()
@@ -259,7 +213,7 @@ elseif ($q4 == "inter") {
                   return false;
                   }
                   "/>
-              </form> -->
+              </form>
   <?php
 echo "</td>";
  
@@ -276,18 +230,9 @@ else {
     echo "<td>" . $row['URG_LIBELLE'] . "</td>";
     echo "<td>" . $row['ENT_RAISONSOCIALE'] . "</td>";?>
   <td>
-  <a href="?page=ficheincident&variable=<?php print($row['INC_CODE']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les incidents'))
-                  {
-                    submit()
-                  }
-                  else{
-                  return false;
-                  }
-                  
-              " /></a>
-  <!-- <form action="?page=ficheincident" method="POST">
+  <form action="?page=ficheincident" method="POST">
                 
-                <input type="submit" name="test" id="test" value="<?php echo ($row[$i]['INC_CODE']); ?>" onClick="
+                <input type="submit" name="test" id="test" value="<?php echo ($row['INC_CODE']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les incidents'))
                   {
                     submit()
@@ -296,26 +241,17 @@ else {
                   return false;
                   }
                   "/>
-              </form> -->
+              </form>
   <?php
 echo "</td>";
     }  
   if ($q4 =="respcli" ){ 
   	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
     echo "<td>" . $row['URG_LIBELLE'] . "</td>";?>
-    <td>
-      <a href="?page=ficheincident&variable=<?php print($row['INC_CODE']) ?>"><input type="button" value="Pdf" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les incidents'))
-                  {
-                    submit()
-                  }
-                  else{
-                  return false;
-                  }
-                  
-              " /></a> <!-- <form action="?page=ficheincident" method="POST">
+    <td> <form action="?page=ficheincident" method="POST">
 <input type="submit" value="PDF"></input>
 <input type="hidden" name="test" id="test" value="<?php echo ($row['INC_CODE'])?>">
-</form> --></td><?php
+</form></td><?php
     	}
   if ($function == "intervenant" ){
   	echo "<td>" . $row['LIB_LIBELLE'] . "</td>";
@@ -327,6 +263,6 @@ echo "</td>";
   }
 }	
   echo "</tr>";
-  } $i = $i +1;
+  }
   echo "</table>";
 ?>
