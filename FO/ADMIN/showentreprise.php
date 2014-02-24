@@ -83,9 +83,7 @@ while($row = mysqli_fetch_array($test))
   </td>
   </table> -->
  <input type="submit"  onclick="showIntervention()"> </br> 
-<a href="ajoutintervention.php">Ajout Intervention</a></br>
-<a href="showinterventionMesResponCli.php">Mes Incidents / Responsable Client </a></br>
-<a href="">Interventions / Intervenant </a></br>
+
 </form>
 </body>
 </html>

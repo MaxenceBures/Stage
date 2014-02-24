@@ -24,7 +24,7 @@ return(hu);
 <select name="etat" onchange="getHU(),updateEtat(this.value),page(), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>
   <?php
-        $lesInters = ListeIntervention() ;
+        $lesInters = ListeDeroulanteEtat() ;
         foreach ($lesInters as $unInter)
         {
   ?>
@@ -40,7 +40,7 @@ return(hu);
 <td>
 <input type="checkbox" onchange="updateEtat(this.value),page(), showIntervention()" value="99"><?php echo "Tous"?></br>
   <?php
-        $lesInters = ListeIntervention() ;
+        $lesInters = ListeDeroulanteEtat() ;
         foreach ($lesInters as $unInter)
         {
   ?>

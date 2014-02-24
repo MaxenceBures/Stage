@@ -20,7 +20,7 @@
 <select name="etat" onchange="updateEtat(this.value),page3(), showIntervention()">
 <option value="99" ><?php echo "Tous"?> </option>
   <?php
-        $lesInters = ListeIntervention() ;
+        $lesInters = ListeDeroulanteEtat() ;
         foreach ($lesInters as $unInter)
         {
   ?>
@@ -81,7 +81,7 @@
 <td>
 <input type="checkbox" onchange="updateEtat(this.value),page3(), showIntervention()" value="99"><?php echo "Tous"?></br>
   <?php
-        $lesInters = ListeIntervention() ;
+        $lesInters = ListeDeroulanteEtat() ;
         foreach ($lesInters as $unInter)
         {
   ?>
