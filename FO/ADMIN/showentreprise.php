@@ -40,7 +40,16 @@ while($row = mysqli_fetch_array($test))
   echo "<td>" . $row['ENT_SITEWEB'] . "</td>";
   echo "<td>" . $row['ENT_TRIGRAMME'] . "</td>";?>
   <td>
-  <form action="?page=modifentreprise" method="POST">
+     <a href="?page=modifentreprise&test=<?php print($row['ENT_CODE']) ?>"><input type="button" value="Plus d'infos" id="test" onClick="if(confirm('Vous allez consulter les informations concernant les entreprises'))
+                 {
+                    submit()
+                  }
+                  else{
+                  return false;
+                  }
+                  
+              " /></a>
+  <!-- <form action="?page=modifentreprise" method="POST">
                 
                 <input type="submit" name="test" id="test" value="<?php echo ($row['ENT_CODE']); ?>" onClick="
                   if(confirm('Vous allez consulter les informations concernant les stations'))
@@ -51,7 +60,7 @@ while($row = mysqli_fetch_array($test))
                   return false;
                   }
                   "/>
-              </form>
+              </form> -->
   <?php echo "</td>";            
 }
   ?>
