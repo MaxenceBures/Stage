@@ -391,7 +391,7 @@ function infosEntrepriserespint()
                   }
                 else {  
         
-                     $sql="SELECT ENT_CODE, ENT_RAISONSOCIALE, ENT_HEURES, ENT_VILLE, ENT_TELEPHONE, ENT_SITEWEB, ENT_TRIGRAMME
+                     $sql="SELECT ENT_CODE, ENT_RAISONSOCIALE, ENT_HEURES, ENT_VILLE, ENT_TELEPHONE, ENT_SITEWEB
                          FROM ENTREPRISE
                          "; //$sql2
                          
