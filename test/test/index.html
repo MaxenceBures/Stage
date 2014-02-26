@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Coding an Instant Login Form with jQuery and Ajax</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+</head>
+
+<body>
+	<div id="c">
+		<h1>Instant Login with jQuery/Ajax</h1>
+		
+		<div id="loader"><img src="img/fbloader.gif" alt="loading…" /></div>
+		
+		<form action="" method="post" id="instantform">
+	    	<label>Username:</label>
+	    	<input type="text" id="username" name="username" />
+	    	<label>Password:</label>
+	    	<input type="password" id="pw" name="pw" />
+		</form>
+		
+		<p id="logindetails"><em>username: admin / password: password1</em></p>
+		
+		<div id="results"></div>
+	</div>
+	
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#loader").hide();
+	
+	$("#pw, #username").keyup(function(){
+		var passnum = $("#pw").val();
+		var usernum = $("#username").val();
+		
+		if(passnum.length > 0 && usernum.length > 1) {
+			var qry = 'username='+ $("#username").val() + '&pw=' + passnum;
+			
+			if($("#loader").attr("class") != "loading") {
+				$("#loader").addClass("loading");
+				$("#loader").show();
+			}
+			
+            $.ajax({
+                type: "POST",
+                url: "login.php",
+                data: qry,
+                success: function(html) {
+                    if(html == 'good') {
+                    	$("#loader").hide();
+                        $("#instantform").fadeOut(1100, 'swing')
+                        $("#instantform").next("p").fadeOut(1100, function(){
+                        	$("#results").append('<h2>Success! Logged in as <strong>'+usernum+'</strong>!!');
+                        });
+                        
+                        $("#loader > img").attr("src", "img/checkmark.png");
+                        $("#loader").fadeIn(800);
+                    }
+                    else { 
+/*                     	alert(html); */
+                    }
+              	}
+            });
+		}	
+	});
+});
+</script>
+</body>
+</html>
